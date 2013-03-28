@@ -28,4 +28,6 @@ server.key
 server.crt
 server.old.crt
 server.orig.key
+
+# Ignore sensitive config data
 .elasticbeanstalk/

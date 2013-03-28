@@ -1,5 +1,7 @@
 [aws:elasticbeanstalk:application:environment]
-DJANGO_SETTINGS_MODULE=project_n.settings
+DJANGO_SETTINGS_MODULE=folio24.settings
+AWS_SECRET_KEY=r4Ipy1osFCMCPRvrk61eYfE3ZExm+rm9XFfzk2wY
+AWS_ACCESS_KEY_ID=AKIAJQXBCMVWJLI566OQ
 PARAM1=
 PARAM2=
 PARAM4=
