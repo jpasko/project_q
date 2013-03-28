@@ -54,8 +54,7 @@ USE_TZ = True
 AWS_STORAGE_BUCKET_NAME = 'folio24'
 DEFAULT_FILE_STORAGE = 'folio24.s3utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'folio24.s3utils.StaticRootS3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJQXBCMVWJLI566OQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -209,9 +208,6 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = 'support@folio24.com'
 AWS_SES_AUTO_THROTTLE = None
 
-# [TEST] Stripe publishable API key
-STRIPE_PUBLISHABLE = 'pk_test_dyJgXQH2KaYvS3jBYyVRdJa5'
-
 # Allow user sessions to exist across subdomains
 SESSION_COOKIE_DOMAIN = '.folio24.com'
 
@@ -239,12 +235,9 @@ AUTHENTICATION_BACKENDS = (
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Grab some settings from config vars in the prod environment.
-try:
-    STRIPE_SECRET = os.environ['STRIPE_SECRET']
-    STRIPE_PUBLISHABLE = os.environ['STRIPE_PUBLISHABLE']
-except:
-    pass
+# Grab stripe keys from config vars in the prod environment.
+STRIPE_SECRET = os.environ.get('PARAM1')
+STRIPE_PUBLISHABLE = os.environ.get('PARAM2')
 
 # Untracked local variables (secret keys and the like)
 try:
