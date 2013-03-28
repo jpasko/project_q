@@ -1,0 +1,160 @@
+{% extends "portfolio_base.html" %}
+{% block title %}{{ profile.fullname }}{% endblock %}
+{% block script %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/get-thumbnail.js"></script>
+{% if user.is_authenticated and user.username == username %}
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/sorting.js"></script>
+{% endif %}
+<script>
+  $(document).ready(function(){
+    $(".darken").hover(function() {
+      var image = $(this).find("img");
+      var title = $(this).find(".gallery-title");
+      var left = (image.width() - title.outerWidth()) / 2;
+      if (left <= 0) {
+	left = 10;
+      }
+      title.css({
+        position: 'absolute',
+        left: left,
+	right: left,
+        top: (image.height() - title.outerHeight()) / 2
+      });
+      image.fadeTo(75, 0.6);
+      title.show();
+    }, function() {
+      $(this).find("img").fadeTo(10, 1);
+      $(this).find(".gallery-title").hide();
+    });
+    $('#id_thumbnail').change(function() {
+      $('#id_thumbnail_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+    });
+    $('#gallery-form').submit(function(event) {
+      $('#create-gallery').prop('disabled', true);
+      return true;
+    });
+    {% if user.is_authenticated and user.username == username and profile.show_get_started %}
+    $('#get-started-modal').modal('show');
+    $('#disable-get-started-modal').click(function() {
+      $.ajax({
+        type: "POST",
+        url: "/disable_get_started_modal/",
+        data: {'disable': !!$(this).is(':checked')}
+      });
+    });
+    {% endif %}
+  });
+</script>
+{% endblock %}
+{% block head %}
+<style>
+  .thumbnails > li {
+    margin: 1px 3px 0 3px;
+  }
+  .thumbnail-img {
+    height: {{ profile.thumbnail_dimension }}px;
+    width: {{ profile.thumbnail_dimension }}px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated and user.username == username %}
+{% if profile.photo_count > customer.account_limit %}
+<h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
+<p style="color: orange"><em>You've exceeded your upload limit ({{ customer.account_limit }} uploads)!  
+    Please either <a href="/settings">upgrade</a> your account or delete the extra uploads 
+    to re-enable your public portfolio.</em></p>
+{% endif %}
+{% endif %}
+{% if user.is_authenticated and user.username == username and profile.edit_mode %}
+<div class="row-fluid" style="padding-bottom: 25px">
+  <a class="btn btn-large btn-info" role="button" data-toggle="modal" href="#create-gallery-modal" style="margin-left: 3px; border-radius: 2px">
+    <i class="icon-plus icon-white"></i> <strong>Create Gallery</strong>
+  </a>
+</div>
+
+<div class="modal hide" role="dialog" tabindex="-1" id="create-gallery-modal" arialabelledby="create-gallery-heading">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="create-gallery-heading" style="color: #424242">New Gallery</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
+      {% csrf_token %}
+      <input id="id_title" type="text" name="title" maxlength="75" placeholder="Title (optional)" style="width: 286px"/>
+      <input type="file" name="thumbnail" id="id_thumbnail" class="hide"/>
+      <div class="pretty_file_input">
+	<input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail (optional)">
+	<a class="btn btn-default" onclick="$('#id_thumbnail').click();" style="margin-bottom: 10px"><b>Browse</b></a>
+      </div>
+      <div style="padding-top: 15px">
+	<input type="submit" value="Create" class="btn btn-primary btn-large" id="create-gallery">
+	<button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% if profile.show_get_started %}
+<!-- Get-started modal -->
+<div class="modal hide fade" role="dialog" tabindex="-1" id="get-started-modal" arialabelledby="get-started-heading">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="create-gallery-heading" style="color: #424242">Getting Started</h3>
+  </div>
+  <div class="modal-body">
+    <h4 style="color: #424242">Start showcasing your work!</h4>
+    <ul style="color: #424242; padding-bottom: 20px">
+      <li>Make sure you check out the <a href="/customize/">customization</a> options.</li>
+      <li>Edit your portfolio's <a href="/about/">about</a> page.</li>
+      <li>Visit the <a href="/help/">FAQs</a> page for any questions you have.</li>
+    </ul>
+    <input type="checkbox" id="disable-get-started-modal" style="margin: 0 2px 2px 0">Don't show this again</input>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+<div class="row-fluid muted">
+  <div class="span12">
+    <ul class="thumbnails sortable-galleries">
+      {% for gallery in galleries %}
+      <li id="galleries_{{ gallery.pk }}">
+	<div style="position: relative; left: 0; top: 0;" class="darken">
+	  {% if gallery.count > 0 %}
+	  <a href="/gallery/{{ gallery.pk }}/">
+	    {% with first_item=gallery.item_set.all|first %}
+	    {% if gallery.thumbnail %}
+	    <img src="{{ gallery.thumbnail.url }}" class="thumbnail-img">
+	    {% elif first_item.is_photo %}
+	    <img src="{{ first_item.photo.thumbnail.url }}" class="thumbnail-img">
+	    {% else %}
+	    <!-- Get the video thumbnail here -->
+	    <img class="video-thumbnail-img thumbnail-img" src="{{ STATIC_URL }}img/empty_gallery_square.png" data-url="{{ first_item.video.url }}">
+	    {% endif %}
+	    {% endwith %}
+            <div class="gallery-title">
+	      <h4 style="color: white">{{ gallery.title }}</h4>
+	    </div>
+	  </a>
+	  {% else %} <!-- gallery.count == 0 -->
+	  {% if gallery.thumbnail %}
+	  <a href="/gallery/{{ gallery.pk }}/">
+	    <img src="{{ gallery.thumbnail.url }}" class="thumbnail-img">
+	  {% else %}
+	  <a href="/gallery/{{ gallery.pk }}/">
+	    <img src="{{ STATIC_URL }}img/empty_gallery_square.png" class="thumbnail-img">
+	  {% endif %}
+            <div class="gallery-title"><h4 style="color: white">{{ gallery.title }} (empty)</h4></div>
+	  </a>
+	  {% endif %}
+	</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

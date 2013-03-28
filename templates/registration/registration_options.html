@@ -1,0 +1,48 @@
+{% extends "site_base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+<div class="row-fluid" style="padding-top: 30px">
+  <div class="span2 offset3">
+    <a href="https://www.{{ DOMAIN }}/register/basic/" class="btn btn-large btn-default price-box">
+      <h3>Basic</h3>
+      <h4><span style="font-size: 1.4em">35</span> uploads</h4>
+      <p><i class="icon-thumbs-up"></i> Free</p>
+    </a>
+  </div>
+  <div class="span2">
+    <a href="https://www.{{ DOMAIN }}/register/premium/" class="btn btn-large btn-default price-box" style="padding-bottom: 20px;">
+      <h3>Premium</h3>
+      <h4><span style="font-size: 1.4em">500</span> uploads</h4>
+      <p>$6 <span style="font-size: 0.9em">per month</span></p>
+      <p style="padding-top: 10px"><i class="icon-thumbs-up"></i> Custom domain</p>
+    </a>
+  </div>
+  <div class="span2">
+    <a href="https://www.{{ DOMAIN }}/register/professional/" class="btn btn-large btn-primary price-box">
+      <h3>Professional</h3>
+      <h4><span style="font-size: 1.4em">1500</span> uploads</h4>
+      <p>$9 <span style="font-size: 0.9em">per month</span></p>
+      <p style="padding-top: 10px"><i class="icon-thumbs-up icon-white"></i> Custom domain</p>
+      <p><i class="icon-thumbs-up icon-white"></i> No Folio24 logo</p>
+      <p style="padding-top: 10px"><i class="icon-star icon-white"></i> Best value <i class="icon-star icon-white"></i></p>
+    </a>
+  </div>
+</div>
+<div class="row-fluid muted" style="padding: 20px 0 10px 0">
+  <div class="span6 offset3">
+    <p><i class="icon-thumbs-up icon-dull"></i> You can easily upgrade (or downgrade) later.  Cancel at any time.</p>
+  </div>
+</div>
+<div class="row-fluid muted">
+  <div class="span6 offset3">
+    <hr style="padding: 0; margin: 0">
+    <h2>Features</h2>
+    <p><i class="icon-ok icon-dull"></i> Upload images and video from YouTube, Vimeo, and Dailymotion</p>
+    <p><i class="icon-ok icon-dull"></i> Use your own custom domain name (www.yourowndomain.com)</p>
+    <p><i class="icon-ok icon-dull"></i> Create a full profile including links to your social pages and blog</p>
+    <p><i class="icon-ok icon-dull"></i> Employ our easy contact page designed to combat spam</p>
+    <p><i class="icon-ok icon-dull"></i> Enjoy a fully customizable portfolio with Galleria viewer</p>
+    <p><i class="icon-ok icon-dull"></i> Integrate with Google Analytics to track your portfolio views</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "portfolio_base.html" %}
+{% block title %}{{ profile.fullname }} | Help{% endblock %}
+{% block head %}
+<style>
+  .featurette {
+    padding-bottom: 20px;
+  }
+  .centered-box {
+    width: 90%;
+    margin: 0 auto;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  td {
+    padding: 3px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="jumbotron muted">
+  <h2 style="text-align: center; padding-bottom: 20px">Frequently Asked Questions</h2>
+</div>
+<div class="centered-box muted">
+<div class="featurette">
+  <h3 class="featurette-heading">How do I set up a custom domain name for my portfolio?</h3>
+  <p>In order to use a custom domain name, you must first be a paying user.  If you would like to upgrade your account, please
+    go <a href="/settings/">here</a>.</p>
+  <p>Once you're a paying user, you can proceed.  Here are the steps:</p>
+  <ol>
+    <li><p>Purchase a domain name from a domain registrar such as <a href="http://www.namecheap.com" target="_blank">NameCheap</a> or
+	<a href="http://www.godaddy.com" target="_blank">GoDaddy</a>.
+	You can also use a domain name you already own.</p>
+    </li>
+    <li><p>Create the following records within your domain registrar.  This example is taken from NameCheap:</p>
+      <table border="1">
+	<tr>
+	  <td>Host Name</td>
+	  <td>IP Address/URL</td>
+	  <td>Record Type</td>
+	</tr>
+	<tr>
+	  <td>@</td>
+	  <td>http://www.yourdomainname.com/</td>
+	  <td>URL Redirect</td>
+	</tr>
+	<tr>
+	  <td>www</td>
+	  <td>domains.folio24.com.</td>
+	  <td>CNAME</td>
+	</tr>
+      </table>
+      <p><br>The URL Redirect record may already exist.  Ensure that the CNAME record exists and hit "save".</p>
+    </li>
+    <li><p>Check that you entered the records correctly.  To do this, type <strong>yourdomainname.com</strong> (without the "www") 
+      into your browser's address bar.  A generic "not found" page should come up, depending on your browser.  <strong>Verify that
+	"www.yourdomainname.com" appears in the address bar (with the "www").</strong> You may have to wait up to 24 hours 
+      for DNS records to propagate.</p>
+    </li>
+    <li>
+      <p>Under the "tools" menu of your portfolio, click "Custom domain".</p>
+    </li>
+    <li>
+      <p>In the box that pops up, enter your domain (e.g. <strong>yourdomainname.com</strong>).  You must not enter "www" or anything
+	other than <strong>yourdomainname.com</strong>.
+    </li>
+    <li>
+      <p>Click "save".  You must wait up to 72 hours for the changes to take effect.</p>
+      <p>If you've waited and your domain still doesn't work, double-check that you entered your domain name correctly and that you
+	added the CNAME record as stated above.
+      </p>
+      <p>Feel free to <a href="http://www.folio24.com/contact/">contact us</a> for support.</p>
+    </li>
+  </ol>
+  <p><strong>NOTE:</strong> If you <strong>log out</strong> and visit your portfolio while your new domain name is being processed, 
+    you should see a "Heroku | No such app" page.
+    You should also see <strong>www.yourdomainname.com</strong> in the address bar.  If you see anything else, such as a "page not found" message,
+    double-check your domain registrar's settings.</p>
+  <p>
+    <strong>NOTE:</strong> You can still access your portfolio during this stage by signing in.
+  </p>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">My portfolio isn't working correctly.  My edits aren't saved and it looks weird.  What gives?</h3>
+  <p>
+    If you're using an old browser, there is likely a lack of support for your setup.  Another possibility is that you've disabled javascript,
+    which is required for Folio24 to work properly.
+  </p>
+  <p>
+    To fix these issues, upgrade to the latest version of Chrome (preferred) or Firefox; your portfolio should work and you'll be doing 
+    the internet a huge favor!  In addition, many other sites will work more effectively, your computer will be more secure, and web
+    developers everywhere will thank you.
+  </p>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">I ran out of uploads.  What are my options?</h3>
+  <ul>
+    <li>You can obtain additional uploads by <a href="/settings/">upgrading</a> your account.</li>
+    <li>If you don't want to upgrade your account, you must delete uploads to make room for others.</li>
+    <li>If you already have a <strong>professional</strong> account and need even more uploads, please <a href="http://{{ DOMAIN }}/contact/">contact us</a>.</li>
+  </ul>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">How do I upload an image or video?</h3>
+  <p>Simply click on the gallery you'd like to upload an image or video into.  Then click on the "Upload Image" or
+  "Upload Video" button.</p>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">How do I change the order of my images, videos, or galleries?</h3>
+  <p>You can drag and drop galleries, images, or videos to rearrange them.  Your changes will be stored automatically.</p>
+
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">What is Google Analytics?</h3>
+  <p><a href="http://www.google.com/analytics/index.html" target="_blank">Google Analytics</a> is a free tool that allows you to track how many 
+    times you profile has been viewed, along with other statistics.  It can be very useful if you're curious or concerned about how
+    often people view your work.</p>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">How do I enable Google Analytics?</h3>
+  <ol>
+    <li>Create an account with <a href="http://www.google.com/analytics/index.html" target="_blank">Google Analytics</a>.</li>
+    <li>Add your portfolio's URL (http://{{ username }}.{{ DOMAIN }} or http://www.yourcustomdomain.com) to your Google Analytics account's web property setting.</li>
+    <li>Find your user account number from the Admin tab in your Google Analytics account.  It should look something like <em>UA-12345-1</em>.</li>
+    <li>Go to your portfolio's <a href="/customize/">customize</a> page and enter your Google Analytics account number.</li>
+  </ol>
+  <p>Your portfolio should now have Google Analytics enabled.  You can track your portfolio's statistics using your Google Analytics account.</li>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">How do I edit my <em>About</em> page?</h3>
+  <p>Go to your <a href="/about/">about</a> page and click on any of the headings to edit its content.  For example, if you want to edit
+  the "Location" part of your profile, simply click on "Location" -- this will open an inline editor.  Enter your location and click save.
+  You can edit the other fields in a similar manner.</p>
+  <p>Note that fields which display <em>Currently Empty</em> will not be shown publicly.</p>
+  <p>You can also upload, change, or delete your profile picture.</p>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">How do I enable or disable my <em>Blog</em> or <em>Contact</em> page?</h3>
+  <ul>
+    <li>Enable your <em>Blog</em> by entering its URL in the <a href="/customize/">customize</a> form.  Disable it by clearing its URL in the form.</li>
+    <li>Your <em>Contact</em> form is enabled by default.  You can change its settings within the  <a href="/customize/">customize</a> form as well.</li>
+  </ul>
+</div>
+<div class="featurette">
+  <h3 class="featurette-heading">What if my question isn't answered here?</h3>
+  <p>Feel free to 
+    <a href="http://{{ DOMAIN }}/contact/" target="_blank">contact</a> us! 
+    We'll get back to you as soon as we can.</p>
+  </p>
+</div>
+</div>
+{% endblock %}

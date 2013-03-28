@@ -1,0 +1,48 @@
+{% extends "site_base.html" %}
+{% block title %}Contact{% endblock %}
+{% block head %}
+<style>
+  .form-errors {
+    border: 1px solid #ff4d42;
+    border-radius: 5px;
+    background: #ffe2d6;
+    padding: 3px;
+    display: inline-block;
+  }
+  .message-success {
+    color: #4fc46f;
+    text-align: center;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container-narrow" style="padding-top: 30px">
+  <div class="colored" style="text-align: center">
+    <h1 style="font-size: 3em">Contact us</h1>
+    <p><em>Fill out the form, or send an email</em></p>
+  </div>
+  <div class="row-fluid marketing muted">
+    <div class="span4 offset3">
+      <form method="post" action="." style="padding-top: 10px">
+	{% csrf_token %}
+
+	{% if form.sender.errors %}
+	<p class="form-errors">Invalid email address</p>
+	{% endif %}
+	<input type="text" name="sender" id="id_sender" placeholder="Your email (optional)"/>
+
+	{% if form.message.errors %}
+	<p class="form-errors">Write a message before sending</p>
+	{% endif %}
+	<textarea id="id_message" rows="4" cols="40" name="message" placeholder="Message"></textarea>
+
+	<input type="submit" value="Send" class="btn btn-large btn-default" style="border-radius: 3px" />
+      </form>
+    </div>
+    <div class="span5"  style="border-left: 1px solid #D6D6D6; padding-left: 40px">
+      <h4>Email</h4>
+      <p>contact@folio24.com</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

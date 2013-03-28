@@ -1,0 +1,39 @@
+{% extends "site_base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+<style>
+  .error-box {
+    border: 1px solid #ff4d42;
+    background: #ffe2d6;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+  }
+</style>
+{% endblock %}
+{% block script %}
+<script>
+  $(function() {
+    $('#id_username').focus();
+  });
+</script>
+{% endblock %}
+{% block content %}
+<div class="container-narrow muted">
+  <div class="login-box">
+    {% if form.errors %}
+    <p class="error-box">Your username and/or password were incorrect.</p>
+    {% endif %}
+    <form method="post" action="">
+      {% csrf_token %}
+      <label for="id_username">Username or Email</label>
+	{{ form.username }}
+      <label for="id_password" style="float: left">Password</label>
+      <span style="padding-left: 3px">(<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)</span>
+	{{ form.password }}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <input type="submit" value="Sign in" class="btn btn-large btn-default" />
+    </form>
+  </div>
+</div>
+{% endblock %}

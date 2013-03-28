@@ -1,0 +1,402 @@
+{% extends "portfolio_base.html" %}
+{% block title %}{{ profile.fullname }} | Customize{% endblock %}
+{% block head %}
+<style>
+  #banner-img {
+    height: 30px;
+    max-width: 125px;
+  }
+  #id_banner {
+    display: none;
+  }
+  #id_banner_styled {
+    width: 125px;
+  }
+  .controls {
+    width: 280px;
+  }
+  .form-errors {
+    display: inline-block;
+    border: 1px solid #ff4d42;
+    border-radius: 5px;
+    background: #ffe2d6;
+    padding: 5px;
+    color: #424242;
+  }
+  #id_blog {
+    width: 128px;
+  }
+  #id_blog_name {
+    width: 60px;
+  }
+  #id_page_width, #id_thumbnail_dimension, #id_title_size {
+    display: inline-block;
+    width: 165px;
+  }
+  #id_page_width_display, #id_thumbnail_dimension_display, #id_title_size_display {
+    display: inline-block;
+    width: 38px;
+  }
+  #id_ga_1 {
+    display: inline-block;
+    width: 135px;
+  }
+  #id_ga_2 {
+    display: inline-block;
+    width: 43px;
+  }
+  #id_copy_text {
+    width: 205px;
+  }
+  form {
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+    background-color: white;
+  }
+  .form-title h3, p, b, label {
+    font-size: 1em;
+    color: #303030;
+  }
+  .form-title {
+    text-align: center;
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+    font-size: 1.5em;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+background: rgb(255,255,255); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2ZiZmJmYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2Y3ZjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 47%, rgba(247,247,247,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(251,251,251,1)), color-stop(100%,rgba(247,247,247,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
+  }
+  .form-body {
+    text-align: right;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 400px;
+  }
+  .centered-box {
+    margin: 0 auto;
+    width: 600px;
+  }
+</style>
+{% endblock %}
+{% block script %}
+<!--<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jscolor.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/html5slider.js"></script>
+<script>
+$(function() {
+  $("#id_background_color").addClass("color");
+  $("#id_text_color").addClass("color");
+  $("#id_text_color_hover").addClass("color");
+  $("#id_title_size_display").val($("#id_title_size").val());
+  $("#id_title_size").change(function() {
+    $("#id_title_size_display").val($("#id_title_size").val());
+  });
+  $("#id_page_width_display").val($("#id_page_width").val());
+  $("#id_page_width").change(function() {
+    $("#id_page_width_display").val($("#id_page_width").val());
+  });
+  $("#id_thumbnail_dimension_display").val($("#id_thumbnail_dimension").val());
+  $("#id_thumbnail_dimension").change(function() {
+    $("#id_thumbnail_dimension_display").val($("#id_thumbnail_dimension").val());
+  });
+  $('#id_picture').change(function() {
+    $('#id_picture_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
+  $('#id_banner').change(function() {
+    $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
+  $("#font_type_radio").find(".btn").each(function() {
+    $(this).bind("click", function() {
+      $(this).addClass("btn-info active");
+      $(this).removeClass("btn-default");
+      $(this).siblings().addClass("btn-default");
+      $(this).siblings().removeClass("btn-info active");
+      $("#id_font_type").val($(this).val());
+    });
+  });
+  $("#enable_banner_radio").find(".btn").each(function() {
+    $(this).bind("click", function() {
+      $(this).addClass("btn-info active");
+      $(this).removeClass("btn-default");
+      $(this).siblings().addClass("btn-default");
+      $(this).siblings().removeClass("btn-info active");
+      $("#id_enable_banner").val($(this).val());
+    });
+  });
+  $("#font_size_radio").find(".btn").each(function() {
+    $(this).bind("click", function() {
+      $(this).addClass("btn-info active");
+      $(this).removeClass("btn-default");
+      $(this).siblings().addClass("btn-default");
+      $(this).siblings().removeClass("btn-info active");
+      $("#id_font_size").val($(this).val());
+    });
+  });
+  $("#contact_type_radio").find(".btn").each(function() {
+    $(this).bind("click", function() {
+      $(this).addClass("btn-info active");
+      $(this).removeClass("btn-default");
+      $(this).siblings().addClass("btn-default");
+      $(this).siblings().removeClass("btn-info active");
+      $("#id_contact_type").val($(this).val());
+    });
+  });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="centered-box">
+  <form method="post" action="." enctype="multipart/form-data" class="form-horizontal muted">
+    {% csrf_token %}
+    
+    <div class="form-title">
+      <h3>Title and Banner</h3>
+    </div>
+    <div class="form-body">
+      <div class="control-group">
+	<label class="control-label" for="id_fullname">Portfolio title</label>
+	<div class="controls">
+	  {{ form.fullname.errors }}
+	  {{ form.fullname }}
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_title_size">Title size (pixels)</label>
+	<div class="controls">
+	  <input id="id_title_size" name="title_size" type="range" value="{{ profile.title_size }}" min="20" max="60" step="5" />
+	  <input id="id_title_size_display" type="text" value="" />
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_banner">Banner image</label>
+	<div class="controls">
+	  {% if form.banner.errors %}
+	  <p class="form-errors">Choose a valid image</p>
+	  {% endif %}
+	  <input type="file" name="banner" id="id_banner" class="hide" />
+	  {% if profile.banner %}
+	  <div class="pretty_file_input">
+	    <img id="banner-img" src="{{ profile.banner.url }}" style="background: white">
+	    <a class="btn btn-default" onclick="$('#id_banner').click();"><strong>Change</strong></a>
+	  </div>
+	  {% else %}
+	  <div class="pretty_file_input">
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently">
+	    <a class="btn btn-default" onclick="$('#id_banner').click();"><strong>Browse</strong></a>
+	  </div>
+	  {% endif %}
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_enable_banner">Use banner or title?</label>
+	<div class="controls">
+	  <input type="hidden" name="enable_banner" value="{{ profile.enable_banner }}" id="id_enable_banner" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="enable_banner_radio">
+	    {% if profile.enable_banner %}
+	    <button type="button" class="btn btn-info active" value="True" style="width: 111px"><strong>Banner</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 111px" value="False"><strong>Title</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" value="True" style="width: 111px"><strong>Banner</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 111px" value="False"><strong>Title</strong></button>
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="form-title">
+      <h3>Color</h3>
+    </div>
+    <div class="form-body">
+      <div class="control-group">
+	<label class="control-label" for="id_background_color">Background color</label>
+	<div class="controls">
+	  {{ form.background_color.errors }}
+	  {{ form.background_color }}
+	</div>
+      </div>
+      
+      <div class="control-group">
+	<label class="control-label" for="id_text_color">Text color</label>
+	<div class="controls">
+	  {{ form.text_color.errors }}
+	  {{ form.text_color }}
+	</div>
+      </div>
+      
+      <div class="control-group">
+	<label class="control-label" for="id_text_color_hover">Text hover color</label>
+	<div class="controls">
+	  {{ form.text_color_hover.errors }}
+	  {{ form.text_color_hover }}
+	</div>
+      </div>
+    </div>
+
+    <div class="form-title">
+      <h3>Dimensions</h3>
+    </div>
+    <div class="form-body">
+      <div class="control-group">
+	<label class="control-label" for="id_page_width">Page width (pixels)</label>
+	<div class="controls">
+	  <input id="id_page_width" name="page_width" type="range" value="{{ profile.page_width }}" min="800" max="1200" step="10" />
+	  <input id="id_page_width_display" type="text" value="" />
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_thumbnail_dimension">Thumbnail size (pixels)</label>
+	<div class="controls">
+	  <input id="id_thumbnail_dimension" name="thumbnail_dimension" type="range" value="{{ profile.thumbnail_dimension }}" min="65" max="590" step="5" />
+	  <input id="id_thumbnail_dimension_display" type="text" value="" />
+	</div>
+      </div>
+    </div>
+
+    <div class="form-title">
+      <h3>Fonts</h3>
+    </div>
+    <div class="form-body">
+     <div class="control-group">
+	<label class="control-label" for="id_font_type">Font style</label>
+	<div class="controls">
+	  <input type="hidden" name="font_type" value="{{ profile.font_type }}" id="id_font_type" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="font_type_radio">
+	    {% if profile.font_type == 'S' %}
+	    <button type="button" class="btn btn-info active" value="S"><strong>Sans-serif</strong></button>
+	    <button type="button" class="btn btn-default" value="E"><strong>Serif</strong></button>
+	    <button type="button" class="btn btn-default" value="M"><strong>Mono</strong></button>
+	    {% elif profile.font_type == 'E' %}
+	    <button type="button" class="btn btn-default" value="S"><strong>Sans-serif</strong></button>
+	    <button type="button" class="btn btn-info active" value="E"><strong>Serif</strong></button>
+	    <button type="button" class="btn btn-default" value="M"><strong>Mono</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" value="S"><strong>Sans-serif</strong></button>
+	    <button type="button" class="btn btn-default" value="E"><strong>Serif</strong></button>
+	    <button type="button" class="btn btn-info active" value="M"><strong>Mono</strong></button>
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_font_size">Font size</label>
+	<div class="controls">
+	  <input type="hidden" name="font_size" value="{{ profile.font_size }}" id="id_font_size" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="font_size_radio">
+	    {% if profile.font_size < 1.1 %}
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="1.0"><strong>S</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.2"><strong>M</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.4"><strong>L</strong></button>
+	    {% elif profile.font_size < 1.3 %}
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.0"><strong>S</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="1.2"><strong>M</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.4"><strong>L</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.0"><strong>S</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="1.2"><strong>M</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="1.4"><strong>L</strong></button>
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="form-title">
+      <h3>Miscellaneous</h3>
+    </div>
+    <div class="form-body">
+      <div class="control-group">
+	<label class="control-label" for="id_blog">Blog</label>
+	<div class="controls">
+	  {% if form.blog.errors %}
+	  <p class="form-errors">Enter a valid URL</p>
+	  {% endif %}
+	  {{ form.blog }}
+	  {{ form.blog_name }}
+	  <!--<input type="text" placeholder="Name"/>-->
+	</div>
+      </div>
+
+     <div class="control-group">
+	<label class="control-label" for="id_contact_type">Contact form</label>
+	<div class="controls">
+	  <input type="hidden" name="contact_type" value="{{ profile.contact_type }}" id="id_contact_type" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="contact_type_radio">
+	    {% if profile.contact_type == 'M' %}
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="M"><strong>Pop-up</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="E"><strong>Embed</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="N"><strong>None</strong></button>
+	    {% elif profile.contact_type == 'E' %}
+	    <button type="button" class="btn btn-default" style="width: 73px" value="M"><strong>Pop-up</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="E"><strong>Embed</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="N"><strong>None</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" style="width: 73px" value="M"><strong>Pop-up</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 73px" value="E"><strong>Embed</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 73px" value="N"><strong>None</strong></button>
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_copy_text">Copyright text</label>
+	<div class="controls">
+	  {% if form.copy_text.errors %}
+	  <p class="form-errors">Invalid; try again</p>
+	  {% endif %}
+	  <b>&copy; </b>{{ form.copy_text }}
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_ga">Google Analytics</label>
+	<div class="controls">
+	  {% if form.ga_1.errors or form.ga_2.errors %}
+	  <p class="form-errors">Invalid value: integers only</p>
+	  {% endif %}
+	  <div class="google-analytics">
+	    <b>UA-</b>
+	    {% if profile.ga_1 %}
+	    <input type="text" id="id_ga_1" name="ga_1" value="{{ profile.ga_1 }}" />
+	    {% else %}
+	    <input type="text" id="id_ga_1" name="ga_1" value="" />
+	    {% endif %}
+	    <b>-</b>
+	    {% if profile.ga_2 %}
+	    <input type="text" id="id_ga_2" name="ga_2" value="{{ profile.ga_2 }}" />
+	    {% else %}
+	    <input type="text" id="id_ga_2" name="ga_2" value="" />
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+
+    </div>
+
+    <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; width: 100%">
+    <div style="width: 100%; margin: 0 auto; text-align: center; margin-bottom: 20px">
+      <input type="submit" value="Apply Changes" class="btn btn-large btn-info" style="border-radius: 2px">
+      <a class="btn btn-default btn-large" href="/" style="border-radius: 2px">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

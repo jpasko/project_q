@@ -1,0 +1,50 @@
+{% extends "portfolio_base.html" %}
+{% block title %}{{ profile.fullname }} | Contact{% endblock %}
+{% block head %}
+<style>
+  .form-errors {
+    border: 1px solid #ff4d42;
+    border-radius: 5px;
+    background: #ffe2d6;
+    padding: 3px;
+    display: inline-block;
+    color: #424242;
+  }
+  .message-success {
+    color: #4fc46f;
+    text-align: center;
+  }
+  #email-link {
+    color: #{{ profile.text_color }};
+    text-decoration: none;
+  }
+  .centered-box {
+    width: 300px;
+    margin: 0 auto;
+    text-align: left;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="centered-box muted sizeable-font">
+  {% if thanks %}
+  <p class="message-success">Your message has been sent</p>
+  {% endif %}
+  <form method="post" action=".">
+    {% csrf_token %}
+    
+    {% if form.sender.errors %}
+    <p class="form-errors">This email address isn't valid</p>
+    {% endif %}
+    <input type="text" name="sender" id="id_sender" placeholder="Email"/>
+    <p style="display: inline-block">(optional)</p>
+    
+    {% if form.message.errors %}
+    <p class="form-errors">Please write a message first</p>
+    {% endif %}
+    <textarea id="id_message" rows="8" cols="40" name="message" placeholder="Message" style="width: 100%"></textarea>
+    <input type="submit" value="Send" class="btn btn-default btn-large" style="display: block" />
+  </form>
+</div>
+{% endblock %}

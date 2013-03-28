@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="#"> 
+    <link href='https://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="{{ STATIC_URL }}css/jquery-ui-1.10.0.custom.css" rel="stylesheet">-->
+    <link href="{{ STATIC_URL }}css/portfolio_style.css" rel="stylesheet">
+    {% block stylesheet %}{% endblock %}
+    <style>
+      .container {
+        width: {{ profile.page_width }}px;
+      }
+      body {
+        background-color: #{{ profile.background_color }} !important;
+      }
+      .muted {
+        color: #{{ profile.text_color }} !important;
+      }
+      a.muted:hover {
+        color: #{{ profile.text_color_hover }} !important;
+      }
+      .house .house-logo {
+        display: none;
+      }
+      .brand {
+        font-size: {{ profile.title_size }}px !important;
+        text-shadow: none !important;
+      }
+      {% if profile.full_width_navbar %}
+      .brand {
+        padding-left: 15px !important;
+      }
+      {% endif %}
+      .navbar-inverse .nav li.dropdown.open>.dropdown-toggle {
+        background-color: #{{ profile.background_color }} !important;
+      }
+      .navbar-inner{
+        background: #{{ profile.background_color }} !important;
+        border: none !important;
+      }
+      .navbar-inner container{
+        background: #{{ profile.background_color }} !important;
+      }
+      .navbar{
+        background: #{{ profile.background_color }} !important;
+      }
+      .navbar .nav > li > a{
+        text-shadow: none !important;
+      }
+      .sizeable-font {
+        font-size: {{ profile.font_size }}em;
+      }
+      body,
+      input,
+      button,
+      select,
+      textarea {
+        {% if profile.font_type == 'S' %}
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        {% elif profile.font_type == 'E' %}
+        font-family: Georgia, "Times New Roman", Times, serif;
+        {% else %}
+        font-family: Menlo, Monaco, "Courier New", monospace;
+        {% endif %}
+      }
+    </style>
+    <!--<link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% if profile.contact_type == 'M' %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
+    {% endif %}
+    <script>
+      $(document).ready(function(){
+        $('.logo').hover(function () {
+          $(this).find('img').prop('src', '{{ STATIC_URL}}img/small_lemon.png');
+        }, function () {
+          $(this).find('img').prop('src', '{{ STATIC_URL}}img/small_lemon_dull.png');
+        });
+        $('.house').hover(function () {
+          $(this).find('.house-logo').show();
+        }, function () {
+          $(this).find('.house-logo').hide();
+        });
+        $("#send-message").on("click", function() {
+          $.ajax({
+            type: "POST",
+            url: "/contact_ajax/",
+            data: {'message': $("#id_message").val(),
+                   'sender': $("#id_sender").val(),
+                   'name': $("#id_name").val(),
+                   'subject': $("#id_subject").val()}
+          });
+          $("#id_message").val('');
+          $("#id_sender").val('');
+        });
+        {% if user.is_authenticated and user.username == username %}
+        $("#view-mode").on("click", function() {
+          $.ajax({
+            type: "POST",
+            url: "/toggle_edit_mode/",
+            data: {'edit_mode': 'False'},
+            async: false,
+            timeout: 4000
+          });
+          window.location = "http://{{ username }}.{{ DOMAIN }}/";
+        });
+        $("#edit-mode").on("click", function() {
+          $.ajax({
+            type: "POST",
+            url: "/toggle_edit_mode/",
+            data: {'edit_mode': 'True'},
+            async: false,
+            timeout: 4000
+          });
+          window.location.reload(true);
+        });
+        $.ajax({
+          type: "GET",
+          url: "/custom_domain/",
+          success: function(data) {
+                     $("#id_domain").val(data.domain);
+                   }
+        });
+        $("#submit-custom-domain").on("click", function() {
+          $.ajax({
+            type: "POST",
+            url: "/custom_domain/",
+            dataType: "text",
+            data: {'domain': $("#id_domain").val()}
+          });
+        });
+        {% endif %}
+      });
+    </script>
+
+    {% block script %}{% endblock %}
+    {% block head %}{% endblock %}
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+        <style type="text/css">
+          .gradient {
+          filter: none;
+        }
+    </style>
+    <![endif]-->
+
+    {% if profile.ga_1 and profile.ga_2 %}
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-{{ profile.ga_1 }}-{{ profile.ga_2 }}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {% endif %}
+  </head>
+
+  <body>
+
+    {% if profile.contact_type == 'M' %}
+    <!-- Contact modal -->
+    <div class="modal hide fade" role="dialog" tabindex="-1" id="contact-form" arialabelledby="contact-form-heading">
+      <div class="modal-body">
+	<input type="text" id="id_name" placeholder="Your Name" style="width: 97%" maxlength="100"/>
+	<input type="text" id="id_sender" placeholder="Your Email" style="width: 97%" maxlength="100"/>
+	<input type="text" id="id_subject" placeholder="Subject" style="width: 97%" maxlength="150"/>
+	<textarea id="id_message" rows="8" cols="40" placeholder="Message" style="width: 97%"></textarea>
+      </div>
+      <div class="modal-footer">
+	<button class="btn btn-primary btn-large" data-dismiss="modal" id="send-message">Send</button>
+	<button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- End modal -->
+    {% endif %}
+
+    {% if user.is_authenticated and user.username == username %}
+    <!-- Custom domain modal -->
+    <div class="modal hide" role="dialog" tabindex="-1" id="custom-domain-form" arialabelledby="custom-domain-form-heading">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Custom domain name</h3>
+      </div>
+      <div class="modal-body">
+	{% if customer.account_limit > 35 %}
+	<input type="text" id="id_domain" placeholder="yourdomain.com (without the 'www')" style="width: 97%" maxlength="255"/>
+	<p>You must also point a CNAME record to "domains.folio24.com".
+	Your domain registrar will have directions on how to do this.</p>
+	<p>See our <a href="/help/">FAQs</a> page for more information.</p>
+	{% else %}
+	<p><a href="https://{{ username }}.{{ DOMAIN }}/settings/">Upgrade</a> to unlock this feature</p>
+	{% endif %}
+      </div>
+      <div class="modal-footer">
+	{% if customer.account_limit > 35 %}
+	<button class="btn btn-primary btn-large" data-dismiss="modal" id="submit-custom-domain">Save</button>
+	{% endif %}
+	<button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- End modal -->
+    {% endif %}
+
+    <div class="wrapper">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+	{% if not profile.full_width_navbar %}
+        <div class="container">
+	{% endif %}
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+	  {% if profile.banner and profile.enable_banner %}
+	  <a class="house brand" href="http://{{ username }}.{{ DOMAIN }}/" style="padding-bottom: 0px; padding-top: 0px">
+	    <img class="banner" src="{{ profile.banner.url }}">
+	    <img class="house-logo" style="padding: 0" src="{{ STATIC_URL }}img/house_light.png">
+	  </a>
+	  {% elif profile.fullname %}
+	  <a class="house brand muted" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
+	    {{ profile.fullname }}
+	    <img class="house-logo" src="{{ STATIC_URL }}img/house_light.png">
+	  </a>
+	  {% else %}
+	  <a class="house brand muted" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
+	    {{ username }}
+	    <img class="house-logo" src="{{ STATIC_URL }}img/house_light.png">
+	  </a>
+	  {% endif %}
+	  {% block navbar-text %}{% endblock %}
+
+	  {% if user.is_authenticated and user.username == username and profile.edit_mode %}
+	  {% with account_limit=customer.account_limit %}
+	  {% if profile.photo_count > account_limit %}
+	  <p class="navbar-text pull-left muted" style="color: red !important">
+	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
+	  {% elif profile.photo_count == account_limit %}
+	  <p class="navbar-text pull-left muted" style="color: orange !important">
+	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
+	  {% else %}
+	  <p class="navbar-text pull-left muted">
+	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
+	  {% endif %}
+	  {% endwith %}
+	  <a href="https://{{ username }}.{{ DOMAIN }}/settings/" style="text-decoration: none">upgrade</a>)
+	  </p>
+	  {% endif %}
+
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+	      {% if profile.allow_about or user.is_authenticated and user.username == username and profile.edit_mode %}
+	      <li><a class="muted sizeable-font" href="http://{{ username }}.{{ DOMAIN }}/about/">About</a></li>
+	      {% endif %}
+	      {% if profile.blog %}
+	      <li>
+		<a class="muted sizeable-font" href="{{ profile.blog }}" target="_blank">
+		  {% if profile.blog_name %}{{ profile.blog_name }}{% else %}Blog{% endif %}
+		</a>
+	      </li>
+	      {% endif %}
+	      {% if profile.contact_type == 'M' %}
+	      <li><a href="#contact-form" role="button" data-toggle="modal" class="muted sizeable-font">Contact</a></li>
+	      {% endif %}
+	      {% if user.is_authenticated and user.username == username and profile.edit_mode %}
+	      <li class="dropdown" id="menu1">
+		<a class="dropdown-toggle muted sizeable-font" data-toggle="dropdown" href="#menu1">
+		  tools
+		  <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="http://{{ username }}.{{ DOMAIN }}/customize/">Customize</a></li>
+		  <li><a href="https://{{ username }}.{{ DOMAIN }}/settings/">Manage account</a></li>
+		  <li><a {% if customer.account_limit < 500 %}style="color: #ababab"{% endif %} href="#custom-domain-form" role="button" data-toggle="modal">Custom domain</a></li>
+		  <li class="divider"></li>
+		  <li><a href="http://{{ username }}.{{ DOMAIN }}/help/">FAQs</a></li>
+		  <li class="divider"></li>
+		  <li><a href="/logout/">Logout</a></li>
+		  <!--
+		  <li class="divider"></li>
+		  <li><a href="/logout/">Logout</a></li>
+		  -->
+		</ul>
+	      </li>
+              {% endif %}
+            </ul>
+            {% if user.is_authenticated and user.username == username %}
+            <div class="btn-group pull-right" style="padding-right: 10px">
+	      {% if profile.edit_mode %}
+	      <button type="button" class="btn btn-info active" id="edit-mode"><strong>Edit</strong></button>
+	      <button type="button" class="btn btn-default" id="view-mode"><strong>View</strong></button>
+	      {% else %}
+	      <button type="button" class="btn btn-default" id="edit-mode"><strong>Edit</strong></button>
+	      <button type="button" class="btn btn-info active" id="view-mode"><strong>View</strong></button>
+	      {% endif %}
+	    </div>
+	    {% endif %}
+          </div><!--/.nav-collapse -->
+	{% if not profile.full_width_navbar %}
+        </div>
+	{% endif %}
+      </div>
+    </div>
+
+    <div class="container" style="padding-bottom: 10px;">
+      <h1>{% block header %}{% endblock %}</h1>
+      {% block content %}{% endblock %}
+    </div> <!-- /container -->
+
+    <div class="push"></div>
+    </div> <!-- wrapper -->
+
+    <div class="container">
+      <div class="footer">
+	{% if profile.copy_text or customer.account_limit < 1500 %}
+	<hr style="margin: 0; border-top: none; border-bottom: solid 1px rgba(150, 150, 150, .1)">
+	{% endif %}
+	{% if customer.account_limit < 1500 %}
+	<p style="float: left; margin: 0; padding: 0">
+	  <a class="logo" href="http://www.{{ DOMAIN }}/" target="_blank">
+	    <img src="{{ STATIC_URL}}img/small_lemon_dull.png" style="height: 17px">
+	    <span class="logo-text">Folio24</span>
+	  </a>
+	</p>
+	{% endif %}
+	{% if profile.copy_text %}
+	<p class="muted" style="float: right; margin: 0; padding: 0;">&copy {{ profile.copy_text }}</p>
+	{% endif %}
+      </div>
+    </div>
+
+  </body>
+</html>

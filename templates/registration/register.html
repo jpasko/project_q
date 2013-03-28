@@ -1,0 +1,332 @@
+{% extends "site_base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block head %}
+<style>
+  .inline-popover {
+    display: inline-block;
+  }
+  #portfolio-url-popover,#username-popover {
+    position: relative;
+    padding-bottom: 22px;
+  }
+  #email-popover {
+    position: relative;
+    padding-bottom: 12px;
+  }
+  #password-popover {
+    position: relative;
+  }
+  .popover-title {
+    display: none;
+  }
+  form {
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+  }
+  .signup-title {
+    text-align: center;
+    font-size: 2em;
+  }
+  .form-title h3 {
+    margin: 5px auto auto auto;
+    font-size: 1em;
+  }
+  .form-title {
+    text-align: center;
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+    font-size: 1.5em;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+background: rgb(255,255,255); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2ZiZmJmYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2Y3ZjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 47%, rgba(247,247,247,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(251,251,251,1)), color-stop(100%,rgba(247,247,247,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
+  }
+  .form-body {
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 400px;
+  }
+  .card-images-amex {
+    margin: -126px 0 -32px 0;
+  }
+  .card-images-visa {
+    margin: -62px 0 -96px 0;
+  }
+  .card-images-mastercard {
+    margin: 0 0 -158px 0;
+  }
+  .card-images-discover {
+    margin: -158px 0 0 0;
+  }
+  .card-images-jcb {
+    margin: -95px 0 -64px 0;
+  }
+  .card-images-diners {
+    margin: -32px 0 -128px 0;
+  }
+  .cvc-image {
+    padding-bottom: 10px;
+    padding-left: 5px;
+  }
+  .processing-errors, .payment-errors {
+    width: 220px;
+    margin: 0 auto;
+    border: 1px solid #ff4d42;
+    background: #ffe2d6;
+    border-radius: 5px;
+    color: #424242;
+    margin-bottom: 3px;
+  }
+  .centered-box {
+    margin: 0 auto;
+    width: 400px;
+  }
+  img.grayscale {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+  }
+  img.grayscale:hover {
+    filter: none;
+    -webkit-filter: grayscale(0%);
+}
+</style>
+{% endblock %}
+{% block script %}
+{% if not paid %}
+<script>
+  $(function() {
+    $('#id_username').focus();
+
+    $('#id_username').change(function() {
+      $('#username-popover').popover('destroy');
+      $('#portfolio-url-popover').popover('destroy');
+      if ($('#id_username').val()) {
+        var url = "URL: " + $('#id_username').val() + ".{{ DOMAIN }}";
+        $('#portfolio-url-popover').popover({content: url});
+        $('#portfolio-url-popover').popover('show');
+      }
+    });
+
+    $('#username-popover').popover('show');
+    $('#email-popover').popover('show');
+    $('#password-popover').popover('show');
+    $('#id_email').change(function() {
+      $('#email-popover').popover('destroy');
+    });
+    $('#id_password1').change(function() {
+      $('#password-popover').popover('destroy');
+    });
+    $('#id_password2').change(function() {
+      $('#password-popover').popover('destroy');
+    });
+
+    $("#payment-form").submit(function(e) {
+      if(!$('#terms-of-service').prop('checked')) {
+        e.preventDefault();
+        $('#modal-prevent').modal('show')
+      }
+      return true;
+    });
+  });
+</script>
+{% else %}
+<script src="https://js.stripe.com/v1/" type="text/javascript"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey('{{ publishable }}');
+
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+      $('.processing-errors').hide();
+      $('.payment-errors').text(response.error.message);
+      $('.payment-errors').show();
+      $('.submit-button').prop('disabled', false);
+    } else {
+      var $form = $('#payment-form');
+      var token = response.id;
+      $form.append($('<input type="hidden" name="stripe_token" />').val(token));
+      $form.get(0).submit();
+    }
+  }
+  
+  $(function() {
+    $('#id_username').focus();
+
+    $('#id_username').change(function() {
+      $('#username-popover').popover('destroy');
+      $('#portfolio-url-popover').popover('destroy');
+      if ($('#id_username').val()) {
+        var url = "URL: " + $('#id_username').val() + ".{{ DOMAIN }}";
+        $('#portfolio-url-popover').popover({content: url});
+        $('#portfolio-url-popover').popover('show');
+      }
+    });
+
+    $('#username-popover').popover('show');
+    $('#email-popover').popover('show');
+    $('#password-popover').popover('show');
+    $('#id_email').change(function() {
+      $('#email-popover').popover('destroy');
+    });
+    $('#id_password1').change(function() {
+      $('#password-popover').popover('destroy');
+    });
+    $('#id_password2').change(function() {
+      $('#password-popover').popover('destroy');
+    });
+
+    $('#payment-form').submit(function(event) {
+      if(!$('#terms-of-service').prop('checked')) {
+        event.preventDefault();
+        $('#modal-prevent').modal('show')
+      } else {
+        $('.submit-button').prop('disabled', true);
+
+        Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+      }
+      return false;
+    });
+  });
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- Modals -->
+<div class="modal hide" role="dialog" tabindex="-1" id="modal-prevent" arialabelledby="modal-prevent-heading">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="modal-prevent-heading" style="color: #424242">Hold on!</h3>
+  </div>
+  <div class="modal-body">
+    <p style="color: #424242">Please indicate that you agree with the <a href="/terms" target="_blank">Terms of Service</a></p>
+    <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">OK</button>
+  </div>
+</div>
+<!-- End modals -->
+<div class="container" style="padding: 30px 0">
+  <div class="signup-title colored">
+    {% if not paid %}
+    <h3 style="display: inline-block"><span style="font-size: 1.5em">35</span> uploads. For free. 
+      <a href="/register/" style="text-decoration: none; color: 1369be">Want more?</a>
+    </h3>
+    {% elif account_type == "premium" %}
+    <h3><span style="font-size: 1.5em">500</span> uploads &bull; $6 <span style="font-size: 0.7em">per month</span></h3>
+    {% else %}
+    <h3><span style="font-size: 1.5em">1500</span> uploads &bull; $9 <span style="font-size: 0.7em">per month</span></h3>
+    {% endif %}
+  </div>
+  <div class="centered-box">
+    <form method="POST" action="" id="payment-form" style="width: 400px;">
+      {% csrf_token %}
+      <div class="form-title">
+	<h3>Your Account</h3>
+      </div>
+
+      <div class="form-body" style="padding-bottom: 20px">
+
+	{{ user_form.username }}
+	<span class="inline-popover" id="portfolio-url-popover" data-toggle="popover"></span>
+	{% if user_form.username.errors %}
+	<span class="inline-popover" id="username-popover" data-toggle="popover" data-content="{{ user_form.username.errors.as_text }}"></span>
+	{% endif %}
+
+	{{ user_form.email }}
+	{% if user_form.email.errors %}
+	<span class="inline-popover" id="email-popover" data-toggle="popover" data-content="{{ user_form.email.errors.as_text }}"></span>
+	{% endif %}
+
+	{{ user_form.password1 }}
+	{% if user_form.password1.errors or user_form.password2.errors or user_form.non_field_errors %}
+	<span class="inline-popover" id="password-popover" data-toggle="popover" data-content="* These passwords must match!"></span>
+	{% endif %}
+	{{ user_form.password2 }}
+      </div>
+
+      {% if paid %}
+      <div class="form-title">
+	<h3>Billing Information</h3>
+      </div>
+      <div style="margin: 0 auto; width: 300px">
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-amex grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-visa grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-mastercard grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-discover grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-jcb grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-diners grayscale">
+	</div>
+      </div>
+      <p style="text-align: center; padding-top: 10px"><i class="icon-ok"></i><em> We accept all major credit cards</em></p>
+
+      <div class="form-body" style="padding-top: 20px">
+
+	<input type="text" placeholder="Cardholder's Name" id="id_name"/>
+
+	<p class="payment-errors" style="display: none"></p>
+	{% if error %}
+	<p class="processing-errors">{{ error }}</p>
+	{% endif %}
+
+	<input type="text" size="20" autocomplete="off" class="card-number" id="card-number-id" placeholder="Card Number"/>
+	<div style="overflow: hidden">
+	  <input type="text" size="4" autocomplete="off" class="card-cvc" id="cvc-id" style="width: 135px" placeholder="CVC (security code)"/>
+	  <img src="{{ STATIC_URL }}img/cvc.png" class="cvc-image">
+	</div>
+	<div style="display: inline-block">
+
+	  <div class="input" style="display: inline-block; padding-left: 15px">
+	    <select class="card-expiry-month" style="width: 50px">
+              {% for month in months %}
+              <option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
+              {% endfor %}
+	    </select>
+	    <select class="card-expiry-year" style="width: 70px">
+              {% for year in years %}
+              <option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
+              {% endfor %}
+	    </select>
+	  </div>
+	  <label for="expiry_date" style="display: inline-block; font-size: 1.2em">Expiration Date</label>
+	</div>
+      </div>
+      <!-- End if paid -->
+      {% endif %}
+      <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; width: 100%">
+      <div style="text-align: center">
+	<input type="checkbox" id="terms-of-service" style="display: inline; margin: 0">
+	<p style="display: inline">I agree to the <a href="/terms/" target="_blank">Terms of Service</a></p>
+      </div>
+      <button type="submit" class="submit-button btn btn-primary btn-large" style="display: block; margin: 20px auto; border-radius: 2px">
+	Get Started Now!
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

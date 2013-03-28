@@ -1,5 +1,4 @@
 # Used by Heroku to configure the database.
-import dj_database_url
 import os.path
 PROJECT_ROOT = os.path.abspath('.')
 
@@ -16,16 +15,17 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['RDS_DB_NAME'],
-        'USER': os.environ['RDS_USERNAME'],
-        'PASSWORD': os.environ['RDS_PASSWORD'],
-        'HOST': os.environ['RDS_HOSTNAME'],
-        'PORT': os.environ['RDS_PORT'],
-    }
-}
+if os.environ.get('RDS_DB_NAME'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+            }
+        }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -52,8 +52,10 @@ USE_TZ = True
 
 # AWS settings.
 AWS_STORAGE_BUCKET_NAME = 'folio24'
-DEFAULT_FILE_STORAGE = 'project_n.s3utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'project_n.s3utils.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'folio24.s3utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'folio24.s3utils.StaticRootS3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJQXBCMVWJLI566OQ'
+AWS_SECRET_ACCESS_KEY = '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'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -114,10 +116,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'project_n.urls'
+ROOT_URLCONF = 'folio24.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'project_n.wsgi.application'
+WSGI_APPLICATION = 'folio24.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
@@ -187,9 +189,6 @@ PROFESSIONAL_IMAGE_LIMIT = 1500
 # user's profile within the view.
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 
-# Database configuration for Heroku
-DATABASES['default'] = dj_database_url.config()
-
 # Use the default Zebra app to interact with Stripe
 ZEBRA_ENABLE_APP = True
 
@@ -220,8 +219,8 @@ SESSION_COOKIE_DOMAIN = '.folio24.com'
 DOMAIN = 'folio24.com'
 
 # The different URLs to use for the main content and the user subdomains.
-MAIN_URLS = 'project_n.urls'
-USER_URLS = 'project_n.user_urls'
+MAIN_URLS = 'folio24.urls'
+USER_URLS = 'folio24.user_urls'
 
 # A list of reserved terms.
 # RESERVED_TERMS = ['login', 'accounts', 'register', 'logout', 'welcome',
