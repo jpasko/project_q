@@ -54,8 +54,6 @@ USE_TZ = True
 AWS_STORAGE_BUCKET_NAME = 'folio24'
 DEFAULT_FILE_STORAGE = 'folio24.s3utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'folio24.s3utils.StaticRootS3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJQXBCMVWJLI566OQ'
-AWS_SECRET_ACCESS_KEY = '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'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -237,8 +235,8 @@ AUTHENTICATION_BACKENDS = (
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Grab stripe keys from config vars in the prod environment.
-STRIPE_SECRET = os.environ.get('PARAM1')
-STRIPE_PUBLISHABLE = os.environ.get('PARAM2')
+STRIPE_SECRET = os.environ.get('STRIPE_SECRET_TEST')
+STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE_TEST')
 
 # Untracked local variables (secret keys and the like)
 try:

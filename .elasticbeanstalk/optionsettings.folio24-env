@@ -1,7 +1,12 @@
 [aws:elasticbeanstalk:application:environment]
 DJANGO_SETTINGS_MODULE=folio24.settings
 AWS_SECRET_KEY=r4Ipy1osFCMCPRvrk61eYfE3ZExm+rm9XFfzk2wY
+AWS_SECRET_ACCESS_KEY=r4Ipy1osFCMCPRvrk61eYfE3ZExm+rm9XFfzk2wY
 AWS_ACCESS_KEY_ID=AKIAJQXBCMVWJLI566OQ
+STRIPE_SECRET_LIVE=sk_live_zxyUAMxAFfa5ydO0Nqwcu5fG
+STRIPE_PUBLISHABLE_LIVE=pk_live_LE6QdzvadUfXaufRpmgE37nC
+STRIPE_SECRET_TEST=sk_test_cW9hh0nEPFanYVaSDK4Zuq02
+STRIPE_PUBLISHABLE_TEST=pk_test_dyJgXQH2KaYvS3jBYyVRdJa5
 PARAM1=
 PARAM2=
 PARAM4=
@@ -9,7 +14,7 @@ PARAM3=
 PARAM5=
 
 [aws:elasticbeanstalk:container:python]
-WSGIPath=project_n/wsgi.py
+WSGIPath=folio24/wsgi.py
 NumProcesses=1
 StaticFiles=/static=
 NumThreads=15
