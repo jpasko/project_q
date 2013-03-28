@@ -235,8 +235,8 @@ AUTHENTICATION_BACKENDS = (
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Grab stripe keys from config vars in the prod environment.
-STRIPE_SECRET = os.environ.get('STRIPE_SECRET_TEST')
-STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE_TEST')
+STRIPE_SECRET = os.environ.get('STRIPE_SECRET_LIVE')
+STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE_LIVE')
 
 # Untracked local variables (secret keys and the like)
 try:
