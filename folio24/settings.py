@@ -2,7 +2,7 @@
 import os.path
 PROJECT_ROOT = os.path.abspath('.')
 
-DEBUG = False
+DEBUG = True
 DEV_SETTINGS = False
 TEMPLATE_DEBUG = DEBUG
 
