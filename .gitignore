@@ -1,0 +1,30 @@
+# Ignore compiled python
+*.pyc
+*.pyo
+
+# Ignore databases.
+*.db
+
+# Ignore uploaded media and venv
+media/
+venv/
+
+# Ignore other unnecessary files
+doc/
+*.swp
+*~
+.project
+.DS_Store
+
+# Ignore the development settings
+dev_settings.py
+
+# Ignore secret local variables
+locals.py
+
+# Ignore SSL keys
+server.csr
+server.key
+server.crt
+server.old.crt
+server.orig.key
