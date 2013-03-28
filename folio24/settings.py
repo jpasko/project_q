@@ -1,12 +1,18 @@
-# Django settings for folio24 project.
-import os
+# Used by Heroku to configure the database.
+import dj_database_url
+import os.path
+PROJECT_ROOT = os.path.abspath('.')
 
-DEBUG = True
+DEBUG = False
+DEV_SETTINGS = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('jpasko', 'jbpasko@gmail.com'),
 )
+
+# Declare the user profile module
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 MANAGERS = ADMINS
 
@@ -25,7 +31,7 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -44,30 +50,25 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+# AWS settings.
+AWS_STORAGE_BUCKET_NAME = 'folio24'
+DEFAULT_FILE_STORAGE = 'project_n.s3utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'project_n.s3utils.StaticRootS3BotoStorage'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+ADMIN_MEDIA_PREFIX = 'https://s3.amazonaws.com/%s/admin/' % AWS_STORAGE_BUCKET_NAME
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'https://s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -79,13 +80,26 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '1qizz@ssx=w=@1a+=myc-o7ms8=(ylag9tte8jp30ocw5c4kb5'
+SECRET_KEY = '01x6wuntqa3w)l%wld#s#ce%dm96+ha3^$%l&amp;yf=@-px#r(lez'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
+)
+
+# List of template context processors.
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'context_processors.custom.domain',
+    'context_processors.custom.sizes_and_dimensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,19 +108,19 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'middleware.custom.ParseURLs',
+    'middleware.custom.RedirectToCustomDomain',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'folio24.urls'
+ROOT_URLCONF = 'project_n.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'folio24.wsgi.application'
+WSGI_APPLICATION = 'project_n.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -116,10 +130,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'accounts',
+    'portfolios',
+    'imagekit',
+    'storages',
+    'zebra',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,3 +168,93 @@ LOGGING = {
         },
     }
 }
+
+# Names of the accounts.
+FREE_ACCOUNT_NAME = 'basic'
+PREMIUM_ACCOUNT_NAME = 'premium'
+PROFESSIONAL_ACCOUNT_NAME = 'professional'
+
+# The storage limits for free accounts
+FREE_IMAGE_LIMIT = 35
+
+# The storage limits for premium accounts
+PREMIUM_IMAGE_LIMIT = 500
+
+# The storage limits for professional accounts
+PROFESSIONAL_IMAGE_LIMIT = 1500
+
+# Redirect to this URL after login, and use request.user to redirect to the
+# user's profile within the view.
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+# Database configuration for Heroku
+DATABASES['default'] = dj_database_url.config()
+
+# Use the default Zebra app to interact with Stripe
+ZEBRA_ENABLE_APP = True
+
+# Use Zebra to extend the Customer model
+ZEBRA_CUSTOMER_MODEL = 'accounts.models.Customer'
+
+# Image dimensions
+GALLERY_THUMBNAIL_DIMENSION = 100
+IMAGE_WIDTH = 1200
+IMAGE_HEIGHT = 1200
+THUMBNAIL_WIDTH = 500
+THUMBNAIL_HEIGHT = 500
+
+# The maximum file size (validated client-side when possible)
+MAX_FILE_SIZE = 4 * 1024 * 1024
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+DEFAULT_FROM_EMAIL = 'support@folio24.com'
+AWS_SES_AUTO_THROTTLE = None
+
+# [TEST] Stripe publishable API key
+STRIPE_PUBLISHABLE = 'pk_test_dyJgXQH2KaYvS3jBYyVRdJa5'
+
+# Allow user sessions to exist across subdomains
+SESSION_COOKIE_DOMAIN = '.folio24.com'
+
+# The domain name to use in templates.
+DOMAIN = 'folio24.com'
+
+# The different URLs to use for the main content and the user subdomains.
+MAIN_URLS = 'project_n.urls'
+USER_URLS = 'project_n.user_urls'
+
+# A list of reserved terms.
+# RESERVED_TERMS = ['login', 'accounts', 'register', 'logout', 'welcome',
+#                  'password_change', 'delete', 'privacy', 'terms', 'spindrift',
+#                  'admin', 'reorder_galleries', 'reorder_photos', 'about',
+#                  'contact', 'None', 'domains', 'invalid']
+RESERVED_TERMS = ['domains', 'invalid', 'anonymous']
+
+# Custom backend to allow users to log in with their email addresses as well.
+# Requires that email addresses uniquely identify a user.
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Grab some settings from config vars in the prod environment.
+try:
+    STRIPE_SECRET = os.environ['STRIPE_SECRET']
+    STRIPE_PUBLISHABLE = os.environ['STRIPE_PUBLISHABLE']
+except:
+    pass
+
+# Untracked local variables (secret keys and the like)
+try:
+    from locals import *
+except:
+    pass
+
+# Use development settings locally
+try:
+   from dev_settings import *
+except ImportError, e:
+   pass
