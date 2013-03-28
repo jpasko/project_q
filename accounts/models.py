@@ -44,9 +44,7 @@ class UserProfile(models.Model):
 
     thumbnail_dimension = models.PositiveIntegerField(default=250)
 
-    font_size = models.DecimalField(default=1.2,
-                                    max_digits=2,
-                                    decimal_places=1)
+    font_size = models.FloatField(default=1.2)
 
     FONT_TYPES = (
         ('S', 'Sans Serif'),
