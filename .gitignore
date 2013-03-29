@@ -28,6 +28,8 @@ server.key
 server.crt
 server.old.crt
 server.orig.key
+*.pem
+amazon_ssl/
 
 # Ignore sensitive config data
 .elasticbeanstalk/

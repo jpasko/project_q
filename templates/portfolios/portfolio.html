@@ -81,12 +81,13 @@
     <h3 id="create-gallery-heading" style="color: #424242">New Gallery</h3>
   </div>
   <div class="modal-body">
+    <p style="color: #424242">Title and Thumbnail are optional</p>
     <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
       {% csrf_token %}
-      <input id="id_title" type="text" name="title" maxlength="75" placeholder="Title (optional)" style="width: 286px"/>
+      <input id="id_title" type="text" name="title" maxlength="75" placeholder="Title" style="width: 286px"/>
       <input type="file" name="thumbnail" id="id_thumbnail" class="hide"/>
       <div class="pretty_file_input">
-	<input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail (optional)">
+	<input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail">
 	<a class="btn btn-default" onclick="$('#id_thumbnail').click();" style="margin-bottom: 10px"><b>Browse</b></a>
       </div>
       <div style="padding-top: 15px">

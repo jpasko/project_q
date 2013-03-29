@@ -3,11 +3,9 @@ from accounts.models import Domains
 
 class Command(BaseCommand):
     args = 'None'
-    help = 'Checks the Domains database; adds any new custom domains to heroku'
+    help = 'Gets all the domains'
 
     def handle(self, *args, **options):
-        new_domains = Domains.objects.filter(pending=True)
-        for domain in new_domains:
-            domain.pending = False
-            domain.save()
+        domains = Domains.objects.all()
+        for domain in domains:
             self.stdout.write('*.%s\n' % domain.domain)

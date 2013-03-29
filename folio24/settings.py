@@ -2,7 +2,7 @@
 import os.path
 PROJECT_ROOT = os.path.abspath('.')
 
-DEBUG = True
+DEBUG = False
 DEV_SETTINGS = False
 TEMPLATE_DEBUG = DEBUG
 
@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'imagekit',
     'storages',
     'zebra',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
