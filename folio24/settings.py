@@ -138,7 +138,6 @@ INSTALLED_APPS = (
     'imagekit',
     'storages',
     'zebra',
-    'south',
 )
 
 # A sample logging configuration. The only tangible logging
