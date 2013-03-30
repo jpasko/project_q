@@ -198,6 +198,7 @@ ul {
     font-size: 7em;
     margin: 10px;
     cursor: hand; cursor: pointer;
+    text-shadow: 2px 2px 2px #bfbfbf;
 }
 .dull {
     color: #d1d1d1;
