@@ -10,6 +10,14 @@
     display: inline-block;
     color: #424242;
   }
+  .drop-shadow {
+    border: 1px solid #{{ profile.text_color }};
+    border-radius: 5px;
+    -moz-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    -webkit-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    padding: 5px;
+  }
 </style>
 {% endblock %}
 {% block content %}
@@ -63,7 +71,7 @@
     <p style="color: #424242"><i class="icon-ok"></i><em> Easy contact page</em></p>
     <p style="color: #424242"><i class="icon-ok"></i><em> Fully customizable portfolio with Galleria viewer</em></p>
     <p style="color: #424242"><i class="icon-ok"></i><em> Integration with Google Analytics to track your portfolio views</em></p>
-    <!--<p style="color: #424242"><i class="icon-ok"></i><em> Support for custom domain binding</em></p>-->
+    <h4 style="color: #424242">Paid accounts enable custom domain names</h4>
   </div>
   <div class="modal-footer">
     <button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
@@ -72,24 +80,24 @@
 <!-- End modals -->
 
 <div class="row-fluid muted" style="text-align: center">
-  <div class="span6">
+  <div class="span6 drop-shadow">
     <h3>Upgrade your account</h3>
     <p style="margin-bottom: 20px">You can also downgrade your account</p>
-    <a href="#upgrade-account"  role="button" data-toggle="modal" class="btn btn-info btn-large" style="border-radius: 2px">
+    <a href="#upgrade-account"  role="button" data-toggle="modal" class="btn btn-info btn-large" style="border-radius: 2px; margin-bottom: 15px">
       <strong>Upgrade</strong>
     </a>
   </div>
-  <div class="span6">
+  <div class="span6 drop-shadow">
     <h3>Update your credit card</h3>
     <p style="margin-bottom: 20px">Add a credit card or change your active card</p>
-    <a href="https://{{ username }}.{{ DOMAIN }}/accounts/change/" class="btn btn-info btn-large" style="border-radius: 2px">
+    <a href="https://{{ username }}.{{ DOMAIN }}/accounts/change/" class="btn btn-info btn-large" style="border-radius: 2px; margin-bottom: 15px">
       <strong>Update</strong>
     </a>
   </div>
 </div>
 
 <div class="row-fluid muted" style="margin-top: 40px; text-align: center">
-  <div class="span6">
+  <div class="span6 drop-shadow">
     <h3>Change your password</h3>
     {% if password_change_form.errors %}
     <p class="form-errors"><strong>Error: </strong>
@@ -111,9 +119,9 @@
       <input type="submit" value="Change" class="btn btn-info btn-large" style="border-radius: 2px; font-weight: bold">
     </form>
   </div>
-  <div class="span6">
+  <div class="span6 drop-shadow">
     <h3>Delete your account</h3>
-    <a href="#delete-account" role="button" data-toggle="modal" class="btn btn-default btn-large" style="border-radius: 2px">
+    <a href="#delete-account" role="button" data-toggle="modal" class="btn btn-default btn-large" style="border-radius: 2px; margin-bottom: 15px">
       <strong>Delete</strong>
     </a>
   </div>

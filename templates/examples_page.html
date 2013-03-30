@@ -21,7 +21,7 @@ $(document).ready(function(){
 </script>
 {% endblock %}
 {% block content %}
-<div class="container" style="padding-top: 30px; padding-bottom: 10px">
+<div class="container" style="padding-top: 30px">
   <ul class="thumbnails">
     <li class="span4">
       <a href="http://jpasko.{{ DOMAIN }}/" target="_blank" class="thumbnail darken">
@@ -61,12 +61,10 @@ $(document).ready(function(){
     </li>
   </ul>
 </div>
-<div class="bottom-links" style="padding: 40px 0 30px 0">
-  <div class="jumbotron" style="padding: 0">
-    <a class="btn btn-large signup-btn" href="https://www.{{ DOMAIN }}/register/" style="padding-left: 100px; padding-right: 100px; margin-right: 10px">
-      <strong>Sign up</strong>
-    </a>
-    <a class="btn signup-btn" href="/#id_examples"><strong>Back</strong></a>
-  </div>
+<div class="jumbotron" style="padding: 20px 0 30px 0">
+  <a class="btn btn-large signup-btn" href="https://www.{{ DOMAIN }}/register/" style="padding-left: 100px; padding-right: 100px; margin-right: 10px">
+    <strong>Sign up</strong>
+  </a>
+  <a class="btn signup-btn" href="/#id_examples"><strong>Back</strong></a>
 </div>
 {% endblock %}

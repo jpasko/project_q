@@ -87,6 +87,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     margin: 0 auto;
     width: 600px;
   }
+  .drop-shadow {
+    -moz-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    -webkit-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    box-shadow: 2px 2px 2px #{{ profile.text_color }};
+  }
 </style>
 {% endblock %}
 {% block script %}
@@ -158,7 +163,7 @@ $(function() {
 {% endblock %}
 
 {% block content %}
-<div class="centered-box">
+<div class="centered-box drop-shadow">
   <form method="post" action="." enctype="multipart/form-data" class="form-horizontal muted">
     {% csrf_token %}
     
