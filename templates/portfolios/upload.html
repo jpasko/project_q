@@ -11,8 +11,12 @@
     color: #424242;
   }
   .centered-box {
+    text-align: center;
     margin: 0 auto;
     width: 300px;
+    border: 2px solid #{{ profile.text_color }};
+    border-radius: 5px;
+    padding: 10px;
   }
 </style>
 {% endblock %}
@@ -62,7 +66,7 @@ $(function() {
 {% else %}
 <div class="centered-box muted">
   {% if photo_form and item_form %}
-  <h3>Upload Image</h3>
+  <h2>Upload Image</h2>
 
   {% if photo_form.image.errors %}
   <p class="form-errors"><strong>Error: </strong>choose a valid image file</p>
@@ -86,7 +90,7 @@ $(function() {
   {% endif %}
 
   {% if video_form %}
-  <h3>Upload Video</h3>
+  <h2>Upload Video</h2>
   {% if video_form.errors %}
   <p class="form-errors"><strong>Error: </strong>that URL doesn't look valid</p>
   {% endif %}

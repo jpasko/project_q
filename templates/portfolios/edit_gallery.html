@@ -11,8 +11,12 @@
     color: #424242;
   }
   .centered-box {
+    text-align: center;
     margin: 0 auto;
     width: 300px;
+    border: 2px solid #{{ profile.text_color }};
+    border-radius: 5px;
+    padding: 10px;
   }
   #thumbnail-img {
     width: 30px;
@@ -46,9 +50,9 @@ $(function() {
 {% endblock %}
 {% block content %}
 <div class="centered-box muted">
-  <h3 >Edit Gallery</h3>
-  {% if form.thumbnail.errors %}
-  <p class="form-errors"><strong>Error: </strong>choose a valid image file</p>
+  <h2>Edit Gallery</h2>
+  {% if form.thumbnail.errors or error %}
+  <p class="form-errors"><strong>Error: </strong>choose a valid image file!  Supported file types: JPEG, PNG, BMP.</p>
   {% endif %}
   <form method="post" action="." enctype="multipart/form-data">
     {% csrf_token %}

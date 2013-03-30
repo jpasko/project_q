@@ -7,7 +7,8 @@
     border-radius: 5px;
     background: #ffe2d6;
     padding: 3px;
-    display: inline-block;
+    width: 85%;
+    margin: 3px auto;
   }
   .message-success {
     color: #4fc46f;
@@ -16,32 +17,40 @@
 </style>
 {% endblock %}
 {% block content %}
-<div class="container-narrow" style="padding-top: 30px">
-  <div class="colored" style="text-align: center">
-    <h1 style="font-size: 3em">Contact us</h1>
-    <p><em>Fill out the form, or send an email</em></p>
+<!-- Contact modal -->
+<div class="modal hide fade" role="dialog" tabindex="-1" id="contact-form" arialabelledby="contact-form-heading">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="create-gallery-heading" style="color: #424242">Send us a message</h3>
   </div>
-  <div class="row-fluid marketing muted">
-    <div class="span4 offset3">
-      <form method="post" action="." style="padding-top: 10px">
-	{% csrf_token %}
-
-	{% if form.sender.errors %}
-	<p class="form-errors">Invalid email address</p>
-	{% endif %}
-	<input type="text" name="sender" id="id_sender" placeholder="Your email (optional)"/>
-
-	{% if form.message.errors %}
-	<p class="form-errors">Write a message before sending</p>
-	{% endif %}
-	<textarea id="id_message" rows="4" cols="40" name="message" placeholder="Message"></textarea>
-
-	<input type="submit" value="Send" class="btn btn-large btn-default" style="border-radius: 3px" />
-      </form>
-    </div>
-    <div class="span5"  style="border-left: 1px solid #D6D6D6; padding-left: 40px">
-      <h4>Email</h4>
-      <p>contact@folio24.com</p>
+  <div class="modal-body">
+    <form method="post" action="." style="padding-top: 10px">
+      {% csrf_token %}
+      <input type="text" name="sender" id="id_sender" placeholder="Your email (optional)"  style="width: 97%"/>
+      <textarea id="id_message" rows="4" name="message" placeholder="Message" style="width: 97%"></textarea>
+      <input type="submit" value="Send" class="btn btn-large btn-primary" />
+      <button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
+    </form>
+  </div>
+</div>
+<!-- end modal -->
+<div class="container muted" style="padding-top: 30px">
+  <div class="centered-box">
+    <h1 style="font-size: 3em">Contact</h1>
+    <div class="contact-box">
+      <p><em>Fill out the form, or send an email</em></p>
+      {% if form.sender.errors %}
+      <p class="form-errors">Invalid email address</p>
+      {% endif %}
+      {% if form.message.errors %}
+      <p class="form-errors">Write a message before sending</p>
+      {% endif %}
+      <a href="#contact-form" role="button" data-toggle="modal" class="btn btn-large btn-default signup-btn" style="font-size: 1.6em; margin: 30px 0; padding: 20px">
+	<strong>Contact form</strong>
+      </a>
+      <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="colored">
+	  contact@folio24.com
+      </a></p>
     </div>
   </div>
 </div>

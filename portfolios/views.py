@@ -86,7 +86,7 @@ def create_gallery(request):
     Creates a new gallery.
     """
     username = request.subdomain
-    # Ensure that we cannot create galleris on other portfolio:
+    # Ensure that we cannot create galleries on other portfolio:
     if not username == request.user.username:
         raise Http404
     if request.method == 'POST':
@@ -98,7 +98,11 @@ def create_gallery(request):
             )
             if request.FILES:
                 gallery.thumbnail = form.cleaned_data['thumbnail']
-            gallery.save()
+            try:
+                gallery.save()
+            except Exception as e:
+                gallery.thumbnail = None
+                gallery.save()
             return HttpResponseRedirect('/gallery/' + str(gallery.pk) + '/')
     else:
         form = CreateGalleryForm()
@@ -143,7 +147,7 @@ def upload_image(request, gallery_id):
                     photo.save()
                 except Exception as e:
                     item.delete()
-                    error = 'This image is corrupted!'
+                    error = 'Cannot upload this image!  Supported file types: JPEG, PNG, BMP.'
                 else:
                     # Update the photo count on the user
                     profile.photo_count += 1
@@ -347,6 +351,7 @@ def edit_gallery(request, gallery_id):
     profile = request.user.get_profile()
     customer = request.user.customer
     gallery = get_object_or_404(Gallery, pk=gallery_id)
+    error = None
     if request.method == 'POST':
         form = EditGalleryForm(request.POST, request.FILES)
         if form.is_valid():
@@ -355,14 +360,21 @@ def edit_gallery(request, gallery_id):
                 gallery.thumbnail = request.FILES['thumbnail']
             elif form.cleaned_data['delete_current_thumbnail'] == 'True':
                 gallery.thumbnail = None
-            gallery.save()
-            return HttpResponseRedirect('/gallery/' + str(gallery_id) + '/')
+            try:
+                gallery.save()
+            except Exception as e:
+                error = 'Cannot upload this image!  Supported file types: JPEG, PNG, BMP.'
+                gallery.thumbnail = None
+                gallery.save()
+            else:
+                return HttpResponseRedirect('/gallery/' + str(gallery_id) + '/')
     else:
         form = EditGalleryForm()
     variables = RequestContext(request,
                                {'form': form,
                                 'username': username,
                                 'gallery': gallery,
+                                'error': error,
                                 'customer': customer,
                                 'profile': profile})
     return render_to_response('portfolios/edit_gallery.html', variables)
@@ -808,7 +820,10 @@ def edit_profile_picture(request):
     if request.method == 'POST':
         form = ProfilePictureForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+            except Exception as e:
+                pass
     return HttpResponseRedirect('/about/')
 
 def disable_get_started_modal(request):
