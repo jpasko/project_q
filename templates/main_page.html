@@ -112,24 +112,24 @@ $(document).ready(function(){
 	  <div style="position: relative" class="swipe-div">
 	    <img src="{{ STATIC_URL }}img/vesper.jpg" alt="" class="slider-img">
 	    <div class="slider-title">
-	      <a href="http://jpasko.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn">
-		<strong>James Pasko's portfolio</strong>
+	      <a href="http://jpasko.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn top-btn">
+		<strong>View portfolio</strong>
 	      </a>
 	    </div>
 	  </div>
 	  <div style="position: relative">
 	    <img src="{{ STATIC_URL }}img/sunset.jpg" alt="" class="slider-img">
 	    <div class="slider-title">
-	      <a href="http://jpasko.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn">
-		<strong>James Pasko's portfolio</strong>
+	      <a href="http://example1.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn top-btn">
+		<strong>View portfolio</strong>
 	      </a>
 	    </div>
 	  </div>
 	  <div style="position: relative">
 	    <img src="{{ STATIC_URL }}img/sunrise.jpg" alt="" class="slider-img">
 	    <div class="slider-title">
-	      <a href="http://jpasko.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn">
-		<strong>James Pasko's portfolio</strong>
+	      <a href="http://example2.{{ DOMAIN }}/" target="_blank" class="btn btn-large btn-default signup-btn top-btn">
+		<strong>View portfolio</strong>
 	      </a>
 	    </div>
 	  </div>
@@ -145,27 +145,72 @@ $(document).ready(function(){
 
   </div>
 </div>
-<div class="container-narrow" style="font-family: Raleway', sans-serif;">
+<div class="container-narrow" style="font-family: Raleway', sans-serif">
   <div class="featurette">
-    <h3 class="featurette-heading">Free. <span class="muted">And you get <em>all</em> the features.</span></h3>
-    <div style="padding-left: 25px" class="muted">
-      <p><i class="icon-ok icon-dull"></i> Images and Video</p>
-      <p><i class="icon-ok icon-dull"></i> Custom domain name</p>
-      <p><i class="icon-ok icon-dull"></i> Full profile/about page</p>
-      <p><i class="icon-ok icon-dull"></i> Spam-fighting contact form</p>
-      <p><i class="icon-ok icon-dull"></i> Galleria and LightBox viewers</p>
-      <p><i class="icon-ok icon-dull"></i> Integration with Google Analytics</p>
-    </div>
+    <h3 class="featurette-heading colored" style="padding-top: 40px">All the features you expect. <span class="muted">And most are <em>free</em>.</span></h3>
+    <table class="table table-striped table-hover" style="margin-bottom: 40px">
+      <thead>
+        <tr>
+          <th></th>
+          <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/basic/">Free</a></th>
+          <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/premium/">Premium</a></th>
+          <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/professional/">Professional</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Images and Video uploads</td>
+          <td class="std-table-cell" style="font-size: 1.3em">35</td>
+          <td class="std-table-cell" style="font-size: 1.3em">500</td>
+          <td class="std-table-cell" style="font-size: 1.3em">1500</td>
+        </tr>
+        <tr>
+          <td>About/Profile page</td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
+          <td>Spam-fighting contact form</td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
+          <td>Galleria and LightBox viewers</td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
+          <td>Integration with Google Analytics</td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
+          <td>Custom domain name</td>
+          <th class="std-table-cell"><i class="icon-remove icon-dull"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
+          <td>No Folio24 logo</td>
+          <th class="std-table-cell"><i class="icon-remove icon-dull"></i></td>
+          <th class="std-table-cell"><i class="icon-remove icon-dull"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <hr class="featurette-divider">
   <div class="featurette">
     <h3 class="featurette-heading colored" style="text-align: right">Beauty, Simplified. <span class="muted">A stunning portfolio.</span></h3>
-    <p class="lead"></p>
+    <img src="{{ STATIC_URL }}img/sunrise.jpg" class="slider-img">
   </div>
   <hr class="featurette-divider">
-  <div class="featurette">
+  <div class="featurette" style="padding-bottom: 30px">
     <h3 class="featurette-heading colored">Never Any Ads. <span class="muted">That's a promise.</span></h3>
-    <p class="lead"></p>
   </div>
 </div>
 

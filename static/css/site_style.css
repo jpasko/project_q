@@ -211,9 +211,24 @@ ul {
 }
 .slider-title {
     position: absolute;
-    bottom: 30px;
+    top: 0px;
     width: 100%;
 }
 .slider-title > a {
     text-decoration: none;
+}
+.top-btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.std-table-cell {
+    width: 150px;
+}
+.table-link {
+    color: #29333d;
+    font-size: 1.2em;
+}
+.table-link:hover {
+    text-decoration: none;
+    color: #ababab;
 }
