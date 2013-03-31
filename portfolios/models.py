@@ -27,6 +27,7 @@ class Gallery(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=75, blank=True)
     count = models.IntegerField(default=0)
+    hidden = models.BooleanField(default=False)
     order = models.IntegerField(default=9999, blank=True)
     thumbnail = ProcessedImageField([SmartResize(width=settings.THUMBNAIL_WIDTH,
                                                  height=settings.THUMBNAIL_HEIGHT)],
