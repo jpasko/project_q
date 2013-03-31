@@ -26,7 +26,7 @@
   <div class="modal-body">
     <form method="post" action="." style="padding-top: 10px">
       {% csrf_token %}
-      <input type="text" name="sender" id="id_sender" placeholder="Your email (optional)"  style="width: 97%"/>
+      <input type="text" name="sender" id="id_sender" placeholder="Your email (optional, for a reply)"  style="width: 97%"/>
       <textarea id="id_message" rows="4" name="message" placeholder="Message" style="width: 97%"></textarea>
       <input type="submit" value="Send" class="btn btn-large btn-primary" />
       <button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
@@ -48,7 +48,7 @@
       <a href="#contact-form" role="button" data-toggle="modal" class="btn btn-large btn-default signup-btn" style="font-size: 1.6em; margin: 30px 0; padding: 20px">
 	<strong>Contact form</strong>
       </a>
-      <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="colored">
+      <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="muted">
 	  contact@folio24.com
       </a></p>
     </div>
