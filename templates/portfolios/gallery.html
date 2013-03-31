@@ -32,6 +32,14 @@
   .thumbnails > li {
     margin: 2px;
   }
+  .edit-box {
+    border: 1px solid #{{ profile.text_color }};
+    border-radius: 5px;
+    -moz-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    -webkit-box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    padding-left: 7px;
+  }
 </style>
 {% endblock %}
 
@@ -78,6 +86,34 @@ $(document).ready(function(){
     var action = "/item/" + pk + "/edit/";
     $('#edit-item-form').attr("action", action);
     $('#id_caption-edit-item-form').val($(this).data('caption'));
+  });
+  $(".hide-gallery").on("click", function() {
+    if (!$(this).hasClass("active")) {
+      $(this).removeClass("btn-default");
+      $(this).addClass("btn-danger active");
+      $(".show-gallery").removeClass("btn-info active");
+      $(".show-gallery").addClass("btn-default");
+
+      $.ajax({
+        type: "POST",
+        url: "/hide_gallery/{{ gallery.pk }}/",
+        data: {'hide': 'True'}
+      });
+    }
+  });
+  $(".show-gallery").on("click", function() {
+    if (!$(this).hasClass("active")) {
+      $(this).removeClass("btn-default");
+      $(this).addClass("btn-info active");
+      $(".hide-gallery").removeClass("btn-danger active");
+      $(".hide-gallery").addClass("btn-default");
+
+      $.ajax({
+        type: "POST",
+        url: "/hide_gallery/{{ gallery.pk }}/",
+        data: {'hide': 'False'}
+      });
+    }
   });
 });
 </script>
@@ -237,12 +273,21 @@ $(document).ready(function(){
       </ul>
     </div>
   </div>
-  <div class="span3" style="border: 2px solid #{{ profile.text_color }}; border-radius: 5px; padding-left: 8px; margin-left: 10px; padding-top: 5px">
-    <div class="row-fluid muted" style="padding-bottom: 10px">
+  <div class="span3 edit-box">
+    <div class="row-fluid muted" style="padding: 10px 0">
+      <div class="btn-group" style="display: block; padding-bottom: 15px">
+	{% if gallery.hidden %}
+	<button type="button" class="btn btn-default show-gallery" value="True"><strong>public</strong></button>
+	<button type="button" class="btn btn-danger hide-gallery active" value="False"><strong>private</strong></button>
+	{% else %}
+	<button type="button" class="btn btn-info show-gallery active" value="True"><strong>public</strong></button>
+	<button type="button" class="btn btn-default hide-gallery" value="False"><strong>private</strong></button>
+	{% endif %}
+      </div>
       <p>
 	<strong>Title:</strong> {% if gallery.title %}{{ gallery.title }}{% else %}None{% endif %}
       </p>
-      <p style="padding-bottom: 10px">
+      <p>
 	<strong>Thumbnail:</strong>
 	{% if gallery.thumbnail %}<img id="thumbnail-img" src="{{ gallery.thumbnail.url }}">{% else %}Default{% endif %}
       </p>

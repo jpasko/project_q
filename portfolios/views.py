@@ -890,3 +890,24 @@ def toggle_edit_mode(request):
             profile.save()
             results = {'success': True}
     return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def hide_gallery(request, gallery_pk):
+    """
+    Hides/shows the gallery.
+    """
+    username = request.subdomain
+    results = {'success': False}
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    try:
+        gallery = Gallery.objects.get(pk=gallery_pk)
+    except Gallery.DoesNotExist:
+        pass
+    else:
+        if request.method == 'POST':
+            if 'hide' in request.POST:
+                hide = request.POST.get('hide') == 'True'
+                gallery.hidden = hide
+                gallery.save()
+                results = {'success': True}
+    return HttpResponse(json.dumps(results), mimetype='application/json')
