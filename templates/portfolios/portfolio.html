@@ -133,7 +133,7 @@
       {% endif %}
 	<div style="position: relative; left: 0; top: 0;" class="darken">
 	  {% if gallery.count > 0 %}
-	  <a href="/gallery/{{ gallery.pk }}/">
+	  <a href="/gallery/{{ gallery.pk }}/" {% if user.is_authenticated and user.username == username and profile.edit_mode %}class="grab"{% endif %}>
 	    {% with first_item=gallery.item_set.all|first %}
 	    {% if gallery.thumbnail %}
 	    <img src="{{ gallery.thumbnail.url }}" class="thumbnail-img">
@@ -149,13 +149,12 @@
 	    </div>
 	  </a>
 	  {% else %} <!-- gallery.count == 0 -->
-	  {% if gallery.thumbnail %}
-	  <a href="/gallery/{{ gallery.pk }}/">
+	  <a href="/gallery/{{ gallery.pk }}/" {% if user.is_authenticated and user.username == username and profile.edit_mode %}class="grab"{% endif %}>
+	    {% if gallery.thumbnail %}
 	    <img src="{{ gallery.thumbnail.url }}" class="thumbnail-img">
-	  {% else %}
-	  <a href="/gallery/{{ gallery.pk }}/">
+	    {% else %}
 	    <img src="{{ STATIC_URL }}img/empty_gallery_square.png" class="thumbnail-img">
-	  {% endif %}
+	    {% endif %}
             <div class="gallery-title"><h4 style="color: white">{{ gallery.title }} (empty)</h4></div>
 	  </a>
 	  {% endif %}

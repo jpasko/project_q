@@ -253,11 +253,11 @@ $(document).ready(function(){
 	<li id="items_{{ item.pk }}">
 	  <div style="position: relative; left: 0; top: 0;" class="item-div">
 	    {% if item.is_photo %}
-	    <a href="#">
+	    <a href="#" class="grab">
 	      <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
 	    </a>
 	    {% else %}
-	    <a class="video-thumbnail" href="{{ item.video.url }}" target="_blank">
+	    <a class="video-thumbnail grab" href="{{ item.video.url }}" target="_blank">
 	      <img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
 	    </a>
 	    {% endif %}

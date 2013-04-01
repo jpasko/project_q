@@ -35,6 +35,9 @@ div.darken img {
 .gallery-title {
     display: none;
 }
+.gallery-title:hover {
+    cursor: pointer;
+}
 .btn-contact {
     border:1px solid #ccd5da; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 8px 8px 8px 8px; font-weight:bold; text-align: center; color: #212121; background-color: #EDF0F2;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EDF0F2), color-stop(100%, #A3AEB3));
@@ -87,14 +90,8 @@ div.darken img {
     background-image: linear-gradient(top, #8ed058, #7bb64b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#8ed058, endColorstr=#7bb64b);
 }
 .hidden-gallery {
-    filter: grayscale(100%); /* Current draft standard */
-    -webkit-filter: grayscale(100%); /* New WebKit */
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%); 
-    -o-filter: grayscale(100%); /* Not yet supported in Gecko, Opera or IE */ 
-    filter: url(resources.svg#desaturate); /* Gecko */
-    filter: gray; /* IE */
-    -webkit-filter: grayscale(1); /* Old WebKit */
-    opacity: 0.75;
-    filter:alpha(opacity=75);
+
+}
+.grab:hover {
+    cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
