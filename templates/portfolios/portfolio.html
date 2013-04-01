@@ -123,7 +123,14 @@
   <div class="span12">
     <ul class="thumbnails sortable-galleries">
       {% for gallery in galleries %}
+      <!-- Determine which galleries to show to whom -->
+      {% if user.is_authenticated and user.username == username and profile.edit_mode and gallery.hidden %}
+      <li id="galleries_{{ gallery.pk }}" class="hidden-gallery">
+      {% elif not gallery.hidden %}
       <li id="galleries_{{ gallery.pk }}">
+      {% else %}
+      <li id="galleries_{{ gallery.pk }}" class="hide">
+      {% endif %}
 	<div style="position: relative; left: 0; top: 0;" class="darken">
 	  {% if gallery.count > 0 %}
 	  <a href="/gallery/{{ gallery.pk }}/">
@@ -151,6 +158,9 @@
 	  {% endif %}
             <div class="gallery-title"><h4 style="color: white">{{ gallery.title }} (empty)</h4></div>
 	  </a>
+	  {% endif %}
+	  {% if user.is_authenticated and user.username == username and profile.edit_mode and gallery.hidden %}
+            <div><h4 style="color: white; position: absolute; bottom: 5px; left: 5px; margin: 0">(private)</h4></div>
 	  {% endif %}
 	</div>
       </li>
