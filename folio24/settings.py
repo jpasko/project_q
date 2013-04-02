@@ -100,6 +100,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'context_processors.custom.domain',
     'context_processors.custom.sizes_and_dimensions',
+    'context_processors.custom.account_limits',
 )
 
 MIDDLEWARE_CLASSES = (
