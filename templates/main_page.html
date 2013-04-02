@@ -33,7 +33,7 @@ $(document).ready(function(){
 {% block content %}
 <div class="splash">
   <div class="jumbotron" style="margin-bottom: 0">
-    <h1 style="font-family: 'Raleway', sans-serif; color: white; font-weight: 500; font-size: 6em">Your online portfolio</h1>
+    <h1 style="font-family: 'Raleway', sans-serif; color: white; font-weight: 500; font-size: 5em">Your online portfolio</h1>
     <p class="lead" style="font-family: 'Raleway', sans-serif; color: white; font-weight: 700">Images & video &bull; Custom domain name &bull; No HTML/CSS</p>
     <a class="btn btn-large signup-btn" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 25px">
       <strong style="font-size: 1.4em">Sign up &bull; Free</strong>
@@ -106,6 +106,7 @@ $(document).ready(function(){
 
 <div class="examples" id="id_examples">
   <div class="container">
+    <h3 class="featurette-heading colored" style="text-align: center; padding-bottom: 20px">Beauty, Simplified. <span class="muted">A stunning portfolio.</span></h3>
     <div id="slider">
       <div id="swipe">
 	<div class="swipe-wrap">
@@ -177,6 +178,12 @@ $(document).ready(function(){
           <td class="std-table-cell"><i class="icon-ok"></i></td>
         </tr>
         <tr>
+          <td>Responsive, mobile-ready layout</td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+          <td class="std-table-cell"><i class="icon-ok"></i></td>
+        </tr>
+        <tr>
           <td>Spam-fighting contact form</td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
@@ -224,11 +231,14 @@ $(document).ready(function(){
   </div>
   <hr class="featurette-divider">
   <div class="featurette">
-    <h3 class="featurette-heading colored" style="text-align: right">Beauty, Simplified. <span class="muted">A stunning portfolio.</span></h3>
-    <img src="{{ STATIC_URL }}img/sunrise.jpg" class="slider-img">
+    <h3 class="featurette-heading colored" style="text-align: right">An intuitive interface. <span class="muted">Get running quickly.</span></h3>
+    <div style="position: relative; padding-bottom: 100px; padding-top: 20px">
+      <img src="{{ STATIC_URL }}img/screenshots/screen5.png" class="slider-img">
+      <img src="{{ STATIC_URL }}img/screenshots/screen2.png" class="slider-img" style="position: absolute; top: 80px; right: 0">
+    </div>
   </div>
   <hr class="featurette-divider">
-  <div class="featurette" style="padding: 10px 0 30px 0">
+  <div class="featurette" style="padding: 0 0 30px 0">
     <h3 class="featurette-heading colored">Never Any Ads. <span class="muted">Your portfolio is <em>yours</em>.</span></h3>
   </div>
 </div>
