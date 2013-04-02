@@ -117,7 +117,7 @@ $(document).ready(function(){
 <!-- Modal for removing the profile picture -->
 <div class="modal hide" role="dialog" tabindex="-1" id="delete-profile-picture" arialabelledby="delete-picture-heading">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3 id="delete-picture-heading" style="color: #424242">Delete profile picture?</h3>
   </div>
   <div class="modal-body">
@@ -144,18 +144,16 @@ $(document).ready(function(){
 <div class="row-fluid muted">
   <div class="span9">
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
-    <div class="row-fluid sizeable-font" style="padding-bottom: 10px">
-      <div class="span2">
-	<p><b>Enable?</b></p>
-      </div>
-      <div class="span7">
+    <div class="row-fluid sizeable-font" style="padding-bottom: 30px; text-align: center">
+      <div class="span7 offset2">
+	<p style="display: inline"><strong>This page is </strong></p>
 	<div class="btn-group" style="display: inline">
 	  {% if profile.allow_about %}
-	  <button type="button" class="btn btn-info enable-about active" value="True"><i class="icon-ok"></i></button>
-	  <button type="button" class="btn btn-default disable-about" value="False"><i class="icon-remove"></i></button>
+	  <button type="button" class="btn btn-info enable-about active" value="True"><strong style="font-size: 1.2em">displayed</strong></button>
+	  <button type="button" class="btn btn-default disable-about" value="False"><strong style="font-size: 1.2em">hidden</strong></button>
 	  {% else %}
-	  <button type="button" class="btn btn-default enable-about" value="True"><i class="icon-ok"></i></button>
-	  <button type="button" class="btn btn-danger disable-about active" value="False"><i class="icon-remove"></i></button>
+	  <button type="button" class="btn btn-default enable-about" value="True"><strong style="font-size: 1.2em">displayed</strong></button>
+	  <button type="button" class="btn btn-danger disable-about active" value="False"><strong style="font-size: 1.2em">hidden</strong></button>
 	  {% endif %}
 	</div>
       </div>
