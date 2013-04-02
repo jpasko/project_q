@@ -5,4 +5,6 @@ def domain(request):
 
 def sizes_and_dimensions(request):
     return {'GALLERY_THUMBNAIL_DIMENSION': settings.GALLERY_THUMBNAIL_DIMENSION,
-            'MAX_FILE_SIZE': settings.MAX_FILE_SIZE}
+            'FREE_MAX_FILE_SIZE': settings.FREE_MAX_FILE_SIZE,
+            'PREMIUM_MAX_FILE_SIZE': settings.PREMIUM_MAX_FILE_SIZE,
+            'PROFESSIONAL_MAX_FILE_SIZE': settings.PROFESSIONAL_MAX_FILE_SIZE}

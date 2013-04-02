@@ -129,8 +129,8 @@ def upload_image(request, gallery_id):
         item_form = UploadItemForm(request.POST)
         if photo_form.is_valid() and item_form.is_valid():
             image=request.FILES['image']
-            if image.size > settings.MAX_FILE_SIZE:
-                error = 'Image too large!  Images must be less than 4 MB.'
+            if image.size > (customer.max_file_size * 1024 * 1024):
+                error = 'Image too large!  Images must be less than ' + str(customer.max_file_size) +  ' MB.'
             else:
                 gallery = get_object_or_404(Gallery, pk=gallery_id)
                 item = Item(

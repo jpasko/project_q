@@ -123,10 +123,13 @@ def register_user(request, account_type):
             customer = user.customer
             if account_type == settings.PROFESSIONAL_ACCOUNT_NAME:
                 customer.account_limit = settings.PROFESSIONAL_IMAGE_LIMIT
+                customer.max_file_size = settings.PROFESSIONAL_MAX_FILE_SIZE
             elif account_type == settings.PREMIUM_ACCOUNT_NAME:
                 customer.account_limit = settings.PREMIUM_IMAGE_LIMIT
+                customer.max_file_size = settings.PREMIUM_MAX_FILE_SIZE
             else:
                 customer.account_limit = settings.FREE_IMAGE_LIMIT
+                customer.max_file_size = settings.FREE_MAX_FILE_SIZE
             # Accessing the stripe_customer attribute creates the stripe customer
             stripe_customer = customer.stripe_customer
             stripe_customer.email = user.email
@@ -214,6 +217,7 @@ def change_account(request, new_account_type):
     if new_account_type == settings.FREE_ACCOUNT_NAME:
         stripe_customer.update_subscription(plan=new_account_type, prorate=False)
         customer.account_limit = settings.FREE_IMAGE_LIMIT
+        customer.max_file_size = settings.FREE_MAX_FILE_SIZE
         customer.save()
         # Delete the domain name record.
         try:
@@ -226,6 +230,7 @@ def change_account(request, new_account_type):
         if stripe_customer.active_card:
             stripe_customer.update_subscription(plan=new_account_type, prorate=False)
             customer.account_limit = settings.PREMIUM_IMAGE_LIMIT
+            customer.max_file_size = settings.PREMIUM_MAX_FILE_SIZE
             customer.save()
         else:
             return HttpResponseRedirect("https://{0}.{1}/accounts/{2}/payment/".format(request.user.username, settings.DOMAIN, new_account_type))
@@ -233,6 +238,7 @@ def change_account(request, new_account_type):
         if stripe_customer.active_card:
             stripe_customer.update_subscription(plan=new_account_type, prorate=False)
             customer.account_limit = settings.PROFESSIONAL_IMAGE_LIMIT
+            customer.max_file_size = settings.PROFESSIONAL_MAX_FILE_SIZE
             customer.save()
         else:
             return HttpResponseRedirect("https://{0}.{1}/accounts/{2}/payment/".format(request.user.username, settings.DOMAIN, new_account_type))
@@ -274,8 +280,10 @@ def add_credit_card(request, account_type):
                 stripe_customer.update_subscription(plan=account_type, prorate=False)
                 if account_type == settings.PREMIUM_ACCOUNT_NAME:
                     customer.account_limit = settings.PREMIUM_IMAGE_LIMIT
+                    customer.max_file_size = settings.PREMIUM_MAX_FILE_SIZE
                 else:
                     customer.account_limit = settings.PROFESSIONAL_IMAGE_LIMIT
+                    customer.max_file_size = settings.PROFESSIONAL_MAX_FILE_SIZE
                 customer.save()
                 variables = RequestContext(request,
                                            {'username': username,

@@ -52,7 +52,7 @@
 <script>
 $(document).ready(function(){
   $('#id_image').change(function() {
-    if(this.files && this.files[0].size && this.files[0].size > {{ MAX_FILE_SIZE }}) {
+    if(this.files && this.files[0].size && this.files[0].size > ({{ customer.max_file_size }} * 1024 * 1024)) {
       $('#submit-image').prop('disabled', true);
       $('#file-too-large-modal').modal('show');
     }
@@ -188,8 +188,8 @@ $(document).ready(function(){
     <h3 id="too-large-header">This file is too large!</h3>
   </div>
   <div class="modal-body">
-    <p>Image uploads are restricted to files less than <strong>4 MBs</strong></p>
-    <p style="padding-bottom: 50px">Please resize your image and try again</p>
+    <p>Image uploads are restricted to files less than <strong>{{ customer.max_file_size }} MBs</strong>.</p>
+    <p>Please resize your image or <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> if you need to upload larger images.</p>
   </div>
   <div class="modal-footer">
     <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true" id="restore-upload">Close</button>

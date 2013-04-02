@@ -201,8 +201,10 @@ IMAGE_HEIGHT = 1200
 THUMBNAIL_WIDTH = 500
 THUMBNAIL_HEIGHT = 500
 
-# The maximum file size (validated client-side when possible)
-MAX_FILE_SIZE = 4 * 1024 * 1024
+# The maximum file sizes (validated client-side when possible)
+FREE_MAX_FILE_SIZE = 2
+PREMIUM_MAX_FILE_SIZE = 6
+PROFESSIONAL_MAX_FILE_SIZE = 8
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = 'support@folio24.com'

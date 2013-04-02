@@ -152,6 +152,14 @@ class Customer(StripeCustomer):
     account_limit = models.PositiveIntegerField(verbose_name='Account type',
                                                 choices=ACCOUNT_LIMITS,
                                                 default=settings.FREE_IMAGE_LIMIT)
+    FILE_SIZE_LIMITS = (
+        (settings.FREE_MAX_FILE_SIZE, str(settings.FREE_MAX_FILE_SIZE) + ' MB'),
+        (settings.PREMIUM_MAX_FILE_SIZE, str(settings.PREMIUM_MAX_FILE_SIZE) + ' MB'),
+        (settings.PROFESSIONAL_MAX_FILE_SIZE, str(settings.PROFESSIONAL_MAX_FILE_SIZE) + ' MB'),
+    )
+    max_file_size = models.PositiveIntegerField(verbose_name='Maximum upload size',
+                                                choices=FILE_SIZE_LIMITS,
+                                                default=settings.FREE_MAX_FILE_SIZE)
 
     def __unicode__(self):
         return u'Customer record for %s' % self.user.username
