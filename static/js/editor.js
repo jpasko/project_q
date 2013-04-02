@@ -1,15 +1,19 @@
 $(document).ready(function(){
     $("#trigger-editable-about").on("click", function() {
-	if ($("#valid-about").length) {
-	    $("#valid-about").hide();
-	    $("#about-textarea").val(formattedText($("#valid-about")));
+	if ($("#about-textarea").is(":visible")) {
+	    $("#cancel-about").click();
 	} else {
-	    $("#empty-about").hide();
+	    if ($("#valid-about").length) {
+		$("#valid-about").hide();
+		$("#about-textarea").val(formattedText($("#valid-about")));
+	    } else {
+		$("#empty-about").hide();
+	    }
+	    $("#about-textarea").show();
+	    resizeTextArea($("#about-textarea"));
+	    $("#save-about").show();
+	    $("#cancel-about").show();
 	}
-	$("#about-textarea").show();
-	resizeTextArea($("#about-textarea"));
-	$("#save-about").show();
-	$("#cancel-about").show();
     });
     $("#cancel-about").on("click", function() {
 	$("#about-textarea").hide();
@@ -56,15 +60,19 @@ $(document).ready(function(){
     });
 
     $("#trigger-editable-email").on("click", function() {
-	if ($("#valid-email").length) {
-	    $("#valid-email").hide();
-	    $("#email-input").val($("#valid-email").text());
+	if ($("#email-input").is(":visible")) {
+	    $("#cancel-email").click();
 	} else {
-	    $("#empty-email").hide();
+	    if ($("#valid-email").length) {
+		$("#valid-email").hide();
+		$("#email-input").val($("#valid-email").text());
+	    } else {
+		$("#empty-email").hide();
+	    }
+	    $("#email-input").show();
+	    $("#save-email").show();
+	    $("#cancel-email").show();
 	}
-	$("#email-input").show();
-	$("#save-email").show();
-	$("#cancel-email").show();
     });
     $("#cancel-email").on("click", function() {
 	$("#email-input").hide();
@@ -111,15 +119,19 @@ $(document).ready(function(){
     });
 
     $("#trigger-editable-phone").on("click", function() {
-	if ($("#valid-phone").length) {
-	    $("#valid-phone").hide();
-	    $("#phone-input").val($("#valid-phone").text());
+	if ($("#phone-input").is(":visible")) {
+	    $("#cancel-phone").click();
 	} else {
-	    $("#empty-phone").hide();
+	    if ($("#valid-phone").length) {
+		$("#valid-phone").hide();
+		$("#phone-input").val($("#valid-phone").text());
+	    } else {
+		$("#empty-phone").hide();
+	    }
+	    $("#phone-input").show();
+	    $("#save-phone").show();
+	    $("#cancel-phone").show();
 	}
-	$("#phone-input").show();
-	$("#save-phone").show();
-	$("#cancel-phone").show();
     });
     $("#cancel-phone").on("click", function() {
 	$("#phone-input").hide();
@@ -166,15 +178,19 @@ $(document).ready(function(){
     });
 
     $("#trigger-editable-location").on("click", function() {
-	if ($("#valid-location").length) {
-	    $("#valid-location").hide();
-	    $("#location-input").val($("#valid-location").text());
+	if ($("#location-input").is(":visible")) {
+	    $("#cancel-location").click();
 	} else {
-	    $("#empty-location").hide();
+	    if ($("#valid-location").length) {
+		$("#valid-location").hide();
+		$("#location-input").val($("#valid-location").text());
+	    } else {
+		$("#empty-location").hide();
+	    }
+	    $("#location-input").show();
+	    $("#save-location").show();
+	    $("#cancel-location").show();
 	}
-	$("#location-input").show();
-	$("#save-location").show();
-	$("#cancel-location").show();
     });
     $("#cancel-location").on("click", function() {
 	$("#location-input").hide();
@@ -220,126 +236,73 @@ $(document).ready(function(){
 	});
     });
 
-    $("#trigger-editable-website").on("click", function() {
-	if ($("#valid-website").length) {
-	    $("#valid-website").hide();
-	    $("#website-input").val($("#valid-website").attr('href'));
-	} else {
-	    $("#empty-website").hide();
-	}
-	$("#website-input").show();
-	$("#save-website").show();
-	$("#cancel-website").show();
-    });
-    $("#cancel-website").on("click", function() {
-	$("#website-input").hide();
-	$("#save-website").hide();
-	$("#cancel-website").hide();
-	$("#editable-website").find("p").show();
-	$("#editable-website").find("a").show();
-    });
-    $("#save-website").on("click", function() {
-	$("#website-input").hide();
-	$("#save-website").hide();
-	$("#cancel-website").hide();
-	if ($("#website-input").val()) {
-	    if ($("#empty-website").length) {
-		$("#empty-website").remove();
-	    }
-	    if (!$("#valid-website").length) {
-		$("#editable-website").append('<a id="valid-website" target="_blank"></a>');
-	    }
-	    $("#valid-website").show();
-	    $("#valid-website").attr('href', $("#website-input").val());
-	    $("#valid-website").text($("#website-input").val());
-	} else {
-	    if (!$("#empty-website").length) {
-		$("#editable-website").append('<p id="empty-website"><em>Currently empty</em></p>');
-	    }
-	    if ($("#valid-website").length) {
-		$("#valid-website").remove();
-	    }
-	    $("#empty-website").show();
-	}
-	$.ajax({
-	    type: "POST",
-	    url: "/update/",
-	    data: {'website': $("#website-input").val()},
-	    success: function(data) {
-		$("#ajax-alert > p").remove();
-		if (!data.success) {
-		    $("#ajax-alert").show();
-		    $("#ajax-alert").append("<p><strong>Error: </strong>" + data['message'] + "</p>");
-		} else {
-		    $("#ajax-alert").hide();
-		}
-	    }
-	});
-    });
-
     $("#trigger-editable-social").on("click", function() {
-	if ($("#valid-social-blogger").length) {
-	    $("#valid-social-blogger").hide();
-	    $("#blogger-input").val($("#valid-social-blogger").attr('href'));
+	if ($("#blogger-input").is(":visible")) {
+	    $("#cancel-social").click();
+	} else {
+	    if ($("#valid-social-blogger").length) {
+		$("#valid-social-blogger").hide();
+		$("#blogger-input").val($("#valid-social-blogger").attr('href'));
+	    }
+	    if ($("#valid-social-deviantart").length) {
+		$("#valid-social-deviantart").hide();
+		$("#deviantart-input").val($("#valid-social-deviantart").attr('href'));
+	    }
+	    if ($("#valid-social-digg").length) {
+		$("#valid-social-digg").hide();
+		$("#digg-input").val($("#valid-social-digg").attr('href'));
+	    }
+	    if ($("#valid-social-facebook").length) {
+		$("#valid-social-facebook").hide();
+		$("#facebook-input").val($("#valid-social-facebook").attr('href'));
+	    }
+	    if ($("#valid-social-flickr").length) {
+		$("#valid-social-flickr").hide();
+		$("#flickr-input").val($("#valid-social-flickr").attr('href'));
+	    }
+	    if ($("#valid-social-google_plus").length) {
+		$("#valid-social-google_plus").hide();
+		$("#google_plus-input").val($("#valid-social-google_plus").attr('href'));
+	    }
+	    if ($("#valid-social-linkedin").length) {
+		$("#valid-social-linkedin").hide();
+		$("#linkedin-input").val($("#valid-social-linkedin").attr('href'));
+	    }
+	    if ($("#valid-social-myspace").length) {
+		$("#valid-social-myspace").hide();
+		$("#myspace-input").val($("#valid-social-myspace").attr('href'));
+	    }
+	    if ($("#valid-social-orkut").length) {
+		$("#valid-social-orkut").hide();
+		$("#orkut-input").val($("#valid-social-orkut").attr('href'));
+	    }
+	    if ($("#valid-social-pinterest").length) {
+		$("#valid-social-pinterest").hide();
+		$("#pinterest-input").val($("#valid-social-pinterest").attr('href'));
+	    }
+	    if ($("#valid-social-tumblr").length) {
+		$("#valid-social-tumblr").hide();
+		$("#tumblr-input").val($("#valid-social-tumblr").attr('href'));
+	    }
+	    if ($("#valid-social-twitter").length) {
+		$("#valid-social-twitter").hide();
+		$("#twitter-input").val($("#valid-social-twitter").attr('href'));
+	    }
+	    if ($("#valid-social-wordpress").length) {
+		$("#valid-social-wordpress").hide();
+		$("#wordpress-input").val($("#valid-social-wordpress").attr('href'));
+	    }
+	    if ($("#valid-social-youtube").length) {
+		$("#valid-social-youtube").hide();
+		$("#youtube-input").val($("#valid-social-youtube").attr('href'));
+	    }
+	    if ($("#empty-social").length){
+		$("#empty-social").hide()
+	    }
+	    $("#all-social-inputs").show();
+	    $("#save-social").show();
+	    $("#cancel-social").show();
 	}
-	if ($("#valid-social-deviantart").length) {
-	    $("#valid-social-deviantart").hide();
-	    $("#deviantart-input").val($("#valid-social-deviantart").attr('href'));
-	}
-	if ($("#valid-social-digg").length) {
-	    $("#valid-social-digg").hide();
-	    $("#digg-input").val($("#valid-social-digg").attr('href'));
-	}
-	if ($("#valid-social-facebook").length) {
-	    $("#valid-social-facebook").hide();
-	    $("#facebook-input").val($("#valid-social-facebook").attr('href'));
-	}
-	if ($("#valid-social-flickr").length) {
-	    $("#valid-social-flickr").hide();
-	    $("#flickr-input").val($("#valid-social-flickr").attr('href'));
-	}
-	if ($("#valid-social-google_plus").length) {
-	    $("#valid-social-google_plus").hide();
-	    $("#google_plus-input").val($("#valid-social-google_plus").attr('href'));
-	}
-	if ($("#valid-social-linkedin").length) {
-	    $("#valid-social-linkedin").hide();
-	    $("#linkedin-input").val($("#valid-social-linkedin").attr('href'));
-	}
-	if ($("#valid-social-myspace").length) {
-	    $("#valid-social-myspace").hide();
-	    $("#myspace-input").val($("#valid-social-myspace").attr('href'));
-	}
-	if ($("#valid-social-orkut").length) {
-	    $("#valid-social-orkut").hide();
-	    $("#orkut-input").val($("#valid-social-orkut").attr('href'));
-	}
-	if ($("#valid-social-pinterest").length) {
-	    $("#valid-social-pinterest").hide();
-	    $("#pinterest-input").val($("#valid-social-pinterest").attr('href'));
-	}
-	if ($("#valid-social-tumblr").length) {
-	    $("#valid-social-tumblr").hide();
-	    $("#tumblr-input").val($("#valid-social-tumblr").attr('href'));
-	}
-	if ($("#valid-social-twitter").length) {
-	    $("#valid-social-twitter").hide();
-	    $("#twitter-input").val($("#valid-social-twitter").attr('href'));
-	}
-	if ($("#valid-social-wordpress").length) {
-	    $("#valid-social-wordpress").hide();
-	    $("#wordpress-input").val($("#valid-social-wordpress").attr('href'));
-	}
-	if ($("#valid-social-youtube").length) {
-	    $("#valid-social-youtube").hide();
-	    $("#youtube-input").val($("#valid-social-youtube").attr('href'));
-	}
-	if ($("#empty-social").length){
-	    $("#empty-social").hide()
-	}
-	$("#all-social-inputs").show();
-	$("#save-social").show();
-	$("#cancel-social").show();
     });
     $("#cancel-social").on("click", function() {
 	$("#all-social-inputs").hide();
