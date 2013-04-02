@@ -24,13 +24,13 @@ def upload_to_photo(instance, filename):
     """
     Creates an upload_to path for photos.
     """
-    return 'photos/%d/%s' % (instance.item.gallery.id, filename)
+    return 'photos/%d/%s' % (instance.item.gallery.id, get_unique_filename(filename) )
 
 def upload_to_gallery(instance, filename):
     """
     Creates an upload_to path for photos.
     """
-    return 'thumbnails/%d/%s' % (instance.user.id, filename)
+    return 'thumbnails/%d/%s' % (instance.user.id, get_unique_filename(filename) )
 
 class Gallery(models.Model):
     user = models.ForeignKey(User)
