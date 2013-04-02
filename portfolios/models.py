@@ -11,6 +11,15 @@ from imagekit.models import ImageSpecField
 from imagekit.models.fields import ProcessedImageField
 from imagekit.processors import ResizeToFill, ResizeToFit, SmartResize
 
+import uuid
+
+def get_unique_filename(filename):
+    """
+    Creates a unique filename.
+    """
+    ext = filename.split('.')[-1]
+    return "%s.%s" % (uuid.uuid4(), ext)
+
 def upload_to_photo(instance, filename):
     """
     Creates an upload_to path for photos.
