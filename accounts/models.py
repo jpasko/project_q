@@ -11,11 +11,20 @@ from imagekit.processors import ResizeToFit
 
 from zebra.models import StripeCustomer
 
+import uuid
+
+def get_unique_filename(filename):
+    """
+    Creates a unique filename.
+    """
+    ext = filename.split('.')[-1]
+    return "%s.%s" % (uuid.uuid4(), ext)
+
 def upload_to(instance, filename):
     """
     Upload path for profile photos.
     """
-    return 'profiles/%d/%s' % (instance.id, filename)
+    return 'profiles/%d/%s' % (instance.id, get_unique_filename(filename))
 
 # Attach a profile to the User model, and ensure that it's
 # created whenever a new user is created.

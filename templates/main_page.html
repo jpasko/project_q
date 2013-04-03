@@ -91,7 +91,7 @@ $(document).ready(function(){
 	<div class="span3" style="border-left: 2px solid #ededed; border-right: 2px solid #ededed; padding: 40px 25px">
 	  <h2 class="colored" style="font-family: Raleway', sans-serif;">Simple</h2>
 	  <img src="{{ STATIC_URL }}img/simple.png" alt="" class="classy-simple-free">
-	  <p class="colored">Easily customize your portfolio.  All without a hint of HTML or CSS.</p>
+	  <p class="colored">Customize your portfolio without using a hint of HTML or CSS.</p>
 	</div>
 
 	<div class="span4" style="padding: 40px 0">
@@ -153,23 +153,29 @@ $(document).ready(function(){
       <thead>
         <tr>
           <th></th>
-          <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/basic/">Free</a></th>
+          <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/basic/">Basic</a></th>
           <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/premium/">Premium</a></th>
           <th><a class="table-link" href="https://www.{{ DOMAIN }}/register/professional/">Professional</a></th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>Price</td>
+          <td class="std-table-cell" style="font-size: 1.3em">Free!</td>
+          <td class="std-table-cell"><span style="font-size: 1.3em">$6</span>/month</td>
+          <td class="std-table-cell"><span style="font-size: 1.3em">$9</span>/month</td>
+        </tr>
+        <tr>
           <td>Image and video* uploads</td>
-          <td class="std-table-cell" style="font-size: 1.3em">35</td>
-          <td class="std-table-cell" style="font-size: 1.3em">500</td>
-          <td class="std-table-cell" style="font-size: 1.3em">1500</td>
+          <td class="std-table-cell" style="font-size: 1.3em">{{ FREE_IMAGE_LIMIT }}</td>
+          <td class="std-table-cell" style="font-size: 1.3em">{{ PREMIUM_IMAGE_LIMIT }}</td>
+          <td class="std-table-cell" style="font-size: 1.3em">{{ PROFESSIONAL_IMAGE_LIMIT }}</td>
         </tr>
         <tr>
           <td>Maximum image size</td>
-          <td class="std-table-cell" style="font-size: 1.3em">{{ FREE_MAX_FILE_SIZE }} MB</td>
-          <td class="std-table-cell" style="font-size: 1.3em">{{ PREMIUM_MAX_FILE_SIZE }} MB</td>
-          <td class="std-table-cell" style="font-size: 1.3em">{{ PROFESSIONAL_MAX_FILE_SIZE }} MB</td>
+          <td class="std-table-cell"><span style="font-size: 1.3em">{{ FREE_MAX_FILE_SIZE }}</span> MB</td>
+          <td class="std-table-cell"><span style="font-size: 1.3em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB</td>
+          <td class="std-table-cell"><span style="font-size: 1.3em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB</td>
         </tr>
         <tr>
           <td>About/profile page</td>
