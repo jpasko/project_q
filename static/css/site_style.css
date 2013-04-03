@@ -159,11 +159,11 @@ ul {
     background-image: linear-gradient(top, #cfd7dd, #87959c);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#cfd7dd, endColorstr=#87959c);
 }
 .price-box {
-    width: 150px;
+    width: 200px;
     margin: 0 auto;
 }
 .price-box:hover {
-    box-shadow: 0 0 3px #566b81, 0 0 10px 4px #97a6b4, 0 0 15px 3px #e0e3e5;
+    box-shadow: 0 0 5px #d2dbe5, 0 0 13px 4px #e9edf1, 0 0 25px 3px #f9f9fa;
 }
 .icon-dull {
     opacity : 0.4;
