@@ -5,41 +5,25 @@ $(document).ready(function(){
 	dataType: 'json',
 	acceptFileTypes: /(\.|\/)(gif|bmp|jpe?g|png)$/i,
 	maxFileSize: maxFileSize * 1024 * 1024,
-	progressall: function (e, data) {
-	    var progress = parseInt(data.loaded / data.total * 100, 10);
-	    $('#progress .bar').css(
-		'width',
-		progress + '%'
-	    );
-	},
 	progress: function (e, data) {
-            $.each(data.files, function (index, file) {
-		var progress = parseInt(data.loaded / data.total * 100, 10);
-		$('#individual-progress .individual-bar').css(
-		    'width',
-		    progress + '%'
-		);
-            });
+	    var progress = parseInt(data.loaded / data.total * 100, 10);
+	    data.context.find('.js-progress').css('width', progress + '%');
 	},
 	add: function (e, data) {
 	    if (data.files[0].size < maxFileSize * 1024 * 1024) {
+		var file = data.files[0];
+		var fileDetails = '<tr><td class="filename-cell">' + file.name + '</td>' +
+		    '<td class="progress-cell"><div class="js-progress" style="width: 0%"></div></td>' +
+		    '<td class="status-cell">in progress</td></tr>';
+		data.context = $(fileDetails).appendTo('#file-status-list');
 		jqXHR = data.submit();
-		var filename = data.files[0].name;
-		data.context = $('<p/>').text(filename).appendTo($('#indicator'));
-		data.context.attr('id', filename);
-		data.submit();
 	    }
 	},
 	done: function (e, data) {
-            $.each(data.files, function (index, file) {
-		var filename = data.files[0].name;
-            });
+	    data.context.find('.status-cell').text('complete');
 	},
 	fail: function (e, data) {
-            $.each(data.files, function (index, file) {
-		$('#loader').hide();
-		$('#prog_rate').text("Error uploading this picture")
-            });
+
 	},
 	stop: function (e, data) {
 	    window.location.reload(true);

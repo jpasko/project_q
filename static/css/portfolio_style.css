@@ -103,21 +103,12 @@ div.darken img {
     padding: 7px 10px 7px 7px;
     margin: 0 10px 10px 0;
 }
-.bar {
+.js-progress {
     height: 10px;
     background: #67aeda;
 }
-#progress {
+.progress {
     width: 100%;
-    margin-bottom: 10px;
-}
-.individual-bar {
-    height: 10px;
-    background: green;
-}
-#individual-progress {
-    width: 100%;
-    margin-bottom: 10px;
 }
 #drag-area {
     background: white;
@@ -136,4 +127,14 @@ div.darken img {
 }
 #drag-area:hover > p {
     display: none;
+}
+.filename-cell {
+    width: 40%;
+}
+.progress-cell {
+    width: 45%;
+}
+.status-cell {
+    text-align: right;
+    width: 15%;
 }

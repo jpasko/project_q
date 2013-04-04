@@ -1,5 +1,5 @@
 <div class="row-fluid hide" id="uploader" style="box-shadow: 1px 1px 1px 1px #{{ profile.text_color }}">
-  <button class="btn btn-default toggle-uploader" style="position: absolute; top: 7px; right: 7px">
+  <button class="btn btn-default toggle-uploader" style="position: absolute; top: 7px; right: 7px; border-radius: 2px">
     <strong>close</strong>
   </button>
   {% if profile.photo_count >= customer.account_limit %}
@@ -9,12 +9,12 @@
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="fileupload-buttonbar">
-      <span class="btn btn-info fileinput-button">
+      <span class="btn btn-info fileinput-button" style="border-radius: 2px">
         <i class="icon-plus icon-white"></i>
-	<strong> Add images</strong>
+	<strong> Select images</strong>
         <input type="file" name="file" multiple>
       </span>
-      <button type="reset" class="btn btn-danger cancel">
+      <button type="reset" class="btn btn-danger cancel" style="border-radius: 2px">
 	<i class="icon-ban-circle icon-white"></i>
 	<strong> Cancel uploads</strong>
       </button>
@@ -24,10 +24,6 @@
       <a href="https://{{ username }}.{{ DOMAIN }}/settings/">Upgrade</a> if
       you want to upload a larger file.
     </p>
-    <div id="progress">
-      <div style="width:0%;" class="bar"></div>
-    </div>
-    <div id="indicator" style="color: #{{ profile.text_color }}; font-size: 1.5em"></div>
     <style>
       td {
         border: none !important;
@@ -35,22 +31,7 @@
       }
     </style>
     <table class="table table-condensed" role="presentation">
-      <tbody>
-	<tr>
-	  <td class="filename-cell">banner1.jpg</td>
-	  <td class="progress-cell">progress bar</td>
-	  <td class="status-cell">in progress</td>
-	</tr>
-	<tr>
-	  <td>banner2.jpg</td>
-	  <td>progress bar</td>
-	  <td>finished</td>
-	</tr>
-	<tr>
-	  <td>banner3.jpg</td>
-	  <td>progress bar</td>
-	  <td>in progress</td>
-	</tr>
+      <tbody id="file-status-list">
       </tbody>
     </table>
   </form>
