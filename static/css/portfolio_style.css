@@ -96,12 +96,45 @@ div.darken img {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
 #uploader {
-    min-height: 200px;
+    position: relative;
+    min-height: 150px;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 2px;
+    padding: 7px 10px 7px 7px;
+    margin: 0 10px 10px 0;
 }
 .bar {
     height: 10px;
     background: #67aeda;
 }
 #progress {
-    width: 50%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.individual-bar {
+    height: 10px;
+    background: green;
+}
+#individual-progress {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#drag-area {
+    background: white;
+    border: 2px solid #ababab;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 20px;
+}
+#drag-area:hover {
+    background: #f3f7fc;
+    border: 2px solid #004a94;
+}
+#drag-area > p {
+    padding: 3px;
+    color: #ababab;
+}
+#drag-area:hover > p {
+    display: none;
 }

@@ -926,7 +926,10 @@ def upload_multiple_images(request, gallery_pk):
     profile = user.get_profile()
     customer = user.customer
     results = {'success': False,}
-    if request.method == 'POST':
+    if profile.photo_count >= customer.account_limit:
+        results = {'success': False,
+                   'reason': 'Upload Limit',}
+    elif request.method == 'POST':
         if request.FILES:
             image = request.FILES['file']
             if image.size < (customer.max_file_size * 1024 * 1024):
@@ -952,4 +955,4 @@ def upload_multiple_images(request, gallery_pk):
                                'name': image.name,
                                'size': image.size,
                                'url': photo.image.url,}
-        return HttpResponse(json.dumps(results), mimetype='application/json')
+    return HttpResponse(json.dumps(results), mimetype='application/json')

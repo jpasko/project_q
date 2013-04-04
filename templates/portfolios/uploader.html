@@ -1,4 +1,11 @@
 <div class="row-fluid hide" id="uploader">
+  <button class="btn btn-default toggle-uploader" style="position: absolute; top: 7px; right: 7px">
+    <i class="icon-remove"></i>
+  </button>
+  {% if profile.photo_count >= customer.account_limit %}
+  <h4 style="color: red">You've reached your upload limit!</h4>
+  <p style="color: #{{ profile.text_color}}"><em>Either <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> your account or delete items</em></p>
+  {% else %}
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="fileupload-buttonbar">
@@ -7,14 +14,26 @@
 	<strong> Add images</strong>
         <input type="file" name="file" multiple>
       </span>
-      <button type="reset" class="btn btn-danger">
+      <button type="reset" class="btn btn-danger cancel">
 	<i class="icon-ban-circle icon-white"></i>
-	<strong> Cancel</strong>
+	<strong> Cancel uploads</strong>
       </button>
     </div>
-    <div id="progress">
-      <div class="bar" style="width: 0%"></div>
+    <div id="drag-area">
+      <p>Or drag files here</p>
     </div>
-    <table class="table table-striped"><tbody class="files"></tbody></table>
+    <div id="progress">
+      <div style="width:0%;" class="bar"></div>
+    </div>
+
+    <div id="individual-progress">
+      <div style="width:0%;" class="individual-bar"></div>
+    </div>
+
+    <div id="indicator" style="color: #{{ profile.text_color }}; font-size: 1.5em"></div>
+    <table class="table table-striped" role="presentation">
+      <tbody data-target="#modal-gallery" data-toggle="modal-gallery" class="files"></tbody>
+    </table>
   </form>
+  {% endif %}
 </div>

@@ -50,7 +50,13 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/sorting.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/get-thumbnail.js"></script>
+
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
+<!--
+<script type="text/javascript" src="{{ STATIC_URL }}js/tmpl.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/load-image.min.js"></script>
+-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/uploader.js"></script>
 <script>
 $(document).ready(function(){
@@ -134,6 +140,7 @@ $(document).ready(function(){
   });
   $(".toggle-uploader").on("click", function() {
     $("#uploader").toggle();
+    $("#toggle-uploader-large").toggleClass("active");
   });
 });
 </script>
@@ -178,12 +185,12 @@ $(document).ready(function(){
 <div class="modal hide" role="dialog" tabindex="-1" id="upload-photo-modal" arialabelledby="upload-photo-heading">
   <div class="modal-header">
     <button type="button" class="close close-image-upload" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="upload-photo-heading" style="color: #424242">Upload Image</h3>
+    <h3 id="upload-photo-heading" style="color: #424242">Quick Image Upload</h3>
   </div>
   <div class="modal-body">
     {% if profile.photo_count >= customer.account_limit %}
     <h4 style="color: red">You've reached your upload limit!</h4>
-    <p style="color: #424242"><em>Either <a href="/settings/">upgrade</a> your account or delete items</em></p>
+    <p style="color: #424242"><em>Either <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> your account or delete items</em></p>
     <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
     {% else %}
     <form method="post" action="/upload/image/{{ gallery.pk }}/" enctype="multipart/form-data" id="image-form">
@@ -219,12 +226,12 @@ $(document).ready(function(){
 <div class="modal hide" role="dialog" tabindex="-1" id="upload-video-modal" arialabelledby="upload-video-heading">
   <div class="modal-header">
     <button type="button" class="close close-video-upload" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="upload-video-heading" style="color: #424242">Upload Video</h3>
+    <h3 id="upload-video-heading" style="color: #424242">Quick Video Upload</h3>
   </div>
   <div class="modal-body">
     {% if profile.photo_count >= customer.account_limit %}
     <h4 style="color: red">You've reached your upload limit!</h4>
-    <p style="color: #424242"><em>Either <a href="/settings/">upgrade</a> your account or delete items</em></p>
+    <p style="color: #424242"><em>Either <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> your account or delete items</em></p>
     <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
     {% else %}
     <form method="post" action="/upload/video/{{ gallery.pk }}/" id="video-form">
@@ -261,7 +268,7 @@ $(document).ready(function(){
   <div class="span9">
     <div class="row-fluid" style="padding-bottom: 20px">
       {% if username == 'jpasko' %}
-      <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px">
+      <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px" id="toggle-uploader-large">
 	<strong>ImageUploader</strong>
       </a>
       {% endif %}
