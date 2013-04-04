@@ -10,6 +10,8 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
+from django.db.models import F
+
 from portfolios.models import Item, Photo, Video, Gallery
 from portfolios.forms import *
 
@@ -942,9 +944,9 @@ def upload_multiple_images(request, gallery_pk):
                 except Exception as e:
                     item.delete()
                 else:
-                    profile.photo_count += 1
+                    profile.photo_count = F('photo_count') + 1
                     profile.save()
-                    gallery.count += 1
+                    gallery.count = F('count') + 1
                     gallery.save()
                     results = {'success': True,
                                'name': image.name,
