@@ -1,6 +1,6 @@
-<div class="row-fluid hide" id="uploader">
+<div class="row-fluid hide" id="uploader" style="box-shadow: 1px 1px 1px 1px #{{ profile.text_color }}">
   <button class="btn btn-default toggle-uploader" style="position: absolute; top: 7px; right: 7px">
-    <i class="icon-remove"></i>
+    <strong>close</strong>
   </button>
   {% if profile.photo_count >= customer.account_limit %}
   <h4 style="color: red">You've reached your upload limit!</h4>
@@ -19,20 +19,39 @@
 	<strong> Cancel uploads</strong>
       </button>
     </div>
-    <div id="drag-area">
-      <p>Or drag files here</p>
-    </div>
+    <p style="color: #{{ profile.text_color }}; width: 80%">Or <strong>drag and drop</strong> files here.
+      Images over <strong>{{ customer.max_file_size }} MB</strong> will be ignored.
+      <a href="https://{{ username }}.{{ DOMAIN }}/settings/">Upgrade</a> if
+      you want to upload a larger file.
+    </p>
     <div id="progress">
       <div style="width:0%;" class="bar"></div>
     </div>
-
-    <div id="individual-progress">
-      <div style="width:0%;" class="individual-bar"></div>
-    </div>
-
     <div id="indicator" style="color: #{{ profile.text_color }}; font-size: 1.5em"></div>
-    <table class="table table-striped" role="presentation">
-      <tbody data-target="#modal-gallery" data-toggle="modal-gallery" class="files"></tbody>
+    <style>
+      td {
+        border: none !important;
+        color: #{{ profile.text_color }};
+      }
+    </style>
+    <table class="table table-condensed" role="presentation">
+      <tbody>
+	<tr>
+	  <td class="filename-cell">banner1.jpg</td>
+	  <td class="progress-cell">progress bar</td>
+	  <td class="status-cell">in progress</td>
+	</tr>
+	<tr>
+	  <td>banner2.jpg</td>
+	  <td>progress bar</td>
+	  <td>finished</td>
+	</tr>
+	<tr>
+	  <td>banner3.jpg</td>
+	  <td>progress bar</td>
+	  <td>in progress</td>
+	</tr>
+      </tbody>
     </table>
   </form>
   {% endif %}
