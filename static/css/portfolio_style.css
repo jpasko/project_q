@@ -98,10 +98,12 @@ div.darken img {
 #uploader {
     position: relative;
     min-height: 150px;
-    width: 90%;
+    width: 95%;
     border-radius: 2px;
     padding: 7px 10px 7px 7px;
     margin: 0 10px 10px 0;
+    -moz-box-shadow: 1px 1px 1px 1px #ababab;
+    -webkit-box-shadow: 1px 1px 1px 1px #ababab;
 }
 .js-progress {
     height: 10px;
@@ -129,12 +131,11 @@ div.darken img {
     display: none;
 }
 .filename-cell {
-    width: 40%;
+    width: 30%;
 }
 .progress-cell {
     width: 45%;
 }
 .status-cell {
-    text-align: right;
-    width: 15%;
+    width: 25%;
 }

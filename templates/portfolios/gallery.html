@@ -34,11 +34,10 @@
     margin: 2px;
   }
   .edit-box {
-    border: 1px solid #{{ profile.text_color }};
-    border-radius: 5px;
-    -moz-box-shadow: 2px 2px 2px #{{ profile.text_color }};
-    -webkit-box-shadow: 2px 2px 2px #{{ profile.text_color }};
-    box-shadow: 2px 2px 2px #{{ profile.text_color }};
+    border-radius: 2px;
+    -moz-box-shadow: 1px 1px 1px 1px #{{ profile.text_color }};
+    -webkit-box-shadow: 1px 1px 1px 1px #{{ profile.text_color }};
+    box-shadow: 1px 1px 1px 1px #{{ profile.text_color }};
     padding-left: 7px;
   }
 </style>
@@ -48,6 +47,8 @@
 {% if user.is_authenticated and user.username == username %}
 <script>
   maxFileSize = {{ customer.max_file_size }};
+  var diff = {{ customer.account_limit }} - {{ profile.photo_count }};
+  maxNumberOfFiles =  diff > {{ MAX_NUMBER_UPLOADS }} ? {{ MAX_NUMBER_UPLOADS }} : (diff > 0 ? diff : 0);
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
@@ -265,11 +266,9 @@ $(document).ready(function(){
 <div class="row-fluid">
   <div class="span9">
     <div class="row-fluid" style="padding-bottom: 20px">
-      {% if username == 'jpasko' %}
       <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px" id="toggle-uploader-large">
 	<strong>ImageUploader</strong>
       </a>
-      {% endif %}
       <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
 	<strong>QuickImage </strong><i class="icon-picture icon-white"></i>
       </a>

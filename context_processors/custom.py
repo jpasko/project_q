@@ -12,4 +12,5 @@ def sizes_and_dimensions(request):
 def account_limits(request):
     return {'FREE_IMAGE_LIMIT': settings.FREE_IMAGE_LIMIT,
             'PREMIUM_IMAGE_LIMIT': settings.PREMIUM_IMAGE_LIMIT,
-            'PROFESSIONAL_IMAGE_LIMIT': settings.PROFESSIONAL_IMAGE_LIMIT}
+            'PROFESSIONAL_IMAGE_LIMIT': settings.PROFESSIONAL_IMAGE_LIMIT,
+            'MAX_NUMBER_UPLOADS': settings.MAX_NUMBER_UPLOADS}

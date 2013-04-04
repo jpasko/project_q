@@ -4,7 +4,11 @@
   </button>
   {% if profile.photo_count >= customer.account_limit %}
   <h4 style="color: red">You've reached your upload limit!</h4>
-  <p style="color: #{{ profile.text_color}}"><em>Either <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> your account or delete items</em></p>
+  <p style="color: #{{ profile.text_color}}">
+    You can't upload any more items.
+    <em>Either <a href="https://{{ username }}.{{ DOMAIN }}/settings/">upgrade</a> 
+      your account or delete some of your uploads</em>
+  </p>
   {% else %}
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
