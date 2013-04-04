@@ -1,4 +1,4 @@
-<div class="row-fluid hide" id="uploader" style="border: 1px solid #{{ profile.text_color }}">
+<div class="row-fluid hide" id="uploader">
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="fileupload-buttonbar">
@@ -12,12 +12,8 @@
 	<strong> Cancel</strong>
       </button>
     </div>
-    <div class="fileupload-loading"></div>
-    <div class="fileupload-progress fade">
-      <div class="progress progress-success progres-striped active">
-        <div class="bar" style="width:0%"></div>
-      </div>
-      <div class="progress-extended">&nbsp;</div>
+    <div id="progress">
+      <div class="bar" style="width: 0%"></div>
     </div>
     <table class="table table-striped"><tbody class="files"></tbody></table>
   </form>

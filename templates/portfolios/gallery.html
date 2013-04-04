@@ -260,7 +260,11 @@ $(document).ready(function(){
 <div class="row-fluid">
   <div class="span9">
     <div class="row-fluid" style="padding-bottom: 20px">
-
+      {% if username == 'jpasko' %}
+      <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px">
+	<strong>ImageUploader</strong>
+      </a>
+      {% endif %}
       <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
 	<i class="icon-picture icon-white"></i><strong> QuickImage</strong>
       </a>

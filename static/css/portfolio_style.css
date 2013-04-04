@@ -96,12 +96,12 @@ div.darken img {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
 #uploader {
-    padding: 10px;
-    border-radius: 2px;
-    min-height: 300px;
-    margin-bottom: 20px;
+    min-height: 200px;
 }
-.progress-bar {
-    height: 15px;
-    background: green;
+.bar {
+    height: 10px;
+    background: #67aeda;
+}
+#progress {
+    width: 50%;
 }
