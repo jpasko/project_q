@@ -1,6 +1,7 @@
 {% extends "portfolio_base.html" %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
 {% endblock %}
 {% block head %}
 <style>
@@ -49,6 +50,8 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/sorting.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/get-thumbnail.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/uploader.js"></script>
 <script>
 $(document).ready(function(){
   $('#id_image').change(function() {
@@ -128,6 +131,9 @@ $(document).ready(function(){
         data: {'hide': 'False'}
       });
     }
+  });
+  $(".toggle-uploader").on("click", function() {
+    $("#uploader").toggle();
   });
 });
 </script>
@@ -254,13 +260,19 @@ $(document).ready(function(){
 <div class="row-fluid">
   <div class="span9">
     <div class="row-fluid" style="padding-bottom: 20px">
-      <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="margin-left: 2px; border-radius: 2px">
-	<i class="icon-picture icon-white"></i><strong> Upload image</strong>
+      <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px">
+	<strong>ImageUploader</strong>
+      </a>
+      <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
+	<i class="icon-picture icon-white"></i><strong> QuickImage</strong>
       </a>
       <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
-	<i class="icon-film icon-white"></i><strong> Upload video</strong>
+	<i class="icon-film icon-white"></i><strong> QuickVideo</strong>
       </a>
     </div>
+    <!-- BEGIN uploader -->
+    {% include "portfolios/uploader.html" %}
+    <!-- END uploader -->
     <div class="row-fluid">
       <ul class="thumbnails sortable-items">
 	{% for item in gallery.item_set.all %}
@@ -308,7 +320,7 @@ $(document).ready(function(){
       <a class="btn btn-info" href="/gallery/{{ gallery.pk }}/edit/" style="border-radius: 2px">
 	<i class="icon-edit icon-white"></i><strong>Edit</strong>
       </a>
-      <a class="btn btn-danger" role="button" data-toggle="modal" href="#delete-gallery-modal" style="border-radius: 2px">
+      <a class="btn btn-default" role="button" data-toggle="modal" href="#delete-gallery-modal" style="border-radius: 2px">
 	<strong>Delete</strong>
       </a>
     </div>

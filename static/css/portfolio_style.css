@@ -95,3 +95,13 @@ div.darken img {
 .grab:hover {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
+#uploader {
+    padding: 10px;
+    border-radius: 2px;
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+.progress-bar {
+    height: 15px;
+    background: green;
+}

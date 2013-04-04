@@ -911,3 +911,43 @@ def hide_gallery(request, gallery_pk):
                 gallery.save()
                 results = {'success': True}
     return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def upload_multiple_images(request, gallery_pk):
+    """
+    Handles multiple image uploads.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    user = get_object_or_404(User, username=username)
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    profile = user.get_profile()
+    customer = user.customer
+    results = {'success': False,}
+    if request.method == 'POST':
+        if request.FILES:
+            image = request.FILES['file']
+            if image.size < (customer.max_file_size * 1024 * 1024):
+                item = Item(
+                    gallery=gallery,
+                    is_photo=True,
+                    )
+                item.save()
+                photo = Photo(
+                    item=item,
+                    image=image,
+                    )
+                try:
+                    photo.save()
+                except Exception as e:
+                    item.delete()
+                else:
+                    profile.photo_count += 1
+                    profile.save()
+                    gallery.count += 1
+                    gallery.save()
+                    results = {'success': True,
+                               'name': image.name,
+                               'size': image.size,
+                               'url': photo.image.url,}
+        return HttpResponse(json.dumps(results), mimetype='application/json')

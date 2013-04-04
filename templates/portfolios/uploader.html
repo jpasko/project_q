@@ -1,0 +1,25 @@
+<div class="row-fluid hide" id="uploader" style="border: 1px solid #{{ profile.text_color }}">
+  <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="fileupload-buttonbar">
+      <span class="btn btn-info fileinput-button">
+        <i class="icon-plus icon-white"></i>
+	<strong> Add images</strong>
+        <input type="file" name="file" multiple>
+      </span>
+      <button type="reset" class="btn btn-danger">
+	<i class="icon-ban-circle icon-white"></i>
+	<strong> Cancel</strong>
+      </button>
+    </div>
+    <div class="fileupload-loading"></div>
+    <div class="fileupload-progress fade">
+      <div class="progress progress-success progres-striped active">
+        <div class="bar" style="width:0%"></div>
+      </div>
+      <div class="progress-extended">&nbsp;</div>
+    </div>
+    <table class="table table-striped"><tbody class="files"></tbody></table>
+  </form>
+</div>

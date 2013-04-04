@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     # Upload an image into the gallery.
     url(r'^upload/image/(\d+)/$', 'portfolios.views.upload_image'),
 
+    # Multiple image uploads
+    url(r'^upload_multiple_images/(\d+)/$', 'portfolios.views.upload_multiple_images'),
+
     # Upload a video into the gallery.
     url(r'^upload/video/(\d+)/$', 'portfolios.views.upload_video'),
 
