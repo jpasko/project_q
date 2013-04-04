@@ -208,7 +208,7 @@ PREMIUM_MAX_FILE_SIZE = 6
 PROFESSIONAL_MAX_FILE_SIZE = 8
 
 # The maximum number of uploads allowed through the multiple uploader
-MAX_NUMBER_UPLOADS = 2
+MAX_NUMBER_UPLOADS = 15
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = 'support@folio24.com'
