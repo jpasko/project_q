@@ -1,7 +1,6 @@
-<div class="row-fluid hide" id="uploader">
+<div class="row-fluid hide" id="uploader" style="border: 1px solid #{{ profile.text_color }}">
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
-
     <div class="fileupload-buttonbar">
       <span class="btn btn-info fileinput-button">
         <i class="icon-plus icon-white"></i>
