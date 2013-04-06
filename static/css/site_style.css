@@ -77,7 +77,7 @@ ul {
 }
 .splash {
     padding: 70px 0;
-    background-image: url('http://s3.amazonaws.com/folio24/static/img/seattle.png');
+    background-image: url('https://s3.amazonaws.com/folio24/static/img/seattle.png');
     background-size: 950px;
     background-repeat: no-repeat;
     background-color: #29333d;
