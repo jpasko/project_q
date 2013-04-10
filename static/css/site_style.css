@@ -69,6 +69,13 @@ ul {
 .dull-link:hover {
     color: white !important;
 }
+.dull-link-special {
+    color: #9c9c9c;
+    text-decoration: none !important;
+}
+.dull-link-special:hover {
+    color: #ababab !important;
+}
 .top-banner {
     width: 100%;
     height: 60px;
@@ -87,6 +94,10 @@ ul {
 .footer {
     border-top: 2px solid #909090;
     background-color: #29333d;
+}
+.footer-special {
+    border-top: 1px solid #dedede;
+    background-color: none;
 }
 .star {
     color: white;
