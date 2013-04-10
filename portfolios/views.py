@@ -224,6 +224,9 @@ def gallery(request, gallery_id):
     username = request.subdomain
     gallery = get_object_or_404(Gallery, pk=gallery_id)
     user = get_object_or_404(User, username=username)
+    # Quick check that the gallery belongs to the profile.
+    if gallery.user.username != username:
+        raise Http404
     profile = user.get_profile()
     customer = user.customer
     variables = RequestContext(request, {
