@@ -3,17 +3,57 @@
 {% block head %}
 <style>
 .drop-shadow {
+    padding: 3px;
     -moz-box-shadow: 1px 1px 2px #e0e0e0;
     -webkit-box-shadow: 1px 1px 2px #e0e0e0;
     box-shadow: 1px 1px 2px #e0e0e0;
 }
+//body {
+//  background-color: #f4f4f4;
+//}
 </style>
 {% endblock %}
 {% block content %}
 <div class="container muted" style="padding-top: 30px">
   <div style="text-align: center">
-    <h2 class="colored" style="font-size: 3em" >About us</h2>
+    <h2 style="font-size: 3em" >About us</h2>
   </div>
+
+  <div class="row">
+    <div class="drop-shadow" style="width: 100%; margin: 0 auto 25px auto; padding-top: 15px">
+      <p>
+	Folio24 helps you build and manage a beautiful online portfolio to showcase your creative work.  Whether you're a photographer, graphic artist,
+	illustrator, architect, or just want to display your travel photos, Folio24 is perfect for you.
+      </p>
+      <p>
+	Our convenient image uploader, simple interface, and customization options will help you create your professional-looking portfolio
+	in minutes.
+	You won't have to worry about any HTML or CSS, and you can even use your own custom domain name.
+      </p>
+      <p><strong>Check out</strong> some <a href="/examples/" style="text-decoration: none">examples</a> and <strong>sign up</strong> for a 
+	<a href="https://www.{{ DOMAIN }}/register/basic/" style="text-decoration: none">free account</a> today!
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <iframe class="drop-shadow" width="100%" height="180px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=47.626806,-122.319898&amp;spn=0.016833,0.039482&amp;t=v&amp;z=14&amp;output=embed" style="margin-left: -20px"></iframe>
+    </div>
+    <div class="span8 muted">
+      <div class="row drop-shadow" style="margin-left: 10px; margin-right: -5px">
+	<h5>Who we are</h5>
+	<p>We're a group of engineers and friends located in beautiful Seattle with an eye for design and a love of photography.</p>
+	<h5>Why we do it</h5>
+	<p>Need a simple, affordable way to showcase your work?  We couldn't find what we wanted, so
+	  we built it ourselves!
+	</p>
+      </div>
+    </div>
+  </div>
+
+
+<!--
   <div class="drop-shadow" style="width: 90%; margin: 0 auto 30px auto; padding-top: 15px">
     <p>
       Folio24 helps you create a beautiful online portfolio to showcase your creative work.  Whether you're a photographer, graphic artist,
@@ -34,6 +74,7 @@
     </div>
   </div>
   <iframe class="drop-shadow" width="100%" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=47.626806,-122.319898&amp;spn=0.016833,0.039482&amp;t=v&amp;z=15&amp;output=embed" style="margin-bottom: 30px; margin-top: -25px"></iframe>
+-->
 </div>
 {% endblock %}
 {% block footer %}
