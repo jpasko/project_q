@@ -360,7 +360,7 @@ def edit_gallery(request, gallery_id):
     if request.method == 'POST':
         form = EditGalleryForm(request.POST, request.FILES)
         if form.is_valid():
-            gallery.title = form.cleaned_data['title']
+            # gallery.title = form.cleaned_data['title']
             if request.FILES:
                 gallery.thumbnail = request.FILES['thumbnail']
             elif form.cleaned_data['delete_current_thumbnail'] == 'True':
@@ -958,4 +958,29 @@ def upload_multiple_images(request, gallery_pk):
                                'name': image.name,
                                'size': image.size,
                                'url': photo.image.url,}
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def update_gallery(request, gallery_pk):
+    """
+    Responds to AJAX POSTs to update the gallery.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    # Ensure that we cannot edit a gallery owned by another user.
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    if gallery.user.username != username:
+        raise Http404
+    results = {'success': False,
+               'message': ''}
+    if request.method == 'POST':
+        if 'title' in request.POST:
+            gallery.title = request.POST.get('title')
+            results['success'] = True
+        elif 'description' in request.POST:
+            gallery.description = request.POST.get('description')
+            results['success'] = True
+        elif 'thumbnail' in request.POST:
+            pass
+        gallery.save()
     return HttpResponse(json.dumps(results), mimetype='application/json')

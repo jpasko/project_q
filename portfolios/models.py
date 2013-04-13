@@ -35,6 +35,7 @@ def upload_to_gallery(instance, filename):
 class Gallery(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=75, blank=True)
+    description = models.TextField(blank=True)
     count = models.IntegerField(default=0)
     hidden = models.BooleanField(default=False)
     order = models.IntegerField(default=9999, blank=True)

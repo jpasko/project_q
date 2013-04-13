@@ -112,7 +112,7 @@ class CreateGalleryForm(forms.ModelForm):
     """
     class Meta:
         model = Gallery
-        exclude = ('user', 'count', 'order', 'hidden')
+        exclude = ('user', 'count', 'order', 'hidden', 'description')
 
 class EditItemForm(forms.ModelForm):
     """

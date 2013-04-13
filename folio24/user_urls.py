@@ -99,6 +99,9 @@ urlpatterns = patterns('',
     # POST to this URL to update the profile with AJAX.
     url(r'^update/$', 'portfolios.views.update_profile'),
 
+    # POST to this URL to update the gallery with AJAX.
+    url(r'^update_gallery/(\d+)/$', 'portfolios.views.update_gallery'),
+
     # POST to this URL to add/edit custom domain names.
     url(r'^custom_domain/$', 'portfolios.views.custom_domain'),
 

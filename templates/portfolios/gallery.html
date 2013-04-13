@@ -21,8 +21,10 @@
     background-image: url({{ STATIC_URL }}js/galleria/themes/classic/dark-arrows.png);
   }
   #thumbnail-img {
-    width: 40px;
-    height: 40px;
+    height: 32px;
+  }
+  #thumbnail-img-large {
+    height: 64px;
   }
   #thin-divider {
     border-top: none;
@@ -39,6 +41,12 @@
     -webkit-box-shadow: 1px 1px 1px 1px #{{ profile.text_color }};
     box-shadow: 1px 1px 1px 1px #{{ profile.text_color }};
     padding-left: 7px;
+  }
+  .pencil {
+    text-decoration: none;
+  }
+  .pencil:hover {
+    text-decoration: none;
   }
 </style>
 {% endblock %}
@@ -57,6 +65,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/uploader.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/gallery-editor.js"></script>
 <script>
 $(document).ready(function(){
   $('#id_image').change(function() {
@@ -140,6 +149,15 @@ $(document).ready(function(){
   $(".toggle-uploader").on("click", function() {
     $("#uploader").toggle();
     $("#toggle-uploader-large").toggleClass("active");
+  });
+  $(".toggle-gallery-editor").on("click", function() {
+    $("#gallery-editor").toggle();
+    $("#toggle-gallery-editor-large").toggleClass("active");
+  });
+  $('.pencil').hover(function () {
+    $(this).find('img').prop('src', '{{ STATIC_URL}}img/pencil.png');
+  }, function () {
+    $(this).find('img').prop('src', '{{ STATIC_URL}}img/pencil_dull.png');
   });
 });
 </script>
@@ -263,74 +281,50 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- end modals -->
+<div class="row-fluid" style="padding-bottom: 20px">
+  <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px" id="toggle-uploader-large">
+    <strong>ImageUploader</strong>
+  </a>
+  <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
+    <strong>QuickVideo </strong><i class="icon-film icon-white"></i>
+  </a>
+  <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
+    <strong>QuickImage </strong><i class="icon-picture icon-white"></i>
+  </a>
+  <a class="btn btn-large toggle-gallery-editor pull-right" href="#" style="border-radius: 2px" id="toggle-gallery-editor-large">
+    <strong>Edit </strong><i class="icon-edit"></i>
+  </a>
+</div>
+<!-- BEGIN gallery editor -->
+{% include "portfolios/gallery_editor.html" %}
+<!-- END gallery editor -->
+<!-- BEGIN uploader -->
+{% include "portfolios/uploader.html" %}
+<!-- END uploader -->
 <div class="row-fluid">
-  <div class="span9">
-    <div class="row-fluid" style="padding-bottom: 20px">
-      <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px" id="toggle-uploader-large">
-	<strong>ImageUploader</strong>
-      </a>
-      <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
-	<strong>QuickImage </strong><i class="icon-picture icon-white"></i>
-      </a>
-      <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
-	<strong>QuickVideo </strong><i class="icon-film icon-white"></i>
-      </a>
-    </div>
-    <!-- BEGIN uploader -->
-    {% include "portfolios/uploader.html" %}
-    <!-- END uploader -->
-    <div class="row-fluid">
-      <ul class="thumbnails sortable-items">
-	{% for item in gallery.item_set.all %}
-	<li id="items_{{ item.pk }}">
-	  <div style="position: relative; left: 0; top: 0;" class="item-div">
-	    {% if item.is_photo %}
-	    <a href="#" class="grab">
-	      <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
-	    </a>
-	    {% else %}
-	    <a class="video-thumbnail grab" href="{{ item.video.url }}" target="_blank">
-	      <img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
-	    </a>
-	    {% endif %}
-	    <a class="delete-img hide" href="/item/{{ item.pk }}/delete/">
-	      <img src="{{ STATIC_URL }}img/delete.png" style="position: absolute; top: 0; left: 0">
-	    </a>
-	    <a class="edit-img hide data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal">
-	      <img src="{{ STATIC_URL }}img/edit.png" style="position: absolute; bottom: 0; left: 0;"/>
-	    </a>
-	  </div>
-	</li>
-	{% endfor %}
-      </ul>
-    </div>
-  </div>
-  <div class="span3 edit-box">
-    <div class="row-fluid muted" style="padding: 10px 0">
-      <div class="btn-group" style="display: block; padding-bottom: 15px">
-	{% if gallery.hidden %}
-	<button type="button" class="btn btn-default show-gallery" value="True"><strong>public</strong></button>
-	<button type="button" class="btn btn-danger hide-gallery active" value="False"><strong>private</strong></button>
+  <ul class="thumbnails sortable-items">
+    {% for item in gallery.item_set.all %}
+    <li id="items_{{ item.pk }}">
+      <div style="position: relative; left: 0; top: 0;" class="item-div">
+	{% if item.is_photo %}
+	<a href="#" class="grab">
+	  <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
+	</a>
 	{% else %}
-	<button type="button" class="btn btn-info show-gallery active" value="True"><strong>public</strong></button>
-	<button type="button" class="btn btn-default hide-gallery" value="False"><strong>private</strong></button>
+	<a class="video-thumbnail grab" href="{{ item.video.url }}" target="_blank">
+	  <img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
+	</a>
 	{% endif %}
+	<a class="delete-img hide" href="/item/{{ item.pk }}/delete/">
+	  <img src="{{ STATIC_URL }}img/delete.png" style="position: absolute; top: 0; left: 0">
+	</a>
+	<a class="edit-img hide data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal">
+	  <img src="{{ STATIC_URL }}img/edit.png" style="position: absolute; bottom: 0; left: 0;"/>
+	</a>
       </div>
-      <p>
-	<strong>Title:</strong> {% if gallery.title %}{{ gallery.title }}{% else %}None{% endif %}
-      </p>
-      <p>
-	<strong>Thumbnail:</strong>
-	{% if gallery.thumbnail %}<img id="thumbnail-img" src="{{ gallery.thumbnail.url }}">{% else %}Default{% endif %}
-      </p>
-      <a class="btn btn-info" href="/gallery/{{ gallery.pk }}/edit/" style="border-radius: 2px">
-	<i class="icon-edit icon-white"></i><strong>Edit</strong>
-      </a>
-      <a class="btn btn-default" role="button" data-toggle="modal" href="#delete-gallery-modal" style="border-radius: 2px">
-	<strong>Delete</strong>
-      </a>
-    </div>
-  </div>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
 {% elif profile.photo_count <= customer.account_limit %}
 <!-- Display mode -->
@@ -348,6 +342,16 @@ $(document).ready(function(){
   {% endif %}
   {% endfor %}
 </div>
+{% if gallery.description %}
+<div class="row-fluid muted" style="margin-top: 20px">
+  <div class="span2">
+    <p><strong>Description</strong></p>
+  </div>
+  <div class="span10">
+    <p>{{ gallery.description }}</p>
+  </div>
+</div>
+{% endif %}
 <script>
   Galleria.run('#galleria', {
     debug: false,

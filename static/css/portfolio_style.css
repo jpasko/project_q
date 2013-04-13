@@ -97,8 +97,8 @@ div.darken img {
 }
 #uploader {
     position: relative;
-    min-height: 150px;
-    width: 95%;
+    min-height: 125px;
+    width: 100%;
     border-radius: 2px;
     padding: 7px 10px 7px 7px;
     margin: 0 10px 10px 0;
@@ -138,4 +138,13 @@ div.darken img {
 }
 .status-cell {
     width: 25%;
+}
+#gallery-editor {
+    position: relative;
+    width: 100%;
+    border-radius: 2px;
+    padding: 7px 10px 7px 7px;
+    margin: 0 10px 10px 0;
+    -moz-box-shadow: 1px 1px 1px 1px #ababab;
+    -webkit-box-shadow: 1px 1px 1px 1px #ababab;
 }
