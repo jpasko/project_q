@@ -41,18 +41,17 @@
     <p>email: <a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="muted">
 	contact@folio24.com
     </a></p>
-    {% if form.sender.errors %}
-    <p class="form-errors">Invalid email address</p>
-    {% endif %}
-    {% if form.message.errors %}
-    <p class="form-errors">Write a message before sending</p>
-    {% endif %}
-    <form method="post" action="." style="margin-top: 40px">
+    <form method="post" action="." style="margin-top: 30px">
       {% csrf_token %}
+      {% if form.sender.errors %}
+      <p class="form-errors">Invalid email address</p>
+      {% endif %}
+      {% if form.message.errors %}
+      <p class="form-errors">Write a message before sending</p>
+      {% endif %}
       <input type="text" name="sender" id="id_sender" placeholder="Your email (optional, for a reply)"  style="width: 85%"/>
       <textarea id="id_message" rows="4" name="message" placeholder="Message" style="width: 85%"></textarea>
-      <input type="submit" value="Send" class="btn btn-large btn-primary" />
-      <button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
+      <input type="submit" value="Send message" class="btn btn-large signup-btn" style="font-weight: bold"/>
     </form>
   </div>
 </div>
