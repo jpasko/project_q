@@ -37,7 +37,7 @@
 <div class="container muted" style="padding-top: 30px">
   <h1 style="font-size: 3em; text-align: center">Contact us</h1>
   <div class="contact-box">
-    <form method="post" action="." style="margin-top: 8px; margin-bottom: 80px">
+    <form method="post" action="." style="margin-top: 8px; margin-bottom: 40px">
       {% csrf_token %}
       {% if form.sender.errors %}
       <p class="form-errors">Invalid email address</p>
