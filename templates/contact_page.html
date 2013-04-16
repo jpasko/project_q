@@ -37,11 +37,7 @@
 <div class="container muted" style="padding-top: 30px">
   <h1 style="font-size: 3em; text-align: center">Contact us</h1>
   <div class="contact-box">
-    <p><em>Fill out the form, or send an email</em></p>
-    <p>email: <a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="muted">
-	contact@folio24.com
-    </a></p>
-    <form method="post" action="." style="margin-top: 30px">
+    <form method="post" action="." style="margin-top: 8px; margin-bottom: 80px">
       {% csrf_token %}
       {% if form.sender.errors %}
       <p class="form-errors">Invalid email address</p>
@@ -53,6 +49,10 @@
       <textarea id="id_message" rows="4" name="message" placeholder="Message" style="width: 85%"></textarea>
       <input type="submit" value="Send message" class="btn btn-large signup-btn" style="font-weight: bold"/>
     </form>
+    <p><em>Or send an email to:</em></p>
+    <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="muted">
+	contact@folio24.com
+    </a></p>
   </div>
 </div>
 {% endblock %}
