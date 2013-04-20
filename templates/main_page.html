@@ -1,28 +1,5 @@
 {% extends "site_base.html" %}
 {% block title %}Your free online portfolio{% endblock %}
-{% block script %}
-<script>
-$(document).ready(function(){
-    $('#custom-carousel').carousel({
-      interval: 7000
-    });
-    $(".darken").hover(function() {
-      var image = $(this).find("img");
-      var title = $(this).find(".thumbnail-title");
-      var left = (image.width() - title.outerWidth()) / 2;
-      title.css({
-        left: left,
-        top: (image.height() - title.outerHeight()) / 2
-      });
-      image.fadeTo(50, 0.4);
-      title.show();
-    }, function() {
-      $(this).find("img").fadeTo(10, 1);
-      $(this).find(".thumbnail-title").hide();
-    });
-});
-</script>
-{% endblock %}
 {% block head %}
 <style>
   .top-banner {
@@ -83,20 +60,20 @@ $(document).ready(function(){
   <div class="container">
     <div style="text-align: center">
       <div class="row marketing" style="margin: 0">
-	<div class="span4" style="padding: 40px 0">
+	<div class="span4" style="padding: 20px 0 40px 0">
 	  <h2 class="colored" style="font-family: Raleway', sans-serif">Classy</h2>
 	  <img src="{{ STATIC_URL }}img/classy.png" alt="" class="classy-simple-free">
 	  <p class="colored">We provide you with a sleek, modern look that
 	    puts the emphasis on your work.</p>
 	</div>
 
-	<div class="span3" style="border-left: 2px solid #ededed; border-right: 2px solid #ededed; padding: 40px 25px">
+	<div class="span3" style="border-left: 2px solid #ededed; border-right: 2px solid #ededed; padding: 20px 25px 40px 25px">
 	  <h2 class="colored" style="font-family: Raleway', sans-serif;">Simple</h2>
 	  <img src="{{ STATIC_URL }}img/simple.png" alt="" class="classy-simple-free">
 	  <p class="colored">Customize your portfolio without using a hint of HTML or CSS.</p>
 	</div>
 
-	<div class="span4" style="padding: 40px 0">
+	<div class="span4" style="padding: 20px 0 40px 0">
 	  <h2 class="colored" style="font-family: Raleway', sans-serif;">Free</h2>
 	  <img src="{{ STATIC_URL }}img/free.png" alt="" class="classy-simple-free">
 	  <p class="colored">No commitments whatsoever.  Upgrade later if you decide you need more uploads.</p>
@@ -121,17 +98,17 @@ $(document).ready(function(){
 	    </div>
 	  </div>
 	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example1.jpg" alt="" class="slider-img">
+	    <img src="{{ STATIC_URL }}img/example2.jpg" alt="" class="slider-img">
 	    <div class="slider-title">
-	      <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
+	      <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 		<strong>View portfolio</strong>
 	      </a>
 	    </div>
 	  </div>
 	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example2.jpg" alt="" class="slider-img">
+	    <img src="{{ STATIC_URL }}img/example1.jpg" alt="" class="slider-img">
 	    <div class="slider-title">
-	      <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
+	      <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 		<strong>View portfolio</strong>
 	      </a>
 	    </div>
