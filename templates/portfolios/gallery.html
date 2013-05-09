@@ -2,6 +2,7 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/lightbox.css">
 {% endblock %}
 {% block head %}
 <style>
@@ -66,6 +67,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/uploader.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/gallery-editor.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/lightbox.js"></script>
 <script>
 $(document).ready(function(){
   $('#id_image').change(function() {
@@ -304,10 +306,10 @@ $(document).ready(function(){
 <div class="row-fluid">
   <ul class="thumbnails sortable-items">
     {% for item in gallery.item_set.all %}
-    <li id="items_{{ item.pk }}">
+    <li id="items_{{ item.pk }}" class="editable-item">
       <div style="position: relative; left: 0; top: 0;" class="item-div">
 	{% if item.is_photo %}
-	<a href="#" class="grab">
+	<a href="{{ item.photo.thumbnail.url }}" rel="lightbox" class="grab" title="{{ item.caption }}">
 	  <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
 	</a>
 	{% else %}
