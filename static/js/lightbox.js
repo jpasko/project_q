@@ -50,8 +50,8 @@ lightbox = new Lightbox options
     function LightboxOptions() {
       this.fileLoadingImage = 'https://s3.amazonaws.com/folio24/static/img/loading.gif';
       this.fileCloseImage = 'https://s3.amazonaws.com/folio24/static/img/close.png';
-      this.resizeDuration = 50;
-      this.fadeDuration = 50;
+      this.resizeDuration = 25;
+      this.fadeDuration = 25;
       this.labelImage = "Image";
       this.labelOf = "of";
     }
@@ -214,6 +214,10 @@ lightbox = new Lightbox options
     };
 
     Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
+      if (imageWidth > 500) {
+        imageHeight = imageHeight / imageWidth * 500;
+        imageWidth = 500;
+      }
       var $container, $lightbox, $outerContainer, containerBottomPadding, containerLeftPadding, containerRightPadding, containerTopPadding, newHeight, newWidth, oldHeight, oldWidth,
         _this = this;
       $lightbox = $('#lightbox');

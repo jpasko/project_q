@@ -23,6 +23,8 @@
 }
 /* line 24, ../sass/lightbox.sass */
 #lightbox img {
+  max-width: 500px; 
+  max-height: 500px; 
   width: auto;
   height: auto;
 }
@@ -33,6 +35,8 @@
 
 /* line 30, ../sass/lightbox.sass */
 .lb-outerContainer {
+  max-width: 520px; 
+  max-height: 520px;
   position: relative;
   background-color: white;
   *zoom: 1;

@@ -146,14 +146,14 @@ $(document).ready(function(){
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
     <div class="row-fluid sizeable-font" style="padding-bottom: 30px; text-align: center">
       <div class="span7 offset2">
-	<p style="display: inline"><strong>This page is </strong></p>
+	<p style="display: inline; margin-right: 5px"><strong>This page is </strong></p>
 	<div class="btn-group" style="display: inline">
 	  {% if profile.allow_about %}
-	  <button type="button" class="btn btn-info enable-about active" value="True"><strong style="font-size: 1.2em">displayed</strong></button>
-	  <button type="button" class="btn btn-default disable-about" value="False"><strong style="font-size: 1.2em">hidden</strong></button>
+	  <button type="button" class="btn btn-info enable-about active" value="True"><strong style="font-size: 1.2em">Public</strong></button>
+	  <button type="button" class="btn btn-default disable-about" value="False"><strong style="font-size: 1.2em">Private</strong></button>
 	  {% else %}
-	  <button type="button" class="btn btn-default enable-about" value="True"><strong style="font-size: 1.2em">displayed</strong></button>
-	  <button type="button" class="btn btn-danger disable-about active" value="False"><strong style="font-size: 1.2em">hidden</strong></button>
+	  <button type="button" class="btn btn-default enable-about" value="True"><strong style="font-size: 1.2em">Public</strong></button>
+	  <button type="button" class="btn btn-danger disable-about active" value="False"><strong style="font-size: 1.2em">Private</strong></button>
 	  {% endif %}
 	</div>
       </div>

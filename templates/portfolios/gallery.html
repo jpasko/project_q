@@ -25,7 +25,7 @@
     height: 32px;
   }
   #thumbnail-img-large {
-    height: 64px;
+    height: 48px;
   }
   #thin-divider {
     border-top: none;
@@ -148,19 +148,28 @@ $(document).ready(function(){
       });
     }
   });
-  $(".toggle-uploader").on("click", function() {
-    $("#uploader").toggle();
-    $("#toggle-uploader-large").toggleClass("active");
-  });
-  $(".toggle-gallery-editor").on("click", function() {
-    $("#gallery-editor").toggle();
-    $("#toggle-gallery-editor-large").toggleClass("active");
-  });
   $('.pencil').hover(function () {
     $(this).find('img').prop('src', '{{ STATIC_URL}}img/pencil.png');
   }, function () {
     $(this).find('img').prop('src', '{{ STATIC_URL}}img/pencil_dull.png');
   });
+  $(".thumbnail-checkbox").on("click", function() {
+    $(".thumbnail-checkbox").attr("checked", false);
+    $(this).attr("checked", true);
+    var item_pk = $(this).data("pk");
+    var set_thumbnail_url = "/set_thumbnail/{{ gallery.pk }}/" + item_pk + "/";
+    $.ajax({
+      type: "POST",
+      url: set_thumbnail_url
+    });
+  });
+  $.get("/get_thumbnail_pk/{{ gallery.pk }}/", function(data) {
+    var selector = "#thumbnail-checkbox_" + data.thumbnail_pk;
+    $(selector).attr("checked", true);
+  });
+  {% if gallery.thumbnail %}
+  $(".checkbox").hide();
+  {% endif %}
 });
 </script>
 {% endif %}
@@ -245,7 +254,7 @@ $(document).ready(function(){
 <div class="modal hide" role="dialog" tabindex="-1" id="upload-video-modal" arialabelledby="upload-video-heading">
   <div class="modal-header">
     <button type="button" class="close close-video-upload" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="upload-video-heading" style="color: #424242">Quick Video Upload</h3>
+    <h3 id="upload-video-heading" style="color: #424242">Video Upload</h3>
   </div>
   <div class="modal-body">
     {% if profile.photo_count >= customer.account_limit %}
@@ -269,7 +278,7 @@ $(document).ready(function(){
 <div class="modal hide" role="dialog" tabindex="-1" id="edit-item-modal" arialabelledby="edit-item-heading">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="edit-item-heading" style="color: #424242">Edit this item</h3>
+    <h3 id="edit-item-heading" style="color: #424242">Edit caption</h3>
   </div>
   <div class="modal-body">
     <form method="post" id="edit-item-form">
@@ -283,20 +292,6 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- end modals -->
-<div class="row-fluid" style="padding-bottom: 20px">
-  <a class="btn btn-warning btn-large toggle-uploader" href="#" style="border-radius: 2px" id="toggle-uploader-large">
-    <strong>ImageUploader</strong>
-  </a>
-  <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
-    <strong>QuickVideo </strong><i class="icon-film icon-white"></i>
-  </a>
-  <a class="btn btn-info btn-large" role="button" data-toggle="modal" href="#upload-photo-modal" style="border-radius: 2px">
-    <strong>QuickImage </strong><i class="icon-picture icon-white"></i>
-  </a>
-  <a class="btn btn-large toggle-gallery-editor pull-right" href="#" style="border-radius: 2px" id="toggle-gallery-editor-large">
-    <strong>Edit </strong><i class="icon-edit"></i>
-  </a>
-</div>
 <!-- BEGIN gallery editor -->
 {% include "portfolios/gallery_editor.html" %}
 <!-- END gallery editor -->
@@ -309,20 +304,32 @@ $(document).ready(function(){
     <li id="items_{{ item.pk }}" class="editable-item">
       <div style="position: relative; left: 0; top: 0;" class="item-div">
 	{% if item.is_photo %}
-	<a href="{{ item.photo.thumbnail.url }}" rel="lightbox" class="grab" title="{{ item.caption }}">
+	<a href="{{ item.photo.image.url }}" rel="lightbox" title="{{ item.caption }}">
 	  <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
 	</a>
 	{% else %}
-	<a class="video-thumbnail grab" href="{{ item.video.url }}" target="_blank">
+	<a class="video-thumbnail" href="{{ item.video.url }}" target="_blank">
 	  <img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
 	</a>
 	{% endif %}
-	<a class="delete-img hide" href="/item/{{ item.pk }}/delete/">
-	  <img src="{{ STATIC_URL }}img/delete.png" style="position: absolute; top: 0; left: 0">
-	</a>
-	<a class="edit-img hide data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal">
-	  <img src="{{ STATIC_URL }}img/edit.png" style="position: absolute; bottom: 0; left: 0;"/>
-	</a>
+	<div style="display: block; text-align: center" class="muted grab">
+	  <p style="padding: 25px 0 25px 0; margin: 0"></p>
+	</div>
+
+	<label class="checkbox" style="margin-bottom: 15px">
+	  <input type="checkbox" class="thumbnail-checkbox" data-pk="{{ item.pk }}" id="thumbnail-checkbox_{{ item.pk }}">
+	  <span class="muted" style="font-size: 1.15em">Gallery thumbnail</span>
+	</label>
+
+	<div>
+	  <a class="btn btn-default data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal" style="border-radius: 2px">
+	    <i class="icon-edit"></i> <strong>Edit</strong>
+	  </a>
+	  <a class="btn btn-default" href="/item/{{ item.pk }}/delete/" style="border-radius: 2px">
+	    <i class="icon-remove"></i> <strong>Delete</strong>
+	  </a>
+	</div>
+
       </div>
     </li>
     {% endfor %}

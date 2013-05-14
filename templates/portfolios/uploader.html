@@ -1,8 +1,4 @@
-<div class="row-fluid muted hide" id="uploader" style="box-shadow: 1px 1px 1px 1px #{{ profile.text_color }}; width: 98%">
-  <!--<h4 style="text-align: center">ImageUploader</h4>-->
-  <button class="btn btn-default toggle-uploader" style="position: absolute; top: 7px; right: 7px; border-radius: 2px">
-    <strong>close</strong>
-  </button>
+<div class="row-fluid muted" id="uploader" style="box-shadow: 1px 1px 1px #{{ profile.text_color }}">
   {% if profile.photo_count >= customer.account_limit %}
   <h4 style="color: red">You've reached your upload limit!</h4>
   <p style="color: #{{ profile.text_color}}">
@@ -23,9 +19,13 @@
 	<i class="icon-ban-circle icon-white"></i>
 	<strong> Cancel uploads</strong>
       </button>
+      <a class="btn btn-info" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
+	<i class="icon-film icon-white"></i>
+	<strong> Upload video</strong>
+      </a>
     </div>
-    <p style="color: #{{ profile.text_color }}; width: 80%">Or <strong>drag and drop</strong> files here.
-      Images over <strong>{{ customer.max_file_size }} MB</strong> will be ignored.
+    <p style="color: #{{ profile.text_color }}; width: 80%">Or <strong>drag and drop</strong> image files here.
+      Files over <strong>{{ customer.max_file_size }} MB</strong> will be ignored.
       <a href="https://{{ username }}.{{ DOMAIN }}/settings/">Upgrade</a> if
       you want to upload a larger file.
     </p>

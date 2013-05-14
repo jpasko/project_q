@@ -102,6 +102,15 @@ urlpatterns = patterns('',
     # POST to this URL to update the gallery with AJAX.
     url(r'^update_gallery/(\d+)/$', 'portfolios.views.update_gallery'),
 
+    # POST to this URL to set the gallery thumbnail.
+    url(r'^set_thumbnail/(\d+)/(\d+)/$', 'portfolios.views.set_thumbnail'),
+
+    # GET to this URL to get the gallery thumbnail's pk.
+    url(r'^get_thumbnail_pk/(\d+)/$', 'portfolios.views.get_thumbnail_pk'),
+
+    # POST to this URL to delete the gallery's custom thumbnail.
+    url(r'^delete_thumbnail/(\d+)/$', 'portfolios.views.delete_thumbnail'),
+
     # POST to this URL to add/edit custom domain names.
     url(r'^custom_domain/$', 'portfolios.views.custom_domain'),
 

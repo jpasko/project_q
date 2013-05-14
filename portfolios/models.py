@@ -39,6 +39,9 @@ class Gallery(models.Model):
     count = models.IntegerField(default=0)
     hidden = models.BooleanField(default=False)
     order = models.IntegerField(default=9999, blank=True)
+    # Essentially a one-way pointer to the item to use as the thumbnail for this
+    # gallery.
+    thumbnail_item = models.OneToOneField('Item', null=True, blank=True, related_name='+', on_delete=models.SET_NULL)
     thumbnail = ProcessedImageField([SmartResize(width=settings.THUMBNAIL_WIDTH,
                                                  height=settings.THUMBNAIL_HEIGHT)],
                                     upload_to=upload_to_gallery,

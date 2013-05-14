@@ -156,6 +156,9 @@ def upload_image(request, gallery_id):
                     profile.save()
                     # Update the photo count on the gallery
                     gallery.count += 1
+                    # Set this item as the thumbnail if there isn't one already
+                    if not gallery.thumbnail_item:
+                        gallery.thumbnail_item = item
                     gallery.save()
                     return HttpResponseRedirect('/gallery/' + gallery_id + '/')
     else:
@@ -202,6 +205,9 @@ def upload_video(request, gallery_id):
             profile.save()
             # Update the count on the gallery
             gallery.count += 1
+            # Set this item as the thumbnail if there isn't one already
+            if not gallery.thumbnail_item:
+                gallery.thumbnail_item = item
             gallery.save()
             return HttpResponseRedirect('/gallery/' + gallery_id + '/')
     else:
@@ -265,8 +271,13 @@ def delete_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     gallery = item.gallery
     gallery.count -= 1
-    gallery.save()
     item.delete()
+    try:
+        gallery.thumbnail_item
+    except Item.DoesNotExist:
+        if gallery.count > 0:
+            gallery.thumbnail_item = gallery.item_set.all()[:1].get()
+    gallery.save()
     profile = request.user.get_profile()
     profile.photo_count -= 1
     if profile.photo_count < 0:
@@ -953,6 +964,9 @@ def upload_multiple_images(request, gallery_pk):
                     profile.photo_count = F('photo_count') + 1
                     profile.save()
                     gallery.count = F('count') + 1
+                    # Set this item as the thumbnail if there isn't one already
+                    if not gallery.thumbnail_item:
+                        gallery.thumbnail_item = item
                     gallery.save()
                     results = {'success': True,
                                'name': image.name,
@@ -983,4 +997,56 @@ def update_gallery(request, gallery_pk):
         elif 'thumbnail' in request.POST:
             pass
         gallery.save()
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def set_thumbnail(request, gallery_pk, item_pk):
+    """
+    Sets the thumbnail image for the gallery to be the item specified.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    # Ensure that we cannot edit a gallery owned by another user.
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    if gallery.user.username != username:
+        raise Http404
+    results = {'success': False,
+               'message': ''}
+    if request.method == 'POST':
+        item = get_object_or_404(Item, pk=item_pk)
+        gallery.thumbnail_item = item
+        gallery.save()
+        results['success'] = True
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def get_thumbnail_pk(request, gallery_pk):
+    """
+    Returns the primary key of the thumbnail item, or -1 if it doesn't exist.
+    """
+    username = request.subdomain
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    results = {'success': False,
+               'thumbnail_pk': -1}
+    if request.method == 'GET':
+        if gallery.thumbnail_item:
+            results['thumbnail_pk'] = gallery.thumbnail_item.pk
+        results['success'] = True
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def delete_thumbnail(request, gallery_pk):
+    """
+    Deletes the custom thumbnail.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    # Ensure that we cannot edit a gallery owned by another user.
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    if gallery.user.username != username:
+        raise Http404
+    results = {'success': False}
+    if request.method == 'POST':
+        gallery.thumbnail = None
+        gallery.save()
+        results = {'success': True}
     return HttpResponse(json.dumps(results), mimetype='application/json')

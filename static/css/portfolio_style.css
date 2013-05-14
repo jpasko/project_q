@@ -99,7 +99,7 @@ div.darken img {
     position: relative;
     min-height: 125px;
     width: 100%;
-    border-radius: 2px;
+    border-radius: 1px;
     padding: 7px 10px 7px 7px;
     margin: 0 10px 10px 0;
     -moz-box-shadow: 1px 1px 1px 1px #ababab;
@@ -142,7 +142,7 @@ div.darken img {
 #gallery-editor {
     position: relative;
     width: 100%;
-    border-radius: 2px;
+    border-radius: 1px;
     padding: 7px 10px 7px 7px;
     margin: 0 10px 10px 0;
     -moz-box-shadow: 1px 1px 1px 1px #ababab;

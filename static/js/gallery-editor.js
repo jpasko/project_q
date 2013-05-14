@@ -117,13 +117,45 @@ $(document).ready(function(){
 	});
     });
 
-    $("#trigger-editable-thumbnail").on("click", function() {
-	$("#thumbnail-details").toggle();
-	$("#thumbnail-form").toggle();
+    $('.custom-thumbnail').on('click', function() {
+	$(this).addClass('active btn-info');
+	$(this).removeClass('btn-default');
+	$('.select-from-gallery').removeClass('active btn-info');
+	$('.select-from-gallery').addClass('btn-default');
+
+	$('.checkbox').hide();
+	$("#thumbnail-details").show();
+	$("#thumbnail-form").show();
     });
+
+    $('.select-from-gallery').on('click', function() {
+	$(this).addClass('active btn-info');
+	$(this).removeClass('btn-default');
+	$('.custom-thumbnail').removeClass('active btn-info');
+	$('.custom-thumbnail').addClass('btn-default');
+	// Not necessary due to page refresh:
+	// $('.checkbox').show();
+	$("#thumbnail-details").hide();
+	$("#thumbnail-form").hide();
+	$.ajax({
+	    type: "POST",
+	    url: "/delete_thumbnail/" + $("#gallery-pk").text() + "/",
+	    success: function(data) {
+		window.location.reload(true);
+	    }
+	});
+    });
+
     $("#cancel-thumbnail").on("click", function() {
-	$("#thumbnail-details").toggle();
-	$("#thumbnail-form").toggle();
+	$("#thumbnail-form").hide();
+	$("#change-thumbnail").show();
+	$("#thumbnail-img-large").show();
+    });
+
+    $("#change-thumbnail").on("click", function() {
+	//$(this).hide();
+	//$("#thumbnail-img-large").hide();
+	$("#thumbnail-form").show();
     });
 
     $('#id_thumbnail').change(function() {

@@ -10,6 +10,7 @@
 <script>
   $(document).ready(function(){
     $(".darken").hover(function() {
+      $(this).find(".edit-button").show();
       var image = $(this).find("img");
       var title = $(this).find(".gallery-title");
       var left = (image.width() - title.outerWidth()) / 2;
@@ -25,6 +26,7 @@
       image.fadeTo(75, 0.6);
       title.show();
     }, function() {
+      $(this).find(".edit-button").hide();
       $(this).find("img").fadeTo(10, 1);
       $(this).find(".gallery-title").hide();
     });
@@ -134,14 +136,25 @@
 	<div style="position: relative; left: 0; top: 0;" class="darken">
 	  {% if gallery.count > 0 %}
 	  <a href="/gallery/{{ gallery.pk }}/" {% if user.is_authenticated and user.username == username and profile.edit_mode %}class="grab"{% endif %}>
-	    {% with first_item=gallery.item_set.all|first %}
+	    {% with thumbnail_item=gallery.thumbnail_item %}
 	    {% if gallery.thumbnail %}
 	    <img src="{{ gallery.thumbnail.url }}" class="thumbnail-img">
-	    {% elif first_item.is_photo %}
-	    <img src="{{ first_item.photo.thumbnail.url }}" class="thumbnail-img">
+	    {% elif thumbnail_item %}
+	      {% if thumbnail_item.is_photo %}
+	      <img src="{{ thumbnail_item.photo.thumbnail.url }}" class="thumbnail-img">
+	      {% else %}
+	      <!-- Get the video thumbnail here -->
+	      <img class="video-thumbnail-img thumbnail-img" src="{{ STATIC_URL }}img/empty_gallery_square.png" data-url="{{ thumbnail_item.video.url }}">
+	      {% endif %}
 	    {% else %}
-	    <!-- Get the video thumbnail here -->
-	    <img class="video-thumbnail-img thumbnail-img" src="{{ STATIC_URL }}img/empty_gallery_square.png" data-url="{{ first_item.video.url }}">
+	      {% with first_item=gallery.item_set.all|first %}
+	      {% if first_item.is_photo %}
+	      <img src="{{ first_item.photo.thumbnail.url }}" class="thumbnail-img">
+	      {% else %}
+	      <!-- Get the video thumbnail here -->
+	      <img class="video-thumbnail-img thumbnail-img" src="{{ STATIC_URL }}img/empty_gallery_square.png" data-url="{{ first_item.video.url }}">
+	      {% endif %}
+	      {% endwith %}
 	    {% endif %}
 	    {% endwith %}
             <div class="gallery-title">
@@ -156,6 +169,11 @@
 	    <img src="{{ STATIC_URL }}img/empty_gallery_square.png" class="thumbnail-img">
 	    {% endif %}
             <div class="gallery-title"><h4 style="color: white">{{ gallery.title }} (empty)</h4></div>
+	  </a>
+	  {% endif %}
+	  {% if user.is_authenticated and user.username == username and profile.edit_mode %}
+	  <a href="/gallery/{{ gallery.pk }}/" style="position: absolute; left: 2px; top: 2px; border-radius: 2px" class="btn btn-default hide edit-button">
+	    <i class="icon-edit"></i> <strong>Edit</strong>
 	  </a>
 	  {% endif %}
 	  {% if user.is_authenticated and user.username == username and profile.edit_mode and gallery.hidden %}
