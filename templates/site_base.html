@@ -42,7 +42,7 @@
   <body>
 
     <div class="wrapper">
-
+      {% block top-banner %}
       <div class="container top-banner">
 	<div class="masthead">
           <ul class="nav nav-pills pull-right" style="margin-right: 20px; padding-top: 3px">
@@ -55,14 +55,11 @@
             {% endif %}
           </ul>
           <h2 style="margin-left: 30px">
-	    <!--
-	    <a href="https://www.{{ DOMAIN }}/" class="logo">folio<img src="{{ STATIC_URL }}img/small_lemon_dull.png" style="padding-left: 0px;">24</a>
-	    -->
 	    <a href="https://www.{{ DOMAIN }}/" class="logo">folio24</a>
 	  </h2>
 	</div>
       </div>
-
+      {% endblock %}
       <div class="content">
       {% block content %}{% endblock %}
       </div>
