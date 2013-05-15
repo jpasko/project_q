@@ -155,8 +155,14 @@ $(document).ready(function(){
   });
   $(".thumbnail-checkbox").on("click", function() {
     $(".thumbnail-checkbox").attr("checked", false);
+    $(".checkbox-text").text("Set as thumbnail");
+    $(".checkbox-text").css("color", "black");
     $(this).attr("checked", true);
+    $(this).siblings(".checkbox-text").text("Current thumbnail");
+    $(this).siblings(".checkbox-text").css("color", "white");
     var item_pk = $(this).data("pk");
+    $(".editable-item").css('background-color', 'white');
+    $("#items_" + item_pk).css('background-color', '#1a3870');
     var set_thumbnail_url = "/set_thumbnail/{{ gallery.pk }}/" + item_pk + "/";
     $.ajax({
       type: "POST",
@@ -166,6 +172,12 @@ $(document).ready(function(){
   $.get("/get_thumbnail_pk/{{ gallery.pk }}/", function(data) {
     var selector = "#thumbnail-checkbox_" + data.thumbnail_pk;
     $(selector).attr("checked", true);
+    $(selector).siblings(".checkbox-text").text("Current thumbnail");
+    $(selector).siblings(".checkbox-text").css("color", "white");
+    var selected_item = "#items_" + data.thumbnail_pk;
+    {% if not gallery.thumbnail %}
+    $(selected_item).css('background-color', '#1a3870');
+    {% endif %}
   });
   {% if gallery.thumbnail %}
   $(".checkbox").hide();
@@ -318,7 +330,7 @@ $(document).ready(function(){
 
 	<label class="checkbox" style="margin-bottom: 15px">
 	  <input type="checkbox" class="thumbnail-checkbox" data-pk="{{ item.pk }}" id="thumbnail-checkbox_{{ item.pk }}">
-	  <span class="muted" style="font-size: 1.15em">Gallery thumbnail</span>
+	  <span class="checkbox-text" style="font-size: 1.15em">Set as thumbnail</span>
 	</label>
 
 	<div>

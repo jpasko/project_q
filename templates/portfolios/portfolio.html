@@ -80,18 +80,20 @@
 <div class="modal hide" role="dialog" tabindex="-1" id="create-gallery-modal" arialabelledby="create-gallery-heading">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="create-gallery-heading" style="color: #424242">New Gallery</h3>
+    <h3 id="create-gallery-heading" style="color: #424242">Create a new gallery</h3>
   </div>
   <div class="modal-body">
-    <p style="color: #424242">Title and Thumbnail are optional</p>
+    <!--<p style="color: #424242">Title and Thumbnail are optional</p>-->
     <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
       {% csrf_token %}
+      <!--
       <input id="id_title" type="text" name="title" maxlength="75" placeholder="Title" style="width: 286px"/>
       <input type="file" name="thumbnail" id="id_thumbnail" class="hide"/>
       <div class="pretty_file_input">
 	<input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail">
 	<a class="btn btn-primary" onclick="$('#id_thumbnail').click();" style="margin-bottom: 10px"><b>Browse</b></a>
       </div>
+      -->
       <div style="padding-top: 15px">
 	<input type="submit" value="Create" class="btn btn-info btn-large" id="create-gallery">
 	<button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">Close</button>

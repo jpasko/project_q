@@ -122,7 +122,7 @@ $(document).ready(function(){
 	$(this).removeClass('btn-default');
 	$('.select-from-gallery').removeClass('active btn-info');
 	$('.select-from-gallery').addClass('btn-default');
-
+	$('.editable-item').css('background-color', 'white');
 	$('.checkbox').hide();
 	$("#thumbnail-details").show();
 	$("#thumbnail-form").show();

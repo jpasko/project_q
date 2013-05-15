@@ -144,10 +144,13 @@ div.darken img {
     margin: 10px 0 10px 0;
 }
 .editable-item {
-    border: 1px solid #121212;
     padding: 10px;
     border-radius: 3px;
     -moz-box-shadow: 1px 1px 1px #e0e0e0;
     -webkit-box-shadow: 1px 1px 1px #e0e0e0;
     box-shadow: 1px 1px 1px #e0e0e0;
+    background-color: white;
+}
+.checkbox-text {
+    color: black;
 }
