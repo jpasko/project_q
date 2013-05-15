@@ -100,10 +100,7 @@ div.darken img {
     min-height: 125px;
     width: 100%;
     border-radius: 1px;
-    padding: 7px 10px 7px 7px;
-    margin: 0 10px 10px 0;
-    -moz-box-shadow: 1px 1px 1px 1px #ababab;
-    -webkit-box-shadow: 1px 1px 1px 1px #ababab;
+    margin: 10px 0 10px 0;
 }
 .js-progress {
     height: 10px;
@@ -143,10 +140,8 @@ div.darken img {
     position: relative;
     width: 100%;
     border-radius: 1px;
-    padding: 7px 10px 7px 7px;
-    margin: 0 10px 10px 0;
-    -moz-box-shadow: 1px 1px 1px 1px #ababab;
-    -webkit-box-shadow: 1px 1px 1px 1px #ababab;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 10px 0;
 }
 .editable-item {
     border: 1px solid #121212;
