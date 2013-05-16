@@ -80,7 +80,7 @@
       <div class="span3">
 	<strong>Thumbnail </strong>
       </div>
-      <div class="span9">
+      <div class="span5">
 	<div class="btn-group">
 	  {% if gallery.thumbnail %}
 	  <button type="button" class="btn btn-default select-from-gallery" value="True"><strong>From gallery</strong></button>
@@ -116,6 +116,9 @@
 	    </button>
 	  </div>
 	</form>
+      </div>
+      <div class="span4">
+	<strong class="pull-right">{{ gallery.count }} items</strong>
       </div>
     </div>
     <!-- END Thumbnail -->
