@@ -113,7 +113,7 @@ ul {
 .signup-btn-large {
     background-color: white;
     border-radius: 20px;
-    color: #1c8597;
+    color: #5AB66F;
 }
 .signup-btn-large:hover {
     box-shadow: 0px 0px 20px white;
@@ -265,10 +265,10 @@ ul {
     position: relative;
     top: -85px; 
     height: 80px;
-    filter: alpha(opacity=15);
-    -moz-opacity: 0.15;
-    -khtml-opacity: 0.15;
-    opacity: 0.15;
+    filter: alpha(opacity=05);
+    -moz-opacity: 0.05;
+    -khtml-opacity: 0.05;
+    opacity: 0.05;
 }
 .down-arrow:hover {
     filter: alpha(opacity=100);
