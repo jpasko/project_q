@@ -96,6 +96,7 @@ ul {
     -webkit-box-shadow: 0 3px 2px -2px gray;
     -moz-box-shadow: 0 3px 2px -2px gray;
     box-shadow: 0 3px 2px -2px gray;
+    min-height: 367px;
 }
 .footer {
     border-top: 2px solid #909090;
@@ -154,15 +155,8 @@ ul {
     color: #29333d;
 }
 .logo {
-    font-family: 'Strait', sans-serif;
-    text-decoration: none !important;
-    color: white;
-    text-shadow: 1px 1px 1px gray;
-}
-.logo:hover {
-    color: white;
-    text-decoration: none;
-    text-shadow: 0 0 1px #d5dbe1, 0 0 2px #b9c4cf, 0 0 3px #4e6174;
+    margin-top: -7px;
+    height: 54px;
 }
 .nav-link {
     color: white;
@@ -269,12 +263,12 @@ ul {
 }
 .down-arrow {
     position: relative;
-    top: -75px; 
+    top: -85px; 
     height: 80px;
-    filter: alpha(opacity=30);
-    -moz-opacity: 0.30;
-    -khtml-opacity: 0.30;
-    opacity: 0.30;
+    filter: alpha(opacity=25);
+    -moz-opacity: 0.25;
+    -khtml-opacity: 0.25;
+    opacity: 0.25;
 }
 .down-arrow:hover {
     filter: alpha(opacity=100);
