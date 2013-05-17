@@ -80,15 +80,15 @@ ul {
 }
 .top-banner {
     width: 100%;
-    height: 60px;
+    height: 80px;
     background-color: #264059;
     -webkit-box-shadow: 0 3px 2px -2px gray;
     -moz-box-shadow: 0 3px 2px -2px gray;
     box-shadow: 0 3px 2px -2px gray;
 }
 .splash {
-    margin-top: -60px;
-    padding: 85px 0 10px 0;
+    margin-top: -80px;
+    padding: 85px 0 0 0;
     background-color: #2194ab;
     background-image: url('https://s3.amazonaws.com/folio24/static/img/folio24_background.png');
     background-size: cover;
@@ -96,7 +96,7 @@ ul {
     -webkit-box-shadow: 0 3px 2px -2px gray;
     -moz-box-shadow: 0 3px 2px -2px gray;
     box-shadow: 0 3px 2px -2px gray;
-    min-height: 367px;
+    min-height: 373px;
 }
 .footer {
     border-top: 2px solid #909090;
@@ -155,8 +155,8 @@ ul {
     color: #29333d;
 }
 .logo {
-    margin-top: -7px;
-    height: 54px;
+    margin-top: 3px;
+    height: 55px;
 }
 .nav-link {
     color: white;
@@ -265,10 +265,10 @@ ul {
     position: relative;
     top: -85px; 
     height: 80px;
-    filter: alpha(opacity=25);
-    -moz-opacity: 0.25;
-    -khtml-opacity: 0.25;
-    opacity: 0.25;
+    filter: alpha(opacity=15);
+    -moz-opacity: 0.15;
+    -khtml-opacity: 0.15;
+    opacity: 0.15;
 }
 .down-arrow:hover {
     filter: alpha(opacity=100);
