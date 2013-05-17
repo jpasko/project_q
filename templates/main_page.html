@@ -7,6 +7,22 @@
   }
 </style>
 {% endblock %}
+{% block script %}
+<script>
+  $(document).ready(function(){
+    $('a[href^="#"]').on('click',function (e) {
+      e.preventDefault();
+      var target = this.hash,
+      $target = $(target);
+      $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+      }, 500, 'swing', function () {
+        window.location.hash = target;
+      });
+    });
+  });
+</script>
+{% endblock %}
 {% block facebookSDK %}
 <!-- Facebook JavaScript SDK -->
 <div id="fb-root"></div>
@@ -70,8 +86,12 @@
 
 <div class="examples" id="id_examples">
   <div class="container">
-    <!--<h3 class="featurette-heading colored" style="text-align: center; padding-bottom: 20px">Beauty, simplified. <span class="muted">A stunning portfolio.</span></h3>-->
-    <div id="slider" style="margin-top: 15px">
+    <p style="text-align: center">
+      <a href="#id_examples">
+	<img src="{{ STATIC_URL }}img/down_arrow.png" class="down-arrow">
+      </a>
+    </p>
+    <div id="slider" style="margin-top: -40px">
       <div id="swipe">
 	<div class="swipe-wrap">
 	  <div style="position: relative" class="swipe-div">
