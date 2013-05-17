@@ -88,7 +88,8 @@ ul {
 }
 .splash {
     margin-top: -60px;
-    padding: 85px 0 40px 0;
+    padding: 85px 0 10px 0;
+    background-color: #6eb4cf;//#1c8597;
     background-image: url('https://s3.amazonaws.com/folio24/static/img/folio24_background.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -137,9 +138,11 @@ ul {
 .examples {
     width: 100%;
     background-color: #f4f4f4;
-    border-top: 2px solid #cfcfcf;
-    border-bottom: 2px solid #cfcfcf;
-    padding-top: 10px;
+    -webkit-box-shadow: 0 3px 2px -2px #cfcfcf;
+    -moz-box-shadow: 0 3px 2px -2px #cfcfcf;
+    box-shadow: 0 3px 2px -2px #cfcfcf;
+    padding-top: 30px;
+    margin-top: 2px;
 }
 .bottom-links {
     position: relative;
@@ -259,9 +262,8 @@ ul {
     color: #ababab;
 }
 .classy-simple-free {
-    padding: 10px 0 20px 0;
-    opacity: 0.25;
-    filter: alpha(opacity=25);
+    padding: 10px 10px 30px 0;
+    display: inline;
 }
 .featurette-heading {
     font-size: 2em;
