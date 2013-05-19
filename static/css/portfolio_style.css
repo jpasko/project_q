@@ -8,21 +8,27 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -25px;
+    margin: 0 auto -36px;
 }
 .footer, .push {
+    height: 36px;
+}
+a.footer-logo {
+    background-image: url("https://s3.amazonaws.com/folio24/static/img/folio24_portfolio_logo.png");
+    background-repeat: no-repeat;
+    display: block;
     height: 25px;
+    margin: 5px;
+    text-indent: -5000em;
+    width: 103px;
+    background-position: top;
 }
-.logo {
-    text-decoration: none !important;
-    font-family: 'Strait', sans-serif;
+a.footer-logo:hover {
+    background-position: bottom;
 }
-.logo-text {
-    color: #808080;
-    opacity: 0.4;
-}
-.logo:hover .logo-text {
-    opacity: 1.0;
+.copytext {
+    margin: 8px 0 0 0;
+    padding: 0;
 }
 div.darken {
     display: inline-block;

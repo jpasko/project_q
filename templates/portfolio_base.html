@@ -79,11 +79,6 @@
     {% endif %}
     <script>
       $(document).ready(function(){
-        $('.logo').hover(function () {
-          $(this).find('img').prop('src', '{{ STATIC_URL}}img/small_lemon.png');
-        }, function () {
-          $(this).find('img').prop('src', '{{ STATIC_URL}}img/small_lemon_dull.png');
-        });
         $('.house').hover(function () {
           $(this).find('.house-logo').show();
         }, function () {
@@ -332,14 +327,14 @@
 	{% endif %}
 	{% if customer.account_limit < 1500 %}
 	<p style="float: left; margin: 0; padding: 0">
-	  <a class="logo" href="http://www.{{ DOMAIN }}/" target="_blank">
-	    <img src="{{ STATIC_URL}}img/small_lemon_dull.png" style="height: 17px">
-	    <span class="logo-text">Folio24</span>
+	  <a class="footer-logo" href="http://www.{{ DOMAIN }}/" target="_blank" title="Folio24 &bull; Your free online portfolio">Folio24</a>
+	    <!--<img class="logo" src="{{ STATIC_URL}}img/folio24_logo_small.png" >-->
+	    <!--<span class="logo-text">Folio24</span>-->
 	  </a>
 	</p>
 	{% endif %}
 	{% if profile.copy_text %}
-	<p class="muted" style="float: right; margin: 0; padding: 0;">&copy {{ profile.copy_text }}</p>
+	<p class="muted copytext pull-right">&copy {{ profile.copy_text }}</p>
 	{% endif %}
       </div>
     </div>
