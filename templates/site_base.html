@@ -17,7 +17,6 @@
     <!--<link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">-->
     <link href="{{ STATIC_URL }}css/site_style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
       if (!window.jQuery) {
@@ -52,7 +51,7 @@
       {% block top-banner %}
       <div class="container top-banner">
 	<div class="masthead">
-          <ul class="nav nav-pills pull-right" style="margin-right: 20px; margin-top: 12px">
+          <ul class="nav nav-pills pull-right top-links">
 	    {% if not user.is_authenticated %}
 	    <li><a href="https://www.{{ DOMAIN }}/register/" class="nav-link">sign up</a></li>
 	    <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link">login</a></li>
@@ -61,9 +60,7 @@
 	    <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link">logout</a></li>
             {% endif %}
           </ul>
-          <h2 style="margin-left: 30px">
-	    <a href="https://www.{{ DOMAIN }}/"><img class="logo" src="{{ STATIC_URL }}img/folio24_logo.png"></a>
-	  </h2>
+	  <a href="https://www.{{ DOMAIN }}/"><img class="logo" src="{{ STATIC_URL }}img/folio24_logo.png"></a>
 	</div>
       </div>
       {% endblock %}
