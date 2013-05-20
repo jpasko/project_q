@@ -36,7 +36,7 @@
 </script>
 {% endblock %}
 {% block top-banner %}
-<div class="container top-banner" style="background: none; box-shadow: none">
+<div class="top-banner" style="background: none; box-shadow: none">
   <div class="masthead">
     <ul class="nav nav-pills pull-right top-links">
       {% if not user.is_authenticated %}
@@ -53,9 +53,9 @@
 {% endblock %}
 {% block content %}
 <div class="splash">
-  <div class="jumbotron" style="margin-bottom: 0">
-    <h1 style="font-family: 'Raleway', sans-serif; color: white; font-weight: 400; font-size: 4.7em">Your online portfolio.</h1>
-    <p class="lead" style="font-family: 'Raleway', sans-serif; color: white; font-weight: 500">Images & video &bull; Domain name support &bull; No HTML/CSS</p>
+  <div class="jumbotron">
+    <h1 class="main-text">Your online portfolio</h1>
+    <p class="lead" style="font-family: 'Raleway', sans-serif; color: white; font-weight: 400">Images & video &bull; Domain name support &bull; No HTML/CSS</p>
     <a class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 25px">
       <strong style="font-size: 1.4em">Sign up &bull; Free</strong>
     </a>
