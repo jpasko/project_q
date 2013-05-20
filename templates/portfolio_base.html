@@ -21,9 +21,6 @@
       a.muted:hover {
         color: #{{ profile.text_color_hover }} !important;
       }
-      .house .house-logo {
-        display: none;
-      }
       .brand {
         font-size: {{ profile.title_size }}px !important;
         text-shadow: none !important;
@@ -171,10 +168,10 @@
     <!-- Contact modal -->
     <div class="modal hide fade" role="dialog" tabindex="-1" id="contact-form" arialabelledby="contact-form-heading">
       <div class="modal-body">
-	<input type="text" id="id_name" placeholder="Your Name" style="width: 97%" maxlength="100"/>
-	<input type="text" id="id_sender" placeholder="Your Email" style="width: 97%" maxlength="100"/>
-	<input type="text" id="id_subject" placeholder="Subject" style="width: 97%" maxlength="150"/>
-	<textarea id="id_message" rows="8" cols="40" placeholder="Message" style="width: 97%"></textarea>
+	<input type="text" id="id_name" class="modal-input" placeholder="Your Name" maxlength="100"/>
+	<input type="text" id="id_sender" class="modal-input" placeholder="Your Email" maxlength="100"/>
+	<input type="text" id="id_subject" class="modal-input" placeholder="Subject" maxlength="150"/>
+	<textarea id="id_message" class="modal-input" rows="8" cols="40" placeholder="Message"></textarea>
       </div>
       <div class="modal-footer">
 	<button class="btn btn-primary btn-large" data-dismiss="modal" id="send-message">Send</button>
@@ -193,7 +190,7 @@
       </div>
       <div class="modal-body">
 	{% if customer.account_limit > 35 %}
-	<input type="text" id="id_domain" placeholder="yourdomain.com (without the 'www')" style="width: 97%" maxlength="255"/>
+	<input type="text" id="id_domain" class="modal-input" placeholder="yourdomain.com (without the 'www')" maxlength="255"/>
 	<p>You must also point a CNAME record to "domains.folio24.com".
 	Your domain registrar will have directions on how to do this.</p>
 	<p>See our <a href="/help/">FAQs</a> page for more information.</p>
@@ -295,7 +292,7 @@
               {% endif %}
             </ul>
             {% if user.is_authenticated and user.username == username %}
-            <div class="btn-group pull-right" style="padding-right: 10px">
+            <div class="btn-group pull-right edit-btn">
 	      {% if profile.edit_mode %}
 	      <button type="button" class="btn btn-info active" id="edit-mode"><strong>Edit</strong></button>
 	      <button type="button" class="btn btn-default" id="view-mode"><strong>View</strong></button>
@@ -312,7 +309,7 @@
       </div>
     </div>
 
-    <div class="container" style="padding-bottom: 10px;">
+    <div class="container" style="padding-bottom: 10px">
       <h1>{% block header %}{% endblock %}</h1>
       {% block content %}{% endblock %}
     </div> <!-- /container -->
@@ -323,15 +320,10 @@
     <div class="container">
       <div class="footer">
 	{% if profile.copy_text or customer.account_limit < 1500 %}
-	<hr style="margin: 0; border-top: none; border-bottom: solid 1px rgba(150, 150, 150, .1)">
+	<hr class="footer-border">
 	{% endif %}
 	{% if customer.account_limit < 1500 %}
-	<p style="float: left; margin: 0; padding: 0">
-	  <a class="footer-logo" href="http://www.{{ DOMAIN }}/" target="_blank" title="Folio24 &bull; Your free online portfolio">Folio24</a>
-	    <!--<img class="logo" src="{{ STATIC_URL}}img/folio24_logo_small.png" >-->
-	    <!--<span class="logo-text">Folio24</span>-->
-	  </a>
-	</p>
+	<a class="footer-logo" href="http://www.{{ DOMAIN }}/" target="_blank" title="Your free online portfolio">Folio24</a>
 	{% endif %}
 	{% if profile.copy_text %}
 	<p class="muted copytext pull-right">&copy {{ profile.copy_text }}</p>

@@ -22,6 +22,8 @@ a.footer-logo {
     text-indent: -5000em;
     width: 103px;
     background-position: top;
+    float: left;
+    padding: 0;
 }
 a.footer-logo:hover {
     background-position: bottom;
@@ -179,4 +181,18 @@ div.darken img {
 }
 .no-decoration:hover {
     text-decoration: none;
+}
+.footer-border {
+    margin: 0;
+    border-top: none;
+    border-bottom: solid 1px rgba(150, 150, 150, .1);
+}
+.edit-btn {
+    padding-right: 10px;
+}
+.modal-input {
+    width: 97%;
+}
+.house .house-logo {
+    display: none;
 }
