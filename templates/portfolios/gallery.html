@@ -349,11 +349,16 @@ $(document).ready(function(){
 </div>
 {% elif profile.photo_count <= customer.account_limit %}
 <!-- Display mode -->
-{% if gallery.title %}
-<div style="text-align: center">
-  <h4 class="muted" style="padding: 0; margin: 0">{{ gallery.title }}</h4>
+<div class="gallery-header">
+  <div class="back-to-portfolio pull-left">
+    <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">Go back</a>
+  </div>
+  {% if gallery.title %}
+  <div class="title-gallery">
+    <h4 class="muted gallery-title-header">{{ gallery.title }}</h4>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 <div id="galleria">
   {% for item in gallery.item_set.all %}
   {% if item.is_photo %}

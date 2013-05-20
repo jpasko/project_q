@@ -160,3 +160,23 @@ div.darken img {
 .checkbox-text {
     color: black;
 }
+.gallery-header {
+    text-align: center;
+}
+.title-gallery {
+    display: inline-block;
+    padding-right: 53px;
+}
+.gallery-title-header {
+    padding: 0;
+    margin: 0;
+}
+.back-to-portfolio {
+    display: inline-block;
+}
+.no-decoration {
+    text-decoration: none;
+}
+.no-decoration:hover {
+    text-decoration: none;
+}
