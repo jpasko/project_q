@@ -196,3 +196,7 @@ div.darken img {
 .house .house-logo {
     display: none;
 }
+.download-public-link {
+    margin: 10px 0;
+    text-align: center;
+}
