@@ -4,6 +4,10 @@
 html, body {
     height: 100%;
 }
+body {
+    padding-left: 3px;
+    padding-right: 3px;
+}
 .wrapper {
     min-height: 100%;
     height: auto !important;
@@ -158,6 +162,7 @@ div.darken img {
     -webkit-box-shadow: 1px 1px 1px #e0e0e0;
     box-shadow: 1px 1px 1px #e0e0e0;
     background-color: white;
+    max-width: 162px;
 }
 .checkbox-text {
     color: black;

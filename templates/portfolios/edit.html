@@ -12,6 +12,16 @@
   #id_banner_styled {
     width: 125px;
   }
+  #favicon-img {
+    height: 16px;
+    max-width: 32px;
+  }
+  #id_favicon {
+    display: none;
+  }
+  #id_favicon_styled {
+    width: 125px;
+  }
   .controls {
     width: 280px;
   }
@@ -116,11 +126,21 @@ $(function() {
   $("#id_thumbnail_dimension").change(function() {
     $("#id_thumbnail_dimension_display").val($("#id_thumbnail_dimension").val());
   });
-  $('#id_picture').change(function() {
-    $('#id_picture_styled').val($(this).val().replace("C:\\fakepath\\", ""));
-  });
   $('#id_banner').change(function() {
     $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
+  $('#id_banner').on("click", function() {
+    $('#id_banner_styled').show();
+    $('#banner-img').hide();
+    $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
+  $('#id_favicon').change(function() {
+    $('#id_favicon_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
+  $('#id_favicon').on("click", function() {
+    $('#id_favicon_styled').show();
+    $('#favicon-img').hide();
+    $('#id_favicon_styled').val($(this).val().replace("C:\\fakepath\\", ""));
   });
   $("#font_type_radio").find(".btn").each(function() {
     $(this).bind("click", function() {
@@ -168,7 +188,7 @@ $(function() {
     {% csrf_token %}
     
     <div class="form-title">
-      <h3>Title and Banner</h3>
+      <h3>Title, Banner, and Favicon</h3>
     </div>
     <div class="form-body">
       <div class="control-group">
@@ -197,6 +217,7 @@ $(function() {
 	  {% if profile.banner %}
 	  <div class="pretty_file_input">
 	    <img id="banner-img" src="{{ profile.banner.url }}" style="background: white">
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently" class="hide">
 	    <a class="btn btn-default" onclick="$('#id_banner').click();"><strong>Change</strong></a>
 	  </div>
 	  {% else %}
@@ -221,6 +242,28 @@ $(function() {
 	    <button type="button" class="btn btn-info active" style="width: 111px" value="False"><strong>Title</strong></button>
 	    {% endif %}
 	  </div>
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_favicon">Favicon (<a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">?</a>)</label>
+	<div class="controls">
+	  {% if form.favicon.errors %}
+	  <p class="form-errors">Favicon must be an image filetype</p>
+	  {% endif %}
+	  <input type="file" name="favicon" id="id_favicon" class="hide" />
+	  {% if profile.favicon %}
+	  <div class="pretty_file_input">
+	    <img id="favicon-img" src="{{ profile.favicon.url }}" style="background: white">
+	    <input id="id_favicon_styled" type="text" onclick="$('#id_favicon').click();" placeholder="None currently" class="hide">
+	    <a class="btn btn-default" onclick="$('#id_favicon').click();"><strong>Change</strong></a>
+	  </div>
+	  {% else %}
+	  <div class="pretty_file_input">
+	    <input id="id_favicon_styled" type="text" onclick="$('#id_favicon').click();" placeholder="None currently">
+	    <a class="btn btn-default" onclick="$('#id_favicon').click();"><strong>Browse</strong></a>
+	  </div>
+	  {% endif %}
 	</div>
       </div>
     </div>

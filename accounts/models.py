@@ -127,6 +127,14 @@ class UserProfile(models.Model):
                                  null=True,
                                  verbose_name='Banner')
 
+    favicon = ProcessedImageField([ResizeToFit(width=32,
+                                               height=32,
+                                               upscale=False)],
+                                  upload_to=upload_to,
+                                  blank=True,
+                                  null=True,
+                                  verbose_name='Favicon')
+
     edit_mode = models.BooleanField(default=True)
     
     def __unicode__(self):
@@ -189,13 +197,15 @@ def create_customer(sender, instance, created, **kwargs):
 
 def delete_banner_picture(sender, instance, *args, **kwargs):
     """
-    Deletes the profile picture and banner from the storage system upon
+    Deletes the profile picture, banner, and favicon from the storage system upon
     UserProfile deletion.
     """
     if instance.picture:
         instance.picture.delete(save=False)
     if instance.banner:
         instance.banner.delete(save=False)
+    if instance.favicon:
+        instance.favicon.delete(save=False)
 
 # On the User save signal, create a UserProfile and a Customer.
 post_save.connect(create_user_profile, sender=User)
