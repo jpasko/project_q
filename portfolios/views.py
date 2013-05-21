@@ -298,6 +298,19 @@ def delete_profile_photo(request):
     profile.save()
     return HttpResponseRedirect('/about/')
 
+def delete_favicon(request):
+    """
+    Deletes the favicon.
+    """
+    username = request.subdomain
+    # First, check that the user is logged in.
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    profile = request.user.get_profile()
+    profile.favicon = None
+    profile.save()
+    return HttpResponseRedirect('/customize/')
+
 def change_item_order(request):
     """
     Changes the order of items within a gallery.

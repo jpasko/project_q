@@ -140,6 +140,7 @@ $(function() {
   $('#id_favicon').on("click", function() {
     $('#id_favicon_styled').show();
     $('#favicon-img').hide();
+    $('#remove-favicon').hide();
     $('#id_favicon_styled').val($(this).val().replace("C:\\fakepath\\", ""));
   });
   $("#font_type_radio").find(".btn").each(function() {
@@ -256,6 +257,7 @@ $(function() {
 	  <div class="pretty_file_input">
 	    <img id="favicon-img" src="{{ profile.favicon.url }}" style="background: white">
 	    <input id="id_favicon_styled" type="text" onclick="$('#id_favicon').click();" placeholder="None currently" class="hide">
+	    <a class="btn btn-default" href="/delete_favicon/"><i class="icon-remove"></i></a>
 	    <a class="btn btn-default" onclick="$('#id_favicon').click();"><strong>Change</strong></a>
 	  </div>
 	  {% else %}

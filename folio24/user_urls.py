@@ -114,6 +114,9 @@ urlpatterns = patterns('',
     # POST to this URL to add/edit custom domain names.
     url(r'^custom_domain/$', 'portfolios.views.custom_domain'),
 
+    # Deletes the favicon.
+    url(r'^delete_favicon/$', 'portfolios.views.delete_favicon'),
+
     # A help page.
     url(r'^help/$', 'portfolios.views.help'),
 
