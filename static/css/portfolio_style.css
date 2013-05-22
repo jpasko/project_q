@@ -205,3 +205,8 @@ div.darken img {
     margin: 10px 0;
     text-align: center;
 }
+#create-gallery {
+    margin-left: 3px;
+    border-radius: 2px;
+    font-weight: bold;
+}
