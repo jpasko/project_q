@@ -2,7 +2,7 @@ var swipe = document.getElementById('swipe');
 var swipe_nav = document.getElementById('swipe_nav');
 
 window.mySwipe = new Swipe(swipe, {
-    speed: 500,
+    speed: 1000,
     auto: 5000,
     continuous: true,
     disableScroll: false,
@@ -23,7 +23,7 @@ for (var x = 0; x < swipe_nav.children.length; x++) {
 }
 function addSwipeClick(x) {
     swipe_nav.children[x].onclick = function() {
-	mySwipe.slide(x, 500);
+	mySwipe.slide(x, 1000);
     }
 }
 document.addEventListener("touchstart", function(){}, true);
