@@ -57,7 +57,7 @@
     <h1 class="main-text">Your online portfolio</h1>
     <p class="lead" style="font-family: 'Raleway', sans-serif; color: white; font-weight: 400">Images & video &bull; Domain name support &bull; No HTML/CSS</p>
     <a class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 25px">
-      <strong style="font-size: 1.4em">Sign up &bull; Free</strong>
+      <strong style="font-size: 1.4em">Start now &bull; Free</strong>
     </a>
     <div class="fb-like" data-href="http://www.folio24.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 10px"></div>
   </div>
@@ -80,16 +80,18 @@
 
 <div class="examples" id="id_examples">
   <div class="container">
+    <!--
     <p style="text-align: center">
       <a href="#id_examples">
 	<img src="{{ STATIC_URL }}img/down_arrow.png" class="down-arrow">
       </a>
     </p>
-    <div id="slider" style="margin-top: -40px">
+    -->
+    <div id="slider">
       <div id="swipe">
 	<div class="swipe-wrap">
 	  <div style="position: relative" class="swipe-div">
-	    <img src="{{ STATIC_URL }}img/vesper.jpg" alt="" class="slider-img">
+	    <img src="{{ STATIC_URL }}img/example1_border.png" alt="" class="slider-img">
 	    <div class="slider-title">
 	      <a href="https://jpasko.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 		<strong>View portfolio</strong>
@@ -97,7 +99,7 @@
 	    </div>
 	  </div>
 	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example2.jpg" alt="" class="slider-img">
+	    <img src="{{ STATIC_URL }}img/example2_border.png" alt="" class="slider-img">
 	    <div class="slider-title">
 	      <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 		<strong>View portfolio</strong>
@@ -105,7 +107,7 @@
 	    </div>
 	  </div>
 	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example1.jpg" alt="" class="slider-img">
+	    <img src="{{ STATIC_URL }}img/example3_border.png" alt="" class="slider-img">
 	    <div class="slider-title">
 	      <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 		<strong>View portfolio</strong>
@@ -124,9 +126,10 @@
 
   </div>
 </div>
-<div class="container-narrow" style="font-family: 'Raleway', sans-serif">
+<div class="container-narrow features">
+  <hr class="featurette-divider" style="margin-top: 120px">
   <div class="featurette">
-    <h3 class="featurette-heading colored" style="padding-top: 40px">All the features you expect. <span class="muted">And more.</span></h3>
+    <h3 class="featurette-heading colored">All the features you expect. <span class="muted">And more.</span></h3>
     <table class="table table-striped" style="margin-bottom: 10px">
       <thead>
         <tr>
@@ -222,10 +225,10 @@
   <hr class="featurette-divider">
   <div class="featurette">
     <h3 class="featurette-heading colored" style="text-align: right">An intuitive interface. <span class="muted">Get running quickly.</span></h3>
-    <div style="position: relative; padding-bottom: 140px; padding-top: 20px">
-      <img src="{{ STATIC_URL }}img/screenshots/screen6.png" class="slider-img" style="width: 550px">
-      <img src="{{ STATIC_URL }}img/screenshots/screen5.png" class="slider-img" style="position: absolute; top: 190px; left: 80px; width: 500px">
-      <img src="{{ STATIC_URL }}img/screenshots/screen2.png" class="slider-img" style="position: absolute; top: 60px; left: 320px; width: 550px">
+    <div style="position: relative; padding-bottom: 180px; padding-top: 20px">
+      <img src="{{ STATIC_URL }}img/screenshots/screen6.png" class="interface-img" style="width: 550px">
+      <img src="{{ STATIC_URL }}img/screenshots/screen5.png" class="interface-img" style="position: absolute; top: 190px; left: 80px; width: 500px">
+      <img src="{{ STATIC_URL }}img/screenshots/screen2.png" class="interface-img" style="position: absolute; top: 60px; left: 320px; width: 550px">
     </div>
   </div>
   <hr class="featurette-divider">

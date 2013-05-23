@@ -93,10 +93,7 @@ ul {
     background-image: url('https://s3.amazonaws.com/folio24/static/img/folio24_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    -webkit-box-shadow: 0 3px 2px -2px gray;
-    -moz-box-shadow: 0 3px 2px -2px gray;
-    box-shadow: 0 3px 2px -2px gray;
-    min-height: 373px;
+    min-height: 400px;
 }
 .main-text {
     font-family: 'Raleway', sans-serif;
@@ -151,10 +148,18 @@ ul {
 .examples {
     width: 100%;
     background-color: #f4f4f4;
-    -webkit-box-shadow: 0 3px 2px -2px #cfcfcf;
-    -moz-box-shadow: 0 3px 2px -2px #cfcfcf;
-    box-shadow: 0 3px 2px -2px #cfcfcf;
-    margin-top: 2px;
+    -webkit-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
+    -moz-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
+    box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
+    padding-top: 10px;
+    background-image: url('https://s3.amazonaws.com/folio24/static/img/examples_texture.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 420px;
+}
+.features {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 80px;
 }
 .bottom-links {
     position: relative;
@@ -213,6 +218,7 @@ ul {
     width: 250px;
 }
 #swipe {
+    margin-top: -55px;
     overflow: hidden;
     visibility: hidden;
     position: relative;
@@ -223,13 +229,14 @@ ul {
     text-align: center;
 }
 .swipe-wrap > div {
-    float:left;
-    width:100%;
+    float: left;
+    width: 100%;
     position: relative;
 }
 #swipe_nav {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 #swipe_nav_1, #swipe_nav_2, #swipe_nav_3 {
     display: inline-block;
@@ -247,10 +254,7 @@ ul {
     color: #d1d1d1;
 }
 .slider-img {
-    margin-bottom: 10px;
-    -moz-box-shadow: 5px 5px 3px #bfbfbf;
-    -webkit-box-shadow: 5px 5px 3px #bfbfbf;
-    box-shadow: 5px 5px 3px #bfbfbf;
+    height: 475px;
 }
 .slider-title {
     position: absolute;
@@ -261,6 +265,7 @@ ul {
     text-decoration: none;
 }
 .top-btn {
+    margin-top: 46px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -296,4 +301,9 @@ ul {
     -moz-opacity: 1.0;
     -khtml-opacity: 1.0;
     opacity: 1.0;
+}
+.interface-img {
+    -moz-box-shadow: 5px 5px 3px #bfbfbf;
+    -webkit-box-shadow: 5px 5px 3px #bfbfbf;
+    box-shadow: 5px 5px 3px #bfbfbf;
 }

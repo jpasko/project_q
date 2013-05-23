@@ -3,6 +3,7 @@ var swipe_nav = document.getElementById('swipe_nav');
 
 window.mySwipe = new Swipe(swipe, {
     speed: 500,
+    auto: 5000,
     continuous: true,
     disableScroll: false,
     callback: function(ind, elem) {
