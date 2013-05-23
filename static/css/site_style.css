@@ -93,7 +93,7 @@ ul {
     background-image: url('https://s3.amazonaws.com/folio24/static/img/folio24_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 400px;
+    min-height: 415px;
 }
 .main-text {
     font-family: 'Raleway', sans-serif;
@@ -151,11 +151,11 @@ ul {
     -webkit-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
     -moz-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
     box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
-    padding-top: 10px;
+    padding-top: 3px;
     background-image: url('https://s3.amazonaws.com/folio24/static/img/examples_texture.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 420px;
+    height: 461px;
 }
 .features {
     font-family: 'Raleway', sans-serif;
@@ -254,7 +254,7 @@ ul {
     color: #d1d1d1;
 }
 .slider-img {
-    height: 475px;
+    //height: 475px;
 }
 .slider-title {
     position: absolute;
@@ -265,7 +265,7 @@ ul {
     text-decoration: none;
 }
 .top-btn {
-    margin-top: 46px;
+    margin-top: 50px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
