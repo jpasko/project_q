@@ -150,7 +150,7 @@
 	  </a>
 	  {% endif %}
 	  {% if user.is_authenticated and user.username == username and profile.edit_mode %}
-	  <a href="/gallery/{{ gallery.pk }}/" style="position: absolute; left: 2px; top: 2px; border-radius: 2px" class="btn btn-default hide edit-button">
+	  <a href="/gallery/{{ gallery.pk }}/" style="position: absolute; left: 0px; top: 0px; border-radius: 2px" class="btn btn-default hide edit-button">
 	    <i class="icon-edit"></i> <strong>Edit</strong>
 	  </a>
 	  {% endif %}

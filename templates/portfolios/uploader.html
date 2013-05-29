@@ -10,17 +10,17 @@
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="fileupload-buttonbar">
-      <span class="btn btn-info fileinput-button" style="border-radius: 2px">
-        <i class="icon-plus icon-white"></i>
+      <span class="btn btn-default fileinput-button" style="border-radius: 2px">
+        <i class="icon-plus"></i>
 	<strong> Select images</strong>
         <input type="file" name="file" multiple>
       </span>
-      <button type="reset" class="btn btn-danger cancel" style="border-radius: 2px">
-	<i class="icon-ban-circle icon-white"></i>
+      <button type="reset" class="btn btn-default cancel" style="border-radius: 2px">
+	<i class="icon-ban-circle"></i>
 	<strong> Cancel uploads</strong>
       </button>
-      <a class="btn btn-info" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
-	<i class="icon-film icon-white"></i>
+      <a class="btn btn-default" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
+	<i class="icon-film"></i>
 	<strong> Upload video</strong>
       </a>
     </div>

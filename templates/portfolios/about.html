@@ -543,12 +543,12 @@ $(document).ready(function(){
   <div class="span3">
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
     <div class="row-fluid" style="padding-bottom: 10px">
-      <a href="#profile-picture-modal" role="button" data-toggle="modal" class="btn btn-info">
-	<i class="icon-plus icon-white"></i><strong> Profile picture</strong>
+      <a href="#profile-picture-modal" role="button" data-toggle="modal" class="btn btn-default">
+	<i class="icon-plus"></i><strong> Profile picture</strong>
       </a>
       {% if profile.picture %}
-      <a href="#delete-profile-picture" role="button" data-toggle="modal" class="btn btn-danger">
-	<i class="icon-remove icon-white"></i>
+      <a href="#delete-profile-picture" role="button" data-toggle="modal" class="btn btn-default">
+	<i class="icon-remove"></i>
       </a>
       {% endif %}
     </div>
