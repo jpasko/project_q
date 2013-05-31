@@ -49,7 +49,7 @@ class UserProfile(models.Model):
 
     page_width = models.PositiveIntegerField(default=940)
 
-    title_size = models.PositiveIntegerField(default=50)
+    title_size = models.PositiveIntegerField(default=30)
 
     thumbnail_dimension = models.PositiveIntegerField(default=250)
 
