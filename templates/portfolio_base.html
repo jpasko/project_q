@@ -67,6 +67,11 @@
         font-family: Menlo, Monaco, "Courier New", monospace;
         {% endif %}
       }
+      {% if profile.banner and profile.enable_banner %}
+      .house .house-logo {
+        display: none;
+      }
+      {% endif %}
     </style>
     <!--<link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -89,6 +94,8 @@
         $('#banner').find('.banner-img').load(function() {
           var height = (80 - $(this).height()) / 2;
           $('#banner').css('margin-top', height + 'px');
+          $('.house-logo').show();
+          $('.house').show();
         });
         $("#send-message").on("click", function() {
           $.ajax({
