@@ -74,7 +74,7 @@
 <div class="row-fluid">
   <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
     {% csrf_token %}
-    <input type="submit" value="New Gallery" class="btn btn-info btn-large" id="create-gallery">
+    <input type="submit" value="New Gallery" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px">
   </form>
 </div>
 {% if profile.show_get_started %}
@@ -150,7 +150,7 @@
 	  </a>
 	  {% endif %}
 	  {% if user.is_authenticated and user.username == username and profile.edit_mode %}
-	  <a href="/gallery/{{ gallery.pk }}/" style="position: absolute; left: 0px; top: 0px; border-radius: 2px" class="btn btn-default hide edit-button">
+	  <a href="/gallery/{{ gallery.pk }}/" style="position: absolute; left: 0px; top: 0px; border-radius: 0px" class="btn btn-default hide edit-button">
 	    <i class="icon-edit"></i> <strong>Edit</strong>
 	  </a>
 	  {% endif %}

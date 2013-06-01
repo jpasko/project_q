@@ -45,6 +45,8 @@ class UserProfile(models.Model):
 
     enable_banner = models.BooleanField(default=True)
 
+    full_width_navbar = models.BooleanField(default=False)
+
     show_get_started = models.BooleanField(default=True)
 
     page_width = models.PositiveIntegerField(default=940)

@@ -144,8 +144,8 @@ $(document).ready(function(){
 <div class="row-fluid muted">
   <div class="span9">
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
-    <div class="row-fluid sizeable-font" style="padding-bottom: 30px; text-align: center">
-      <div class="span7 offset2">
+    <div class="row-fluid sizeable-font" style="padding-bottom: 30px">
+      <div class="pull-left">
 	<p style="display: inline; margin-right: 5px"><strong>This page is </strong></p>
 	<div class="btn-group" style="display: inline">
 	  {% if profile.allow_about %}

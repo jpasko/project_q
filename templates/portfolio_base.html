@@ -30,8 +30,9 @@
         text-shadow: none !important;
       }
       {% if profile.full_width_navbar %}
-      .brand {
+      .navbar-inner {
         padding-left: 15px !important;
+        padding-right: 5px !important;
       }
       {% endif %}
       .navbar-inverse .nav li.dropdown.open>.dropdown-toggle {
@@ -81,9 +82,13 @@
     <script>
       $(document).ready(function(){
         $('.house').hover(function () {
-          $(this).find('.house-logo').show();
+          $(this).find('.house-logo').fadeTo(75, 1.0);
         }, function () {
-          $(this).find('.house-logo').hide();
+          $(this).find('.house-logo').fadeTo(200, 0.4);;
+        });
+        $('#banner').find('.banner-img').load(function() {
+          var height = (80 - $(this).height()) / 2;
+          $('#banner').css('margin-top', height + 'px');
         });
         $("#send-message").on("click", function() {
           $.ajax({
@@ -213,19 +218,21 @@
     {% endif %}
 
     <div class="wrapper">
-    <div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-	{% if not profile.full_width_navbar %}
-        <div class="container">
-	{% endif %}
+      {% if not profile.full_width_navbar %}
+      <div class="container">
+      {% endif %}
+      <div class="navbar navbar-inverse">
+	<div class="navbar-inner">
+	  {% if profile.full_width_navbar %}
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+	  {% endif %}
 	  {% if profile.banner and profile.enable_banner %}
-	  <a class="house brand" href="http://{{ username }}.{{ DOMAIN }}/" style="padding-bottom: 0px; padding-top: 0px">
-	    <img class="banner" src="{{ profile.banner.url }}">
+	  <a class="house brand" id="banner" href="http://{{ username }}.{{ DOMAIN }}/" style="padding-bottom: 0px; padding-top: 0px;">
+	    <img class="banner-img" src="{{ profile.banner.url }}">
 	    <img class="house-logo" style="padding: 0" src="{{ STATIC_URL }}img/house_light.png">
 	  </a>
 	  {% elif profile.fullname %}
@@ -245,20 +252,22 @@
 	  {% with account_limit=customer.account_limit %}
 	  {% if profile.photo_count > account_limit %}
 	  <p class="navbar-text pull-left muted" style="color: red !important">
-	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
-	  {% elif profile.photo_count == account_limit %}
+	    ({{ profile.photo_count }} of {{ account_limit }} | 
+	    {% elif profile.photo_count == account_limit %}
 	  <p class="navbar-text pull-left muted" style="color: orange !important">
-	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
-	  {% else %}
+	    ({{ profile.photo_count }} of {{ account_limit }} | 
+	    {% else %}
 	  <p class="navbar-text pull-left muted">
-	    ({{ profile.photo_count }} of {{ account_limit }} uploads | 
-	  {% endif %}
-	  {% endwith %}
-	  <a href="https://{{ username }}.{{ DOMAIN }}/settings/" style="text-decoration: none">upgrade</a>)
+	    ({{ profile.photo_count }} of {{ account_limit }} | 
+	    {% endif %}
+	    {% endwith %}
+	    <a href="https://{{ username }}.{{ DOMAIN }}/settings/" style="text-decoration: none">upgrade</a>)
 	  </p>
 	  {% endif %}
 
+	  {% if profile.full_width_navbar %}
           <div class="nav-collapse collapse">
+	  {% endif %}
             <ul class="nav pull-right">
 	      {% if profile.allow_about or user.is_authenticated and user.username == username and profile.edit_mode %}
 	      <li><a class="muted sizeable-font" href="http://{{ username }}.{{ DOMAIN }}/about/">About</a></li>
@@ -276,7 +285,7 @@
 	      {% if user.is_authenticated and user.username == username and profile.edit_mode %}
 	      <li class="dropdown" id="menu1">
 		<a class="dropdown-toggle muted sizeable-font" data-toggle="dropdown" href="#menu1">
-		  tools
+		  Tools
 		  <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
@@ -284,33 +293,31 @@
 		  <li><a href="https://{{ username }}.{{ DOMAIN }}/settings/">Manage account</a></li>
 		  <li><a {% if customer.account_limit < 500 %}style="color: #ababab"{% endif %} href="#custom-domain-form" role="button" data-toggle="modal">Custom domain</a></li>
 		  <li class="divider"></li>
-		  <li><a href="http://{{ username }}.{{ DOMAIN }}/help/">FAQs</a></li>
-		  <li class="divider"></li>
-		  <li><a href="/logout/">Logout</a></li>
-		  <!--
-		  <li class="divider"></li>
-		  <li><a href="/logout/">Logout</a></li>
-		  -->
-		</ul>
-	      </li>
+                  <li><a href="http://{{ username }}.{{ DOMAIN }}/help/">FAQs</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout/">Logout</a></li>
+                </ul>
+              </li>
               {% endif %}
             </ul>
             {% if user.is_authenticated and user.username == username %}
             <div class="btn-group pull-right edit-btn">
-	      {% if profile.edit_mode %}
-	      <button type="button" class="btn btn-info active" id="edit-mode"><strong>Edit</strong></button>
-	      <button type="button" class="btn btn-default" id="view-mode"><strong>View</strong></button>
-	      {% else %}
-	      <button type="button" class="btn btn-default" id="edit-mode"><strong>Edit</strong></button>
-	      <button type="button" class="btn btn-info active" id="view-mode"><strong>View</strong></button>
-	      {% endif %}
-	    </div>
-	    {% endif %}
+              {% if profile.edit_mode %}
+              <button type="button" class="btn btn-info active" id="edit-mode"><strong>Edit</strong></button>
+              <button type="button" class="btn btn-default" id="view-mode"><strong>View</strong></button>
+              {% else %}
+              <button type="button" class="btn btn-default" id="edit-mode"><strong>Edit</strong></button>
+              <button type="button" class="btn btn-info active" id="view-mode"><strong>View</strong></button>
+              {% endif %}
+            </div>
+            {% endif %}
+	  {% if profile.full_width_navbar %}
           </div><!--/.nav-collapse -->
-	{% if not profile.full_width_navbar %}
+          {% endif %}
         </div>
-	{% endif %}
+      {% if not profile.full_width_navbar %}
       </div>
+      {% endif %}
     </div>
 
     <div class="container" style="padding-bottom: 10px">

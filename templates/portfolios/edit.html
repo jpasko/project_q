@@ -161,6 +161,15 @@ $(function() {
       $("#id_enable_banner").val($(this).val());
     });
   });
+  $("#full_width_navbar_radio").find(".btn").each(function() {
+    $(this).bind("click", function() {
+      $(this).addClass("btn-info active");
+      $(this).removeClass("btn-default");
+      $(this).siblings().addClass("btn-default");
+      $(this).siblings().removeClass("btn-info active");
+      $("#id_full_width_navbar").val($(this).val());
+    });
+  });
   $("#font_size_radio").find(".btn").each(function() {
     $(this).bind("click", function() {
       $(this).addClass("btn-info active");
@@ -316,6 +325,22 @@ $(function() {
 	<div class="controls">
 	  <input id="id_thumbnail_dimension" name="thumbnail_dimension" type="range" value="{{ profile.thumbnail_dimension }}" min="65" max="590" step="5" />
 	  <input id="id_thumbnail_dimension_display" type="text" value="" />
+	</div>
+      </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_full_width_navbar">Navigation bar width</label>
+	<div class="controls">
+	  <input type="hidden" name="full_width_navbar" value="{{ profile.full_width_navbar }}" id="id_full_width_navbar" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="full_width_navbar_radio">
+	    {% if profile.full_width_navbar %}
+	    <button type="button" class="btn btn-info active" value="True" style="width: 111px"><strong>Full</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 111px" value="False"><strong>Page</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" value="True" style="width: 111px"><strong>Full</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 111px" value="False"><strong>Page</strong></button>
+	    {% endif %}
+	  </div>
 	</div>
       </div>
     </div>

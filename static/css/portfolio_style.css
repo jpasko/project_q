@@ -107,6 +107,9 @@ div.darken img {
 .grab:hover {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
+.grab:active {
+    cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), default !important;
+}
 #uploader {
     position: relative;
     min-height: 125px;
@@ -199,7 +202,10 @@ div.darken img {
     width: 97%;
 }
 .house .house-logo {
-    display: none;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
 }
 .download-public-link {
     margin: 10px 0;
@@ -209,4 +215,11 @@ div.darken img {
     margin-left: 3px;
     border-radius: 2px;
     font-weight: bold;
+}
+.navbar-inner {
+    border-radius: 0px;
+    -moz-box-shadow: 0 4px 4px -4px rgba(150, 150, 150, 0.4);
+    -webkit-box-shadow: 0 4px 4px -4px rgba(150, 150, 150, 0.4);
+    box-shadow: 0 4px 4px -4px rgba(150, 150, 150, 0.4);
+    padding: 0 0 0 4px;
 }
