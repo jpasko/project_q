@@ -353,11 +353,9 @@ $(document).ready(function(){
   <div class="back-to-portfolio pull-left">
     <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; back</a>
   </div>
-  {% if gallery.title %}
   <div class="title-gallery">
-    <h4 class="muted gallery-title-header">{{ gallery.title }}</h4>
+    <h4 class="muted gallery-title-header">{% if gallery.title %}{{ gallery.title }}{% endif %}</h4>
   </div>
-  {% endif %}
 </div>
 <div id="galleria">
   {% for item in gallery.item_set.all %}
