@@ -202,10 +202,10 @@ div.darken img {
     width: 97%;
 }
 .house .house-logo {
-    filter: alpha(opacity=40);
-    -moz-opacity: 0.4;
-    -khtml-opacity: 0.4;
-    opacity: 0.4;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0.0;
+    -khtml-opacity: 0.0;
+    opacity: 0.0;
 }
 .download-public-link {
     margin: 10px 0;
