@@ -1,126 +1,122 @@
-<div class="row-fluid muted" id="gallery-editor" style="border-bottom: 1px solid #{{ profile.text_color }}">
-  <div class="span5">
-    <div class="hide" id="gallery-pk">{{ gallery.pk }}</div>
-    <!-- BEGIN Title -->
-    <div class="row-fluid">
-      <div class="span4">
-	<a class="pencil muted" id="trigger-editable-title" href="#">
-	  <strong>Title </strong>
-	  <img src="{{ STATIC_URL }}img/pencil_dull.png">
-	</a>
-      </div>
-      <div class="span8">
-	<div id="editable-title">
-	  {% if gallery.title %}
-	  <p id="valid-title">{{ gallery.title }}</p>
-	  {% else %}
-	  <p id="empty-title"><em>Currently empty</em></p>
-	  {% endif %}
-	  <input id="title-input" type="text" style="display: none" maxlength="75"></input>
-	</div>
-	<button type="button" class="btn btn-success" id="save-title" style="display: none; margin-bottom: 10px">
-	  <b>Save</b>
-	</button>
-	<button type="button" class="btn btn-default" id="cancel-title" style="display: none; margin-bottom: 10px">
-	  <i class="icon-remove"></i>
-	</button>
-      </div>
+<div class="muted" id="gallery-editor">
+  <div class="hide" id="gallery-pk">{{ gallery.pk }}</div>
+  <!-- BEGIN Title -->
+  <div class="row-fluid">
+    <div class="span4">
+      <a class="pencil muted" id="trigger-editable-title" href="#">
+	<strong>Title </strong>
+	<img src="{{ STATIC_URL }}img/pencil_dull.png">
+      </a>
     </div>
-    <!-- END Title -->
-    <!-- BEGIN Description -->
-    <div class="row-fluid" style="margin-top: 10px">
-      <div class="span4">
-	<a class="pencil muted" id="trigger-editable-description" href="#"><b>Description </b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+    <div class="span8">
+      <div id="editable-title">
+	{% if gallery.title %}
+	<p id="valid-title">{{ gallery.title }}</p>
+	{% else %}
+	<p id="empty-title"><em>Currently empty</em></p>
+	{% endif %}
+	<input id="title-input" type="text" style="display: none" maxlength="75">
       </div>
-      <div class="span8">
-	<div id="editable-description">
-	  {% if gallery.description %}
-	  <p id="valid-description">{{ gallery.description|linebreaksbr }}</p>
-	  {% else %}
-	  <p id="empty-description"><em>Currently empty</em></p>
-	  {% endif %}
-	  <textarea id="description-textarea" style="display: none; width: 98%" rows="6"></textarea>
-	</div>
-	<button type="button" class="btn btn-success" id="save-description" style="display: none; margin-bottom: 10px">
-	  <b>Save</b>
-	</button>
-	<button type="button" class="btn btn-default" id="cancel-description" style="display: none; margin-bottom: 10px">
-	  <i class="icon-remove"></i>
-	</button>
-      </div>
+      <button type="button" class="btn btn-success" id="save-title" style="display: none; margin-bottom: 10px">
+	<b>Save</b>
+      </button>
+      <button type="button" class="btn btn-default" id="cancel-title" style="display: none; margin-bottom: 10px">
+	<i class="icon-remove"></i>
+      </button>
     </div>
-    <!-- END Description -->
   </div>
-  <div class="span7">
-    <!-- BEGIN Toggle private -->
-    <div class="row-fluid">
-      <div class="span3">
-	<p class="muted" style="display: inline"><strong>This gallery is </strong></p>
+  <!-- END Title -->
+  <!-- BEGIN Description -->
+  <div class="row-fluid">
+    <div class="span4">
+      <a class="pencil muted" id="trigger-editable-description" href="#"><b>Description </b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+    </div>
+    <div class="span8">
+      <div id="editable-description">
+	{% if gallery.description %}
+	<p id="valid-description">{{ gallery.description|linebreaksbr }}</p>
+	{% else %}
+	<p id="empty-description"><em>Currently empty</em></p>
+	{% endif %}
+	<textarea id="description-textarea" style="display: none; width: 98%" rows="6"></textarea>
       </div>
-      <div class="span5">
-	<div class="btn-group">
-	  {% if gallery.hidden %}
-	  <button type="button" class="btn btn-default show-gallery" value="True"><strong>Public</strong></button>
-	  <button type="button" class="btn btn-danger hide-gallery active" value="False"><strong>Private</strong></button>
-	  {% else %}
-	  <button type="button" class="btn btn-info show-gallery active" value="True"><strong>Public</strong></button>
-	  <button type="button" class="btn btn-default hide-gallery" value="False"><strong>Private</strong></button>
-	  {% endif %}
-	</div>
-      </div>
-      <div class="span4">
-	<a class="btn btn-default pull-right" role="button" data-toggle="modal" href="#delete-gallery-modal" style="border-radius: 2px">
-	  <strong>Delete gallery</strong>
-	</a>
+      <button type="button" class="btn btn-success" id="save-description" style="display: none; margin-bottom: 10px">
+	<b>Save</b>
+      </button>
+      <button type="button" class="btn btn-default" id="cancel-description" style="display: none; margin-bottom: 10px">
+	<i class="icon-remove"></i>
+      </button>
+    </div>
+  </div>
+  <!-- END Description -->
+  <!-- BEGIN Toggle private -->
+  <div class="row-fluid">
+    <div class="span4">
+      <p class="muted" style="display: inline"><strong>This gallery is </strong></p>
+    </div>
+    <div class="span8">
+      <div class="btn-group">
+	{% if gallery.hidden %}
+	<button type="button" class="btn btn-default show-gallery" value="True" style="width: 95px"><strong>Public</strong></button>
+	<button type="button" class="btn btn-danger hide-gallery active" value="False" style="width: 95px"><strong>Private</strong></button>
+	{% else %}
+	<button type="button" class="btn btn-info show-gallery active" value="True" style="width: 95px"><strong>Public</strong></button>
+	<button type="button" class="btn btn-default hide-gallery" value="False" style="width: 95px"><strong>Private</strong></button>
+	{% endif %}
       </div>
     </div>
-    <!-- END Toggle private -->
-    <!-- BEGIN Thumbnail -->
-    <div class="row-fluid" style="margin-top: 10px">
-      <div class="span3">
-	<strong>Thumbnail</strong>
-      </div>
-      <div class="span5">
-	<div class="btn-group">
-	  {% if gallery.thumbnail %}
-	  <button type="button" class="btn btn-default select-from-gallery" value="True"><strong>From gallery</strong></button>
-	  <button type="button" class="btn btn-info custom-thumbnail active" value="False"><strong>Custom</strong></button>
-	  {% else %}
-	  <button type="button" class="btn btn-info select-from-gallery active" value="True"><strong>From gallery</strong></button>
-	  <button type="button" class="btn btn-default custom-thumbnail" value="False"><strong>Custom</strong></button>
-	  {% endif %}
-	</div>
+  </div>
+  <!-- END Toggle private -->
+  <!-- BEGIN Thumbnail -->
+  <div class="row-fluid" style="margin-top: 10px">
+    <div class="span4">
+      <strong>Thumbnail</strong>
+    </div>
+    <div class="span8">
+      <div class="btn-group">
 	{% if gallery.thumbnail %}
-	<div style="display: block; margin-top: 10px">
-	  <a href="{{ gallery.thumbnail.url }}" rel="lightbox">
-	    <img id="thumbnail-img-large" src="{{ gallery.thumbnail.url }}" style="display: inline-block">
-	  </a>
-	  <button class="btn btn-default" style="border-radius: 2px" id="change-thumbnail">
-	    <i class="icon-edit"></i>
-	    <strong>Change</strong>
+	<button type="button" class="btn btn-default select-from-gallery" value="True"><strong>From gallery</strong></button>
+	<button type="button" class="btn btn-info custom-thumbnail active" value="False"><strong>Custom</strong></button>
+	{% else %}
+	<button type="button" class="btn btn-info select-from-gallery active" value="True"><strong>From gallery</strong></button>
+	<button type="button" class="btn btn-default custom-thumbnail" value="False"><strong>Custom</strong></button>
+	{% endif %}
+      </div>
+      {% if gallery.thumbnail %}
+      <div style="display: block; margin-top: 10px">
+	<a href="{{ gallery.thumbnail.url }}" rel="lightbox">
+	  <img id="thumbnail-img-large" src="{{ gallery.thumbnail.url }}" style="display: inline-block">
+	</a>
+	<button class="btn btn-default" style="border-radius: 2px" id="change-thumbnail">
+	  <strong>Change</strong>
+	</button>
+      </div>
+      {% endif %}
+      <form method="post" action="edit/" enctype="multipart/form-data" id="thumbnail-form" class="hide">
+	{% csrf_token %}
+	<input type="file" name="thumbnail" id="id_thumbnail" class="hide"/>
+	<input tyle="hidden" name="delete_current_thumbnail" id="input-delete-current" class="hide" value="False" />
+	<div class="pretty_file_input">
+	  <input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail" style="width: 100px; margin-top: 10px">
+	  <a class="btn btn-default" onclick="$('#id_thumbnail').click();"><b>Browse</b></a>
+	</div>
+	<div style="display: block">
+	  <input type="submit" value="save" class="btn btn-success" style="font-weight: bold">
+	  <button type="button" class="btn btn-default" id="cancel-thumbnail">
+	    <i class="icon-remove"></i>
 	  </button>
 	</div>
-	{% endif %}
-	<form method="post" action="edit/" enctype="multipart/form-data" id="thumbnail-form" class="hide">
-	  {% csrf_token %}
-	  <input type="file" name="thumbnail" id="id_thumbnail" class="hide"/>
-	  <input tyle="hidden" name="delete_current_thumbnail" id="input-delete-current" class="hide" value="False" />
-	  <div class="pretty_file_input">
-	    <input id="id_thumbnail_styled" type="text" onclick="$('#id_thumbnail').click();" placeholder="Thumbnail" style="width: 100px; margin-top: 10px">
-	    <a class="btn btn-default" onclick="$('#id_thumbnail').click();"><b>Browse</b></a>
-	  </div>
-	  <div style="display: block">
-	    <input type="submit" value="save" class="btn btn-success" style="font-weight: bold">
-	    <button type="button" class="btn btn-default" id="cancel-thumbnail">
-	      <i class="icon-remove"></i>
-	    </button>
-	  </div>
-	</form>
-      </div>
-      <div class="span4">
-	<strong class="pull-right">{{ gallery.count }} items</strong>
-      </div>
+      </form>
     </div>
-    <!-- END Thumbnail -->
   </div>
+  <!-- END Thumbnail -->
+  <!-- BEGIN Delete -->
+  <div class="row-fluid" style="margin-top: 20px">
+    <div class="span8 offset4">
+      <a class="btn btn-default" role="button" data-toggle="modal" href="#delete-gallery-modal">
+	<strong>Delete gallery ({{ gallery.count }} items)</strong>
+      </a>
+    </div>
+  </div>
+  <!-- END Delete -->
 </div>

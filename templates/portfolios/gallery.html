@@ -25,7 +25,7 @@
     height: 32px;
   }
   #thumbnail-img-large {
-    height: 48px;
+    height: 32px;
   }
   #thin-divider {
     border-top: none;
@@ -306,12 +306,18 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- end modals -->
-<!-- BEGIN gallery editor -->
-{% include "portfolios/gallery_editor.html" %}
-<!-- END gallery editor -->
-<!-- BEGIN uploader -->
-{% include "portfolios/uploader.html" %}
-<!-- END uploader -->
+<div class="row-fluid">
+  <div class="span6">
+    <!-- BEGIN uploader -->
+    {% include "portfolios/uploader.html" %}
+    <!-- END uploader -->
+  </div>
+  <div class="span6">
+    <!-- BEGIN gallery editor -->
+    {% include "portfolios/gallery_editor.html" %}
+    <!-- END gallery editor -->
+  </div>
+</div>
 <ul class="thumbnails sortable-items">
   {% for item in gallery.item_set.all %}
   <li id="items_{{ item.pk }}" class="editable-item">

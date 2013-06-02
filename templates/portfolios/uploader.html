@@ -1,4 +1,4 @@
-<div class="row-fluid muted" id="uploader" style="border-bottom: 1px solid #{{ profile.text_color }}">
+<div class="muted" id="uploader">
   {% if profile.photo_count >= customer.account_limit %}
   <h4 style="color: red">You've reached your upload limit!</h4>
   <p style="color: #{{ profile.text_color}}">
@@ -10,18 +10,18 @@
     {% csrf_token %}
     <div class="fileupload-buttonbar">
       <span class="btn btn-default fileinput-button" style="border-radius: 2px">
-        <i class="icon-plus"></i>
-	<strong> Select images</strong>
+        <i class="icon-picture"></i>
+	<strong>Images</strong>
         <input type="file" name="file" multiple>
       </span>
-      <button type="reset" class="btn btn-default cancel" style="border-radius: 2px">
-	<i class="icon-ban-circle"></i>
-	<strong> Cancel uploads</strong>
-      </button>
       <a class="btn btn-default" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
 	<i class="icon-film"></i>
-	<strong> Upload video</strong>
+	<strong>Video</strong>
       </a>
+      <button type="reset" class="btn btn-default cancel" style="border-radius: 2px">
+	<i class="icon-ban-circle"></i>
+	<strong>Cancel</strong>
+      </button>
     </div>
     <p style="color: #{{ profile.text_color }}; width: 80%">Or <strong>drag and drop</strong> image files here.
       Files over <strong>{{ customer.max_file_size }} MB</strong> will be ignored.
