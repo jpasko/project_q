@@ -182,6 +182,8 @@ $(document).ready(function(){
   {% if gallery.thumbnail %}
   $(".checkbox").hide();
   {% endif %}
+  var sortable_width = Math.floor({{ profile.page_width }} / 186) * 186;
+  $(".sortable-items").css('width', sortable_width + 'px');
 });
 </script>
 {% endif %}
@@ -310,43 +312,41 @@ $(document).ready(function(){
 <!-- BEGIN uploader -->
 {% include "portfolios/uploader.html" %}
 <!-- END uploader -->
-<div class="row-fluid">
-  <ul class="thumbnails sortable-items">
-    {% for item in gallery.item_set.all %}
-    <li id="items_{{ item.pk }}" class="editable-item">
-      <div style="position: relative; left: 0; top: 0;" class="item-div">
-	{% if item.is_photo %}
-	<a href="{{ item.photo.image.url }}" rel="lightbox" title="{{ item.caption }}">
-	  <img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
-	</a>
-	{% else %}
-	<a class="video-thumbnail" href="{{ item.video.url }}" target="_blank">
-	  <img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
-	</a>
-	{% endif %}
-	<div style="display: block; text-align: center" class="muted grab">
-	  <p style="padding: 25px 0 25px 0; margin: 0"></p>
-	</div>
-
-	<label class="checkbox" style="margin-bottom: 15px">
-	  <input type="checkbox" class="thumbnail-checkbox" data-pk="{{ item.pk }}" id="thumbnail-checkbox_{{ item.pk }}">
-	  <span class="checkbox-text" style="font-size: 1.15em">Set as thumbnail</span>
-	</label>
-
-	<div>
-	  <a class="btn btn-default data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal" style="border-radius: 2px">
-	    <i class="icon-edit"></i> <strong>Edit</strong>
-	  </a>
-	  <a class="btn btn-default" href="/item/{{ item.pk }}/delete/" style="border-radius: 2px">
-	    <i class="icon-remove"></i> <strong>Delete</strong>
-	  </a>
-	</div>
-
+<ul class="thumbnails sortable-items">
+  {% for item in gallery.item_set.all %}
+  <li id="items_{{ item.pk }}" class="editable-item">
+    <div style="position: relative; left: 0; top: 0;" class="item-div">
+      {% if item.is_photo %}
+      <a href="{{ item.photo.image.url }}" rel="lightbox" title="{{ item.caption }}">
+	<img class="gallery-thumbnail" src="{{ item.photo.thumbnail.url }}">
+      </a>
+      {% else %}
+      <a class="video-thumbnail" href="{{ item.video.url }}" target="_blank">
+	<img class="gallery-thumbnail" src="{{ STATIC_URL }}img/empty_gallery_square.png">
+      </a>
+      {% endif %}
+      <div style="display: block; text-align: center" class="muted grab">
+	<p style="padding: 25px 0 25px 0; margin: 0"></p>
       </div>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+
+      <label class="checkbox" style="margin-bottom: 15px">
+	<input type="checkbox" class="thumbnail-checkbox" data-pk="{{ item.pk }}" id="thumbnail-checkbox_{{ item.pk }}">
+	<span class="checkbox-text" style="font-size: 1.15em">Set as thumbnail</span>
+      </label>
+
+      <div>
+	<a class="btn btn-default data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal" style="border-radius: 2px">
+	  <i class="icon-edit"></i> <strong>Edit</strong>
+	</a>
+	<a class="btn btn-default" href="/item/{{ item.pk }}/delete/" style="border-radius: 2px">
+	  <i class="icon-remove"></i> <strong>Delete</strong>
+	</a>
+      </div>
+
+    </div>
+  </li>
+  {% endfor %}
+</ul>
 {% elif profile.photo_count <= customer.account_limit %}
 <!-- Display mode -->
 <div class="gallery-header">

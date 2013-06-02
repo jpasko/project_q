@@ -223,3 +223,6 @@ div.darken img {
     box-shadow: 0 4px 4px -4px rgba(150, 150, 150, 0.4);
     padding: 0 0 0 4px;
 }
+.sortable-items {
+    margin: 0 auto;
+}
