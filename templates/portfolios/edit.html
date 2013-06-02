@@ -2,6 +2,9 @@
 {% block title %}{{ profile.fullname }} | Customize{% endblock %}
 {% block head %}
 <style>
+  h3 {
+    margin: 0;
+  }
   #banner-img {
     height: 30px;
     max-width: 125px;
@@ -24,14 +27,6 @@
   }
   .controls {
     width: 280px;
-  }
-  .form-errors {
-    display: inline-block;
-    border: 1px solid #ff4d42;
-    border-radius: 5px;
-    background: #ffe2d6;
-    padding: 5px;
-    color: #424242;
   }
   #id_blog {
     width: 128px;
@@ -58,34 +53,8 @@
   #id_copy_text {
     width: 205px;
   }
-  form {
-    border-left: 1px solid #c4c4c4;
-    border-right: 1px solid #c4c4c4;
-    border-bottom: 1px solid #c4c4c4;
-    background-color: white;
-  }
   .form-title h3, p, b, label {
-    font-size: 1em;
     color: #303030;
-  }
-  .form-title {
-    text-align: center;
-    border-top: 1px solid #d6d6d6;
-    border-bottom: 1px solid #d6d6d6;
-    font-size: 1.5em;
-    height: 40px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-background: rgb(255,255,255); /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2ZiZmJmYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2Y3ZjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 47%, rgba(247,247,247,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(251,251,251,1)), color-stop(100%,rgba(247,247,247,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
   }
   .form-body {
     text-align: right;
@@ -96,11 +65,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   .centered-box {
     margin: 0 auto;
     width: 600px;
-  }
-  .drop-shadow {
-    -moz-box-shadow: 2px 2px 2px #{{ profile.text_color }};
-    -webkit-box-shadow: 2px 2px 2px #{{ profile.text_color }};
-    box-shadow: 2px 2px 2px #{{ profile.text_color }};
   }
 </style>
 {% endblock %}
@@ -193,7 +157,7 @@ $(function() {
 {% endblock %}
 
 {% block content %}
-<div class="centered-box drop-shadow">
+<div class="centered-box">
   <form method="post" action="." enctype="multipart/form-data" class="form-horizontal muted">
     {% csrf_token %}
     
@@ -468,9 +432,9 @@ $(function() {
     </div>
 
     <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; width: 100%">
-    <div style="width: 100%; margin: 0 auto; text-align: center; margin-bottom: 20px">
-      <input type="submit" value="Apply Changes" class="btn btn-large btn-info" style="border-radius: 2px">
-      <a class="btn btn-default btn-large" href="/" style="border-radius: 2px">Cancel</a>
+    <div style="width: 100%; margin: 30px auto 0 auto; text-align: center">
+      <input type="submit" value="Apply Changes" class="btn btn-large btn-info">
+      <a class="btn btn-default btn-large" href="/">Cancel</a>
     </div>
   </form>
 </div>

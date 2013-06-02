@@ -86,13 +86,13 @@ class UserProfile(models.Model):
                              max_length=100, blank=True)
 
     background_color = models.CharField(max_length=6,
-                                        default='000000')
+                                        default='F7F7F7')
 
     text_color = models.CharField(max_length=6,
-                                  default='999999')
+                                  default='5E5E5E')
 
     text_color_hover = models.CharField(max_length=6,
-                                        default='D4D4D4')
+                                        default='A1A1A1')
 
     website = models.URLField(max_length=500, blank=True)
     blog = models.URLField(max_length=500, blank=True)
