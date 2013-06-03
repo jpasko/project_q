@@ -49,11 +49,11 @@ class UserProfile(models.Model):
 
     show_get_started = models.BooleanField(default=True)
 
-    page_width = models.PositiveIntegerField(default=940)
+    page_width = models.PositiveIntegerField(default=930)
 
     title_size = models.PositiveIntegerField(default=30)
 
-    thumbnail_dimension = models.PositiveIntegerField(default=250)
+    thumbnail_dimension = models.PositiveIntegerField(default=225)
 
     font_size = models.FloatField(default=1.2)
 

@@ -10,6 +10,14 @@
 {% block script %}
 <script>
   $(document).ready(function(){
+    $("#landing-page-box").fadeIn(1000);
+    $(window).scroll(function() {
+      if($(this).scrollTop() > 20){
+        $("#example-box").fadeOut();
+      } else {
+       $("#example-box").fadeIn();
+      }
+    });
     $('a[href^="#"]').on('click',function (e) {
       e.preventDefault();
       var target = this.hash,
@@ -36,86 +44,71 @@
 </script>
 {% endblock %}
 {% block top-banner %}
-<div class="top-banner" style="background: none; box-shadow: none">
+<div class="top-banner-main">
   <div class="masthead">
-    <ul class="nav nav-pills pull-right top-links">
+    <ul class="nav nav-pills top-links">
       {% if not user.is_authenticated %}
-      <li><a href="https://www.{{ DOMAIN }}/register/" class="nav-link" style="border: 1px solid #a0c2e3">sign up</a></li>
-      <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link" style="border: 1px solid #a0c2e3">login</a></li>
+      <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">login</a></li>
       {% else %}
-      <li><a href="https://{{ user.username }}.{{ DOMAIN }}/" class="nav-link" style="border: 1px solid #a0c2e3">profile</a></li>
-      <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link" style="border: 1px solid #a0c2e3">logout</a></li>
+      <li><a href="https://{{ user.username }}.{{ DOMAIN }}/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">profile</a></li>
+      <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">logout</a></li>
       {% endif %}
     </ul>
-    <a href="https://www.{{ DOMAIN }}/"><img class="logo" src="{{ STATIC_URL }}img/folio24_logo.png"></a>
+    <a href="https://www.{{ DOMAIN }}/" class="logo">Folio24</a>
   </div>
 </div>
 {% endblock %}
 {% block content %}
 <div class="splash">
-  <div class="jumbotron">
+  <div id="landing-page-box">
     <h1 class="main-text">Your online portfolio</h1>
-    <p class="lead" style="font-family: 'Raleway', sans-serif; color: white; font-weight: 400">Images & video &bull; Domain name support &bull; No HTML/CSS</p>
-    <a class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 25px">
-      <strong style="font-size: 1.4em">Start now &bull; Free</strong>
+    <p class="lead" id="selling-points">
+      Images & video &bull; Domain name support &bull; No HTML/CSS
+    </p>
+    <a class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 20px">
+      <strong style="font-size: 1.4em; font-family: 'Raleway', sans-serif; font-weight: 400">Sign Up &bull; Free</strong>
     </a>
-    <div class="fb-like" data-href="http://www.folio24.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 10px"></div>
+    <div class="fb-like" data-href="http://www.folio24.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 5px"></div>
   </div>
-  <div class="container">
-    <div class="row marketing">
-<!--
-      <div class="span5" style="font-family: 'Raleway', sans-serif; font-weight: 400; color: white; padding: 0 0 0 0">
-	<img src="{{ STATIC_URL }}img/simple_white.png" alt="" class="classy-simple-free">
-	<h3 style="font-weight: 400; display: inline">Simple Interface.</h2>
-      </div>
-      <div class="span2"></div>
-      <div class="span5 pull-right" style="font-family: 'Raleway', sans-serif; font-weight: 400; color: white; padding: 0 0 0 0">
-	<img src="{{ STATIC_URL }}img/free_white.png" alt="" class="classy-simple-free">
-	<h3 style="font-weight: 400; display: inline">No Commitments.</h2>
-      </div>
--->
-    </div>
-  </div>
+  <a id="example-box" class="examples-link" href="#id_examples">Examples &darr;</a>
 </div>
 
 <div class="examples" id="id_examples">
-  <div class="container">
-    <div id="slider">
-      <div id="swipe">
-	<div class="swipe-wrap">
-	  <div style="position: relative" class="swipe-div">
-	    <img src="{{ STATIC_URL }}img/example1_border.jpg" alt="" class="slider-img">
-	    <div class="slider-title">
-	      <a href="https://jpasko.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-		<strong>View portfolio</strong>
-	      </a>
-	    </div>
+  <div id="slider">
+    <div id="swipe">
+      <div class="swipe-wrap">
+	<div style="position: relative" class="swipe-div">
+	  <img src="{{ STATIC_URL }}img/example1_border.jpg" alt="" class="slider-img">
+	  <div class="slider-title">
+	    <a href="https://jpasko.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
+	      <strong>View portfolio</strong>
+	    </a>
 	  </div>
-	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example2_border.jpg" alt="" class="slider-img">
-	    <div class="slider-title">
-	      <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-		<strong>View portfolio</strong>
-	      </a>
-	    </div>
+	</div>
+	<div style="position: relative">
+	  <img src="{{ STATIC_URL }}img/example2_border.jpg" alt="" class="slider-img">
+	  <div class="slider-title">
+	    <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
+	      <strong>View portfolio</strong>
+	    </a>
 	  </div>
-	  <div style="position: relative">
-	    <img src="{{ STATIC_URL }}img/example3_border.jpg" alt="" class="slider-img">
-	    <div class="slider-title">
-	      <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-		<strong>View portfolio</strong>
-	      </a>
-	    </div>
+	</div>
+	<div style="position: relative">
+	  <img src="{{ STATIC_URL }}img/example3_border.jpg" alt="" class="slider-img">
+	  <div class="slider-title">
+	    <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
+	      <strong>View portfolio</strong>
+	    </a>
 	  </div>
 	</div>
       </div>
     </div>
-    <div id="swipe_nav">
-      <h1 class="colored" id="swipe_nav_1">&bull;</h1>
-      <h1 class="dull" id="swipe_nav_2">&bull;</h1>
-      <h1 class="dull" id="swipe_nav_3">&bull;</h1>
-      <a class="btn btn-large signup-btn example-btn" href="https://www.{{ DOMAIN }}/examples/"><strong>More examples</strong></a>
-    </div>
+  </div>
+  <div id="swipe_nav">
+    <h1 class="colored" id="swipe_nav_1">&bull;</h1>
+    <h1 class="dull" id="swipe_nav_2">&bull;</h1>
+    <h1 class="dull" id="swipe_nav_3">&bull;</h1>
+    <a class="btn btn-large signup-btn example-btn" href="https://www.{{ DOMAIN }}/examples/"><strong>More examples</strong></a>
   </div>
 </div>
 <div class="container-narrow features">
@@ -212,7 +205,7 @@
         </tr>
       </tbody>
     </table>
-    <p style="font-size: 0.8em; padding-bottom: 10px">*Upload video from YouTube, Vimeo, and Dailymotion</p>
+    <p style="font-size: 0.8em; padding-bottom: 10px">*Embed video from YouTube, Vimeo, and Dailymotion</p>
   </div>
   <hr class="featurette-divider">
   <div class="featurette">

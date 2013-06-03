@@ -20,7 +20,7 @@ html, body {
     width: 870px;
 }
 .login-box {
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     margin-top: 50px;
     width: 200px;
     border: 1px solid #d1d1d1;
@@ -80,27 +80,46 @@ ul {
 }
 .top-banner {
     width: 100%;
-    height: 80px;
+    height: 65px;
     background-color: #264059;
     -webkit-box-shadow: 0 3px 2px -2px gray;
     -moz-box-shadow: 0 3px 2px -2px gray;
     box-shadow: 0 3px 2px -2px gray;
 }
+.top-banner-main {
+    width: 100%;
+    height: 65px;
+}
 .splash {
-    margin-top: -80px;
-    padding: 85px 0 0 0;
-    background-color: #2194ab;
-    background-image: url('https://s3.amazonaws.com/folio24/static/img/folio24_background.jpg');
+    margin-top: -65px;
+    padding: 80px 0 0 0;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 415px;
+}
+@media screen and (max-width: 900px) {
+    .splash {
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_900.jpg');
+	min-height: 563px;
+    }
+}
+@media screen and (max-width: 1286px) and (min-width: 901px) {
+    .splash {
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_1280.jpg');
+	min-height: 800px;
+    }
+}
+@media screen and (min-width: 1287px) {
+    .splash {
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_1440.jpg');
+	min-height: 900px;
+    }
 }
 .main-text {
     font-family: 'Raleway', sans-serif;
     color: white;
-    font-weight: 300;
-    font-size: 4.7em !important;
-    margin-top: 30px;
+    font-weight: 200;
+    font-size: 5.5em !important;
+    margin-bottom: 30px;
 }
 .footer {
     border-top: 2px solid #909090;
@@ -118,15 +137,57 @@ ul {
     color: white;
     text-shadow: 0px 0px 1px white, 0px 0px 2px white, 0px 0px 3px white, 0px 0px 4px white;
 }
+#selling-points {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: 400;
+    margin-bottom: 10px
+}
+#examples-link {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+}
+#examples-link:hover {
+    color: #123456;
+}
+#landing-page-box {
+    text-align: center;
+    width: 900px;
+    margin: 80px auto 0 auto;
+    padding: 30px 0 20px 0;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.75);
+    display: none;
+}
+#example-box {
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0,0,0,0.75);
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+}
 .signup-btn-large {
-    background-color: white;
-    border-radius: 25px;
-    color: #5AB66F;
-    margin-top: 20px;
+    margin: 30px 0 10px 0;
+    border-radius: 10px;
+    color: rgb(93, 113, 143);
 }
 .signup-btn-large:hover {
     box-shadow: 0px 0px 20px white;
     color: #1eafc8;
+}
+.examples-link {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+}
+.examples-link:hover {
+    text-decoration: none;
+    color: #123456;
 }
 .signup-btn {
     background-color: white;
@@ -147,14 +208,11 @@ ul {
 }
 .examples {
     width: 100%;
-    background-color: #f4f4f4;
-    -webkit-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
-    -moz-box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
-    box-shadow: 0px 3px 8px #949494, 0px -3px 8px black;
+    background-color: rgb(116, 116, 116);
+    -webkit-box-shadow: 0px 3px 8px #949494, 0px -3px 8px #2b2b2b;
+    -moz-box-shadow: 0px 3px 8px #949494, 0px -3px 8px #2b2b2b;
+    box-shadow: 0px 3px 8px #949494, 0px -3px 8px #2b2b2b;
     padding-top: 3px;
-    background-image: url('https://s3.amazonaws.com/folio24/static/img/examples_texture.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
     height: 461px;
 }
 .features {
@@ -166,18 +224,35 @@ ul {
     margin-bottom: -2px;
     width: 100%;
     background-color: #29333d;
-    border-top: 2px solid #909090;
+    -webkit-box-shadow: 0px -2px 6px #2b2b2b;
+    -moz-box-shadow: 0px -2px 6px #2b2b2b;
+    box-shadow: 0px -2px 6px #2b2b2b;
 }
 .colored {
     color: #29333d;
 }
+.masthead {
+     position: absolute;
+     width: 100%;
+     min-width: 940px;
+}
 .logo {
-    margin: 13px 0 0 30px;
-    height: 55px;
+    position: relative;
+    left: 50%;
+    display: block;
+    margin-top: 15px;
+    margin-left: -74px;
+    width: 148px;
+    height: 37px;
+    background: transparent url('https://s3.amazonaws.com/folio24/static/img/folio24_logo.png') no-repeat center top;
+    background-size: 148px;
+    overflow:hidden;
+    text-indent:100%;
+    white-space:nowrap;
 }
 .top-links {
-    margin-right: 30px;
-    margin-top: 22px;
+    float: right;
+    margin: 15px 15px 0 0;
 }
 .nav-link {
     color: white;
@@ -245,7 +320,7 @@ ul {
     font-size: 7em;
     margin: 10px;
     cursor: hand; cursor: pointer;
-    text-shadow: 2px 2px 2px #bfbfbf;
+    text-shadow: 1px 1px 1px #bfbfbf;
     padding: 0;
 }
 .example-btn {

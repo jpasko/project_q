@@ -16,7 +16,7 @@
     <link href="{{ STATIC_URL }}css/bootstrap-standard.min.css" rel="stylesheet">
     <!--<link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">-->
     <link href="{{ STATIC_URL }}css/site_style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,200" rel="stylesheet" type="text/css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
       if (!window.jQuery) {
@@ -51,16 +51,16 @@
       {% block top-banner %}
       <div class="top-banner">
 	<div class="masthead">
-          <ul class="nav nav-pills pull-right top-links">
+          <ul class="nav nav-pills top-links">
 	    {% if not user.is_authenticated %}
-	    <li><a href="https://www.{{ DOMAIN }}/register/" class="nav-link">sign up</a></li>
+	    <!--<li><a href="https://www.{{ DOMAIN }}/register/" class="nav-link">sign up</a></li>-->
 	    <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link">login</a></li>
             {% else %}
 	    <li><a href="https://{{ user.username }}.{{ DOMAIN }}/" class="nav-link">profile</a></li>
 	    <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link">logout</a></li>
             {% endif %}
           </ul>
-	  <a href="https://www.{{ DOMAIN }}/"><img class="logo" src="{{ STATIC_URL }}img/folio24_logo.png"></a>
+	  <a href="https://www.{{ DOMAIN }}/" class="logo">Folio24</a>
 	</div>
       </div>
       {% endblock %}
