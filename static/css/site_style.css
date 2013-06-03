@@ -166,10 +166,13 @@ ul {
     z-index: 3;
     text-align: center;
     width: 100%;
-    background-color: rgba(0,0,0,0.85);
-    padding: 5px;
+    background-color: rgba(0,0,0,0.75);
+    padding: 20px;
     position: fixed;
     bottom: 0;
+}
+#example-box:hover {
+    background-color: rgba(0,0,0,0.9);
 }
 .signup-btn-large {
     margin: 30px 0 10px 0;
@@ -183,12 +186,13 @@ ul {
 .examples-link {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
+    font-size: 1.4em;
     color: white;
     text-decoration: none;
 }
 .examples-link:hover {
     text-decoration: none;
-    color: #123456;
+    color: #1d548b;
 }
 .signup-btn {
     font-family: 'Raleway', sans-serif;
@@ -210,7 +214,6 @@ ul {
 }
 .examples {
     z-index: 2;
-    width: 100%;
     background-color: rgb(116, 116, 116);
     -webkit-box-shadow: 0px 3px 8px #949494, 0px -3px 8px #2b2b2b;
     -moz-box-shadow: 0px 3px 8px #949494, 0px -3px 8px #2b2b2b;
@@ -296,6 +299,7 @@ ul {
     width: 250px;
 }
 #swipe {
+    width: 100%;
     margin-top: -55px;
     overflow: hidden;
     visibility: hidden;
