@@ -159,14 +159,14 @@ ul {
     margin: 80px auto 0 auto;
     padding: 30px 0 20px 0;
     border-radius: 15px;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.5);
     display: none;
 }
 #example-box {
     z-index: 3;
     text-align: center;
     width: 100%;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.85);
     padding: 5px;
     position: fixed;
     bottom: 0;
@@ -191,6 +191,7 @@ ul {
     color: #123456;
 }
 .signup-btn {
+    font-family: 'Raleway', sans-serif;
     background-color: white;
     border-radius: 10px;
     color: #374553;
@@ -344,6 +345,7 @@ ul {
     text-decoration: none;
 }
 .top-btn {
+    font-family: 'Raleway', sans-serif;
     margin-top: 50px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
