@@ -394,7 +394,7 @@ ul {
     opacity: 1.0;
 }
 .interface-img {
-    -moz-box-shadow: 5px 5px 3px #bfbfbf;
-    -webkit-box-shadow: 5px 5px 3px #bfbfbf;
-    box-shadow: 5px 5px 3px #bfbfbf;
+    -moz-box-shadow: 2px 2px 3px #bfbfbf;
+    -webkit-box-shadow: 2px 2px 3px #bfbfbf;
+    box-shadow: 2px 2px 3px #bfbfbf;
 }
