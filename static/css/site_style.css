@@ -299,6 +299,7 @@ ul {
     width: 250px;
 }
 #swipe {
+    zoom: 1;
     width: 100%;
     margin-top: -55px;
     overflow: hidden;
