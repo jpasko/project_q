@@ -9,6 +9,12 @@
     border-radius: 5px;
     text-align: center;
   }
+  .wrapper {
+    background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture14_500.jpg');
+  }
+  .bullet-special, .dull-link-special, .llc-special {
+    color: white !important;
+  }
 </style>
 {% endblock %}
 {% block script %}
@@ -19,23 +25,21 @@
 </script>
 {% endblock %}
 {% block content %}
-<div class="container muted">
-  <div class="login-box">
-    {% if form.errors %}
-    <p class="error-box">Your username and/or password were incorrect.</p>
-    {% endif %}
-    <form method="post" action="">
-      {% csrf_token %}
-      <label for="id_username">Username or Email</label>
-	{{ form.username }}
-      <label for="id_password" style="float: left">Password</label>
-      <span style="padding-left: 3px">(<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)</span>
-	{{ form.password }}
-      <input type="hidden" name="next" value="{{ next }}" />
-      <input type="submit" value="Sign in" class="btn btn-large btn-default" style="width: 50%; margin-top: 10px" />
-    </form>
+<div class="login-box">
+  {% if form.errors %}
+  <p class="error-box">Your username and/or password were incorrect.</p>
+  {% endif %}
+  <form method="post" action="">
+    {% csrf_token %}
+    <label for="id_username">Username or Email</label>
+    {{ form.username }}
+    <label for="id_password" style="float: left">Password</label>
+    <span style="padding-left: 3px">(<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)</span>
+    {{ form.password }}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 220px; margin-top: 20px" />
+  </form>
   </div>
-</div>
 {% endblock %}
 {% block footer %}
 {% include "footer_special.html" %}

@@ -7,12 +7,19 @@
     border-radius: 5px;
     background: #ffe2d6;
     padding: 3px;
-    width: 85%;
+    width: 344px;
     margin: 3px auto;
+    color: #121212;
   }
   .message-success {
     color: #4fc46f;
     text-align: center;
+  }
+  .wrapper {
+    background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture3_500.jpg');
+  }
+  .bullet-special, .dull-link-special, .llc-special {
+    color: white !important;
   }
 </style>
 {% endblock %}
@@ -34,26 +41,25 @@
   </div>
 </div>
 <!-- end modal -->
-<div class="container muted" style="padding: 30px 0">
-  <h1 style="font-size: 3em; text-align: center">Contact us</h1>
-  <div class="contact-box">
-    <form method="post" action="." style="margin-top: 8px; margin-bottom: 40px">
-      {% csrf_token %}
-      {% if form.sender.errors %}
-      <p class="form-errors">Invalid email address</p>
-      {% endif %}
-      {% if form.message.errors %}
-      <p class="form-errors">Write a message before sending</p>
-      {% endif %}
-      <input type="text" name="sender" id="id_sender" placeholder="Your email (optional, for a reply)"  style="width: 85%"/>
-      <textarea id="id_message" rows="4" name="message" placeholder="Message" style="width: 85%"></textarea>
-      <input type="submit" value="Send message" class="btn btn-large signup-btn" style="font-weight: bold"/>
-    </form>
-    <p><em>Or send an email to:</em></p>
-    <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none" class="muted">
-	contact@folio24.com
-    </a></p>
-  </div>
+<div class="contact-box">
+  <form method="post" action=".">
+    {% csrf_token %}
+    {% if form.sender.errors %}
+    <p class="form-errors">Invalid email address</p>
+    {% endif %}
+    {% if form.message.errors %}
+    <p class="form-errors">Write a message before sending</p>
+    {% endif %}
+    <input type="text" name="sender" id="id_sender" placeholder="Your email (optional, for a reply)"  style="width: 85%"/>
+    <textarea id="id_message" rows="4" name="message" placeholder="Your message here" style="width: 85%"></textarea>
+    <input type="submit" value="Send message" class="btn btn-large signup-btn" style="width: 352px"/>
+  </form>
+</div>
+<div class="contact-box" style="margin: 0 auto 30px auto">
+  <p><em>Or send email to:</em></p>
+  <p><a href="mailto:contact@folio24.com" style="display: inline-block; text-decoration: none; color: white">
+      contact@folio24.com
+  </a></p>
 </div>
 {% endblock %}
 {% block footer %}
