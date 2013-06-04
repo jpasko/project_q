@@ -1,52 +1,53 @@
 {% extends "site_base.html" %}
 {% block title %}Sign up{% endblock %}
+{% block head %}
+<style>
+  .wrapper {
+    background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture30_500.jpg');
+  }
+  .bullet-special, .dull-link-special, .llc-special {
+    color: rgb(70,70,70) !important;
+  }
+  .footer-special {
+    border-top: 1px solid rgb(160, 160, 160);
+  }
+</style>
+{% endblock %}
 {% block content %}
-<div class="container" style="padding: 30px 0">
-  <div class="row" style="padding-top: 30px; text-align: center">
+<div class="container" style="padding: 60px 0 30px 0">
+  <div class="row" style="text-align: center">
     <div class="span3 offset1">
-      <a href="https://www.{{ DOMAIN }}/register/basic/" class="btn btn-large btn-default price-box" style="width: 181px">
+      <a href="https://www.{{ DOMAIN }}/register/basic/" class="btn btn-large price-box" style="width: 181px">
 	<h4><span style="font-size: 1.8em">{{ FREE_IMAGE_LIMIT }}</span> uploads</h4>
 	<h4><span style="font-size: 1.4em">{{ FREE_MAX_FILE_SIZE }}</span> MB per image</h4>
-	<h4 style="font-size: 1.2em">Free!</h4>
+	<h4>Free!</h4>
       </a>
     </div>
     <div class="span4">
-      <a href="https://www.{{ DOMAIN }}/register/premium/" class="btn btn-large btn-default price-box" style="padding-bottom: 20px;">
+      <a href="https://www.{{ DOMAIN }}/register/premium/" class="btn btn-large price-box" style="padding-bottom: 20px;">
 	<h4><span style="font-size: 1.8em">{{ PREMIUM_IMAGE_LIMIT }}</span> uploads</h4>
 	<h4><span style="font-size: 1.4em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB per image</h4>
 	<h4>$6 <span style="font-size: 0.9em">per month</span></h4>
-	<p style="padding-top: 30px"><i class="icon-ok"></i> Custom domain</p>
+	<p style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
       </a>
     </div>
     <div class="span3">
-      <a href="https://www.{{ DOMAIN }}/register/professional/" class="btn btn-large btn-primary price-box">
+      <a href="https://www.{{ DOMAIN }}/register/professional/" class="btn btn-large price-box">
 	<h4><span style="font-size: 1.8em">{{ PROFESSIONAL_IMAGE_LIMIT }}</span> uploads</h4>
 	<h4><span style="font-size: 1.4em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB per image</h4>
 	<h4>$9 <span style="font-size: 0.9em">per month</span></h4>
-	<p style="padding-top: 30px"><i class="icon-ok icon-white"></i> Custom domain</p>
-	<p><i class="icon-ok icon-white"></i> No Folio24 logo</p>
-	<p style="padding-top: 20px"><i class="icon-star icon-white"></i> Best value <i class="icon-star icon-white"></i></p>
+	<p style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
+	<p><i class="icon-ok"></i> No Folio24 logo</p>
+	<p style="padding-top: 20px"><i class="icon-star"></i> Best value <i class="icon-star"></i></p>
       </a>
     </div>
   </div>
-  <p class="muted" style="text-align: center; padding-top: 70px">
-    <i class="icon-thumbs-up icon-dull"></i> You can easily upgrade (or downgrade) later.  Cancel at any time.
-  </p>
-</div>
-<!--
-<div class="row muted">
-  <div class="span6 offset3">
-    <hr style="padding: 0; margin: 0">
-    <h2>Features</h2>
-    <p><i class="icon-ok icon-dull"></i> Upload images and video from YouTube, Vimeo, and Dailymotion</p>
-    <p><i class="icon-ok icon-dull"></i> Use your own custom domain name (www.yourowndomain.com)</p>
-    <p><i class="icon-ok icon-dull"></i> Create a full profile including links to your social pages and blog</p>
-    <p><i class="icon-ok icon-dull"></i> Employ our easy contact page designed to combat spam</p>
-    <p><i class="icon-ok icon-dull"></i> Enjoy a fully customizable portfolio with Galleria viewer</p>
-    <p><i class="icon-ok icon-dull"></i> Integrate with Google Analytics to track your portfolio views</p>
+  <div class="accent-box">
+    <p>
+      <i class="icon-thumbs-up icon-white"></i> You can easily upgrade (or downgrade) later.
+    </p>
   </div>
 </div>
--->
 {% endblock %}
 {% block footer %}
 {% include "footer_special.html" %}

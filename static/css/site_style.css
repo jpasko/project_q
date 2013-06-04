@@ -21,7 +21,7 @@ html, body {
 }
 .login-box {
     border-radius: 15px;
-    background-color: rgba(0,0,0,0.55);
+    background-color: rgba(0,0,0,0.75);
     color: white;
     width: 250px;
     margin: 80px auto 30px auto;
@@ -42,6 +42,15 @@ html, body {
     color: white;
     padding: 20px;
     margin: 10px;
+}
+.accent-box {
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    padding: 10px 0 3px 0;
+    color: white;
+    width: 360px;
+    margin: 70px auto 0 auto;
 }
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -285,6 +294,10 @@ ul {
 .price-box {
     width: 200px;
     margin: 0 auto;
+    border-radius: 1px;
+    -moz-box-shadow: 2px 2px 3px #bfbfbf;
+    -webkit-box-shadow: 2px 2px 3px #bfbfbf;
+    box-shadow: 2px 2px 3px #bfbfbf;
 }
 .price-box:hover {
     box-shadow: 0 0 5px #d2dbe5, 0 0 13px 4px #e9edf1, 0 0 25px 3px #f9f9fa;
