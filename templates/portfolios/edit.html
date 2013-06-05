@@ -93,6 +93,12 @@ $(function() {
   $('#id_banner').change(function() {
     $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
   });
+  $('#id_banner_styled').on("touchstart", function() {
+    $(this).trigger("click");
+  });
+  $('#change_banner').on("touchstart", function() {
+    $(this).trigger("click");
+  });
   $('#id_banner').on("click", function() {
     $('#id_banner_styled').show();
     $('#banner-img').hide();
@@ -191,13 +197,13 @@ $(function() {
 	  {% if profile.banner %}
 	  <div class="pretty_file_input">
 	    <img id="banner-img" src="{{ profile.banner.url }}" style="background: white">
-	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();" placeholder="None currently" class="hide">
-	    <a class="btn btn-default" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();"><strong>Change</strong></a>
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently" class="hide">
+	    <a id="change_banner" class="btn btn-default" onclick="$('#id_banner').click();"><strong>Change</strong></a>
 	  </div>
 	  {% else %}
 	  <div class="pretty_file_input">
-	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();" placeholder="None currently">
-	    <a class="btn btn-default" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();"><strong>Browse</strong></a>
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently">
+	    <a id="change_banner" class="btn btn-default" onclick="$('#id_banner').click();"><strong>Browse</strong></a>
 	  </div>
 	  {% endif %}
 	</div>

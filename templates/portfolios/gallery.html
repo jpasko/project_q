@@ -337,14 +337,14 @@ $(document).ready(function(){
 
       <label class="checkbox" style="margin-bottom: 15px">
 	<input type="checkbox" class="thumbnail-checkbox" data-pk="{{ item.pk }}" id="thumbnail-checkbox_{{ item.pk }}">
-	<span class="checkbox-text" style="font-size: 1.15em">Set as thumbnail</span>
+	<span class="checkbox-text" style="font-size: 1.1em">Set as thumbnail</span>
       </label>
 
       <div>
-	<a class="btn btn-default data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal" style="border-radius: 2px">
+	<a class="btn btn-default data-to-modal" role="button" data-toggle="modal" data-pk="{{ item.pk }}" data-caption="{{ item.caption }}" href="#edit-item-modal" style="width: 45px; font-size: 0.9em">
 	  <i class="icon-edit"></i> <strong>Edit</strong>
 	</a>
-	<a class="btn btn-default" href="/item/{{ item.pk }}/delete/" style="border-radius: 2px">
+	<a class="btn btn-default" href="/item/{{ item.pk }}/delete/" style="width: 61px; font-size: 0.9em">
 	  <i class="icon-remove"></i> <strong>Delete</strong>
 	</a>
       </div>
