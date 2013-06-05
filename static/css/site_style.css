@@ -131,7 +131,7 @@ html, body {
     top: 1px;
     right: 42px;
     color: #656565;
-    background: rgba(0,0,0,0.05);
+    background: rgb(247,247,247);
     padding: 4px 3px 0 1px;
     height: 24px;
     border-radius: 0 4px 4px 0;

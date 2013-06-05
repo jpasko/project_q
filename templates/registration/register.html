@@ -10,7 +10,7 @@
     font-size: 1.2em;
     min-width: 280px;
   }
-  #portfolio-url-popover,#username-popover {
+  #username-popover {
     position: relative;
     padding-bottom: 10px;
   }
@@ -85,12 +85,6 @@
   $(function() {
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
-      $('#portfolio-url-popover').popover('destroy');
-      if ($('#id_username').val()) {
-        var url = $('#id_username').val() + ".{{ DOMAIN }}";
-        $('#portfolio-url-popover').popover({content: url});
-        $('#portfolio-url-popover').popover('show');
-      }
     });
 
     $('#username-popover').popover('show');
@@ -105,7 +99,9 @@
     $('#id_password2').change(function() {
       $('#password-popover').popover('destroy');
     });
-
+    $(".popover-content").each(function() {
+      $(this).text($(this).text().replace("*", ""));
+    });
     $("#payment-form").submit(function(e) {
       if(!$('#terms-of-service').prop('checked')) {
         e.preventDefault();
@@ -137,12 +133,6 @@
   $(function() {
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
-      $('#portfolio-url-popover').popover('destroy');
-      if ($('#id_username').val()) {
-        var url = $('#id_username').val() + ".{{ DOMAIN }}";
-        $('#portfolio-url-popover').popover({content: url});
-        $('#portfolio-url-popover').popover('show');
-      }
     });
 
     $('#username-popover').popover('show');
@@ -157,7 +147,9 @@
     $('#id_password2').change(function() {
       $('#password-popover').popover('destroy');
     });
-
+    $(".popover-content").each(function() {
+      $(this).text($(this).text().replace("*", ""));
+    });
     $('#payment-form').submit(function(event) {
       if(!$('#terms-of-service').prop('checked')) {
         event.preventDefault();
@@ -218,7 +210,6 @@
 	    <div id="folio24">
 	      <p>.{{ DOMAIN }}</p>
 	    </div>
-	    <span class="inline-popover" id="portfolio-url-popover" data-toggle="popover"></span>
 	    {% if user_form.username.errors %}
 	    <span class="inline-popover" id="username-popover" data-toggle="popover" data-content="{{ user_form.username.errors.as_text }}"></span>
 	    {% endif %}
