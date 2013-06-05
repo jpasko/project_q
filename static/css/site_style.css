@@ -97,9 +97,9 @@ html, body {
     border-radius: 15px;
     background-color: rgba(0,0,0,0.75);
     color: white;
-    width: 250px;
+    width: 425px;
     margin: 80px auto 30px auto;
-    padding: 30px 10px 20px 40px;
+    padding: 30px 10px 1px 0px;
 }
 .contact-box {
     border-radius: 15px;
@@ -129,7 +129,7 @@ html, body {
 #folio24 {
     position: absolute;
     top: 1px;
-    right: 42px;
+    right: 41px;
     color: #656565;
     background: rgb(247,247,247);
     padding: 4px 3px 0 1px;

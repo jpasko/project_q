@@ -9,7 +9,8 @@
     border-radius: 5px;
     text-align: center;
     color: #121212;
-    width: 206px;
+    width: 320px;
+    margin: 0 auto 10px auto;
   }
   .wrapper {
     background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture9_500.jpg');
@@ -34,17 +35,30 @@
   {% if form.errors %}
   <p class="error-box">Your username and/or password were incorrect.</p>
   {% endif %}
-  <form method="post" action="">
+  <form method="post" action="" class="form-horizontal">
     {% csrf_token %}
-    <label for="id_username">Username or Email</label>
-    {{ form.username }}
-    <label for="id_password" style="float: left">Password</label>
-    <span style="padding-left: 3px">(<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)</span>
+
+
+    <div class="control-group">
+      <label class="control-label" for="id_username">Username or Email</label>
+      <div class="controls">
+	{{ form.username }}
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="id_password" style="float: left">
+	Password (<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)
+      </label>
+      <div class="controls">
     {{ form.password }}
+      </div>
+    </div>
     <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 220px; margin-top: 15px" />
+    <div style="width: 210px; margin: 0 auto">
+      <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 210px"/>
+      <p style="font-size: 0.75em">Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a></p>
+    </div>
   </form>
-  <p style="font-size: 0.75em">Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a></p>
 </div>
 {% endblock %}
 {% block footer %}
