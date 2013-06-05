@@ -45,6 +45,7 @@ html, body {
     color: #656565;
     margin: 0 -1px;
     padding: 5px 0;
+    min-height: 15px;
 }
 .input-box {
     position: relative;
@@ -82,7 +83,15 @@ html, body {
     width: 245px;
 }
 .get-started {
-    margin: 20px;
+    padding: 10px 0 1px 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: -1px;
+}
+.bottom-box {
+    background-color: rgb(130, 155, 175);
+    height: 30px;
+    margin: 0 -1px -21px -1px;
+    border-radius: 0 0 10px 10px;
 }
 .login-box {
     border-radius: 15px;

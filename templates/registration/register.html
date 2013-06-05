@@ -206,7 +206,9 @@
     <form method="POST" action="" id="payment-form" class="form-horizontal">
       {% csrf_token %}
       <div class="registration-header">
+	{% if paid %}
 	<h3>Your account details</h3>
+	{% endif %}
       </div>
       <div class="input-box">
 	<div class="control-group">
@@ -320,9 +322,11 @@
 	  <input type="checkbox" id="terms-of-service" style="display: inline; margin: 0">
 	  <p style="display: inline; color: #656565">I agree to the <a href="/terms/" target="_blank">Terms of Service</a></p>
 	</label>
-	<button type="submit" class="submit-button btn btn-success btn-large" style="display: block; margin: 20px auto; border-radius: 2px">
+	<button type="submit" class="submit-button btn btn-success btn-large" style="display: block; margin: 15px auto; border-radius: 2px">
 	  Get Started Now!
 	</button>
+      </div>
+      <div class="bottom-box">
       </div>
     </form>
   </div>
