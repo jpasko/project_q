@@ -5,60 +5,25 @@
   .inline-popover {
     display: inline-block;
   }
+  .popover {
+    color: #444444;
+    font-size: 1.2em;
+    min-width: 280px;
+  }
   #portfolio-url-popover,#username-popover {
     position: relative;
-    padding-bottom: 22px;
+    padding-bottom: 10px;
   }
   #email-popover {
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
   }
   #password-popover {
     position: relative;
+    padding-bottom: 4px;
   }
   .popover-title {
     display: none;
-  }
-  form {
-    border-left: 1px solid #c4c4c4;
-    border-right: 1px solid #c4c4c4;
-    border-bottom: 1px solid #c4c4c4;
-    -moz-box-shadow: 3px 3px 2px #e0e0e0;
-    -webkit-box-shadow: 3px 3px 2px #e0e0e0;
-    box-shadow: 3px 3px 2px #e0e0e0;
-  }
-  .signup-title {
-    text-align: center;
-    font-size: 2em;
-  }
-  .form-title h3 {
-    margin: 5px auto auto auto;
-    font-size: 1em;
-  }
-  .form-title {
-    text-align: center;
-    border-top: 1px solid #d6d6d6;
-    border-bottom: 1px solid #d6d6d6;
-    font-size: 1.5em;
-    height: 40px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-background: rgb(255,255,255); /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2ZiZmJmYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2Y3ZjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 47%, rgba(247,247,247,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(251,251,251,1)), color-stop(100%,rgba(247,247,247,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(251,251,251,1) 47%,rgba(247,247,247,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
-  }
-  .form-body {
-    text-align: center;
-    overflow: hidden;
-    margin-bottom: 20px;
-    width: 400px;
   }
   .card-images-amex {
     margin: -126px 0 -32px 0;
@@ -79,17 +44,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     margin: -32px 0 -128px 0;
   }
   .cvc-image {
-    padding-bottom: 10px;
-    padding-left: 5px;
+    margin-left: 10px;
   }
   .processing-errors, .payment-errors {
-    width: 220px;
-    margin: 0 auto;
+    width: 468px;
+    margin: 5px auto;
     border: 1px solid #ff4d42;
     background: #ffe2d6;
     border-radius: 5px;
     color: #424242;
-    margin-bottom: 3px;
+    padding: 5px;
   }
   .centered-box {
     margin: 0 auto;
@@ -103,20 +67,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   img.grayscale:hover {
     filter: none;
     -webkit-filter: grayscale(0%);
-}
+  }
+  .wrapper {
+    background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture13_500.jpg');
+  }
+  .bullet-special, .dull-link-special, .llc-special {
+    color: rgb(70,70,70) !important;
+  }
+  .footer-special {
+    border-top: 1px solid rgb(160, 160, 160);
+  }
 </style>
 {% endblock %}
 {% block script %}
 {% if not paid %}
 <script>
   $(function() {
-    //$('#id_username').focus();
-
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
       $('#portfolio-url-popover').popover('destroy');
       if ($('#id_username').val()) {
-        var url = "URL: " + $('#id_username').val() + ".{{ DOMAIN }}";
+        var url = $('#id_username').val() + ".{{ DOMAIN }}";
         $('#portfolio-url-popover').popover({content: url});
         $('#portfolio-url-popover').popover('show');
       }
@@ -164,13 +135,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   }
   
   $(function() {
-    //$('#id_username').focus();
-
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
       $('#portfolio-url-popover').popover('destroy');
       if ($('#id_username').val()) {
-        var url = "URL: " + $('#id_username').val() + ".{{ DOMAIN }}";
+        var url = $('#id_username').val() + ".{{ DOMAIN }}";
         $('#portfolio-url-popover').popover({content: url});
         $('#portfolio-url-popover').popover('show');
       }
@@ -224,111 +193,137 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 </div>
 <!-- End modals -->
 <div class="container" style="padding: 30px 0">
-  <div class="signup-title colored">
-    {% if not paid %}
-    <h3 style="display: inline-block"><span style="font-size: 1.5em">35</span> uploads. For free. 
-      <a href="/register/" style="text-decoration: none; color: 1369be">Want more?</a>
-    </h3>
-    {% elif account_type == "premium" %}
-    <h3><span style="font-size: 1.5em">500</span> uploads &bull; $6 <span style="font-size: 0.7em">per month</span></h3>
-    {% else %}
-    <h3><span style="font-size: 1.5em">1500</span> uploads &bull; $9 <span style="font-size: 0.7em">per month</span></h3>
-    {% endif %}
-  </div>
-  <div class="centered-box">
-    <form method="POST" action="" id="payment-form" style="width: 400px;">
+  <div class="registration-form">
+    <div class="account-type">
+      {% if not paid %}
+      <h3 style="display: inline-block"><span style="font-size: 1.5em">35</span> uploads, for free.</h3>
+      {% elif account_type == "premium" %}
+      <h3><span style="font-size: 1.5em">500</span> uploads &bull; $6 <span style="font-size: 0.7em">per month</span></h3>
+      {% else %}
+      <h3><span style="font-size: 1.5em">1500</span> uploads &bull; $9 <span style="font-size: 0.7em">per month</span></h3>
+      {% endif %}
+    </div>
+    <form method="POST" action="" id="payment-form" class="form-horizontal">
       {% csrf_token %}
-      <div class="form-title">
-	<h3>Your Account</h3>
+      <div class="registration-header">
+	<h3>Your account details</h3>
       </div>
-
-      <div class="form-body" style="padding-bottom: 20px">
-
-	{{ user_form.username }}
-	<span class="inline-popover" id="portfolio-url-popover" data-toggle="popover"></span>
-	{% if user_form.username.errors %}
-	<span class="inline-popover" id="username-popover" data-toggle="popover" data-content="{{ user_form.username.errors.as_text }}"></span>
-	{% endif %}
-
-	{{ user_form.email }}
-	{% if user_form.email.errors %}
-	<span class="inline-popover" id="email-popover" data-toggle="popover" data-content="{{ user_form.email.errors.as_text }}"></span>
-	{% endif %}
-
-	{{ user_form.password1 }}
-	{% if user_form.password1.errors or user_form.password2.errors or user_form.non_field_errors %}
-	<span class="inline-popover" id="password-popover" data-toggle="popover" data-content="* These passwords must match!"></span>
-	{% endif %}
-	{{ user_form.password2 }}
+      <div class="input-box">
+	<div class="control-group">
+	  <label class="control-label registration-label" for="id_username">Username</label>
+	  <div class="controls">
+	    <input class="registration-input" id="id_username" type="text" placeholder="Username" name="username" maxlength="30" />
+	    <span class="inline-popover" id="portfolio-url-popover" data-toggle="popover"></span>
+	    {% if user_form.username.errors %}
+	    <span class="inline-popover" id="username-popover" data-toggle="popover" data-content="{{ user_form.username.errors.as_text }}"></span>
+	    {% endif %}
+	  </div>
+	</div>
+	<div class="control-group">
+	  <label class="control-label registration-label" for="id_email">Your email</label>
+	  <div class="controls">
+	    <input class="registration-input" type="text" placeholder="Email" name="email" id="id_email" />
+	    {% if user_form.email.errors %}
+	    <span class="inline-popover" id="email-popover" data-toggle="popover" data-content="{{ user_form.email.errors.as_text }}"></span>
+	    {% endif %}
+	  </div>
+	</div>
+	<div class="control-group">
+	  <label class="control-label registration-label" for="id_password1">Password</label>
+	  <div class="controls">
+	    <input class="registration-input" type="password" placeholder="Password" name="password1" id="id_password1" />
+	    {% if user_form.password1.errors or user_form.password2.errors or user_form.non_field_errors %}
+	    <span class="inline-popover" id="password-popover" data-toggle="popover" data-content="* These passwords must match!"></span>
+	    {% endif %}
+	  </div>
+	</div>
+	<div class="control-group">
+	  <label class="control-label registration-label" for="id_password2">Password (again)</label>
+	  <div class="controls">
+	    <input class="registration-input" type="password" placeholder="Password (again)" name="password2" id="id_password2" />
+	  </div>
+	</div>
       </div>
-
       {% if paid %}
-      <div class="form-title">
-	<h3>Billing Information</h3>
+      <div class="registration-header">
+	<h3>Your payment information</h3>
       </div>
-      <div style="margin: 0 auto; width: 300px">
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-amex grayscale">
+      <div class="input-box">
+	<div style="margin: 0 auto; width: 300px; padding-bottom: 20px">
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-amex grayscale">
+	  </div>
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-visa grayscale">
+	  </div>
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-mastercard grayscale">
+	  </div>
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-discover grayscale">
+	  </div>
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-jcb grayscale">
+	  </div>
+	  <div style="overflow: hidden; display: inline-block">
+	    <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-diners grayscale">
+	  </div>
 	</div>
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-visa grayscale">
+	<div class="control-group">
+	  <label class="control-label registration-label" for="id_name">Cardholder's Name</label>
+	  <div class="controls">
+	    <input class="registration-input" type="text" placeholder="Cardholder's Name" id="id_name"/>
+	  </div>
 	</div>
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-mastercard grayscale">
-	</div>
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-discover grayscale">
-	</div>
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-jcb grayscale">
-	</div>
-	<div style="overflow: hidden; display: inline-block">
-	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-diners grayscale">
-	</div>
-      </div>
-      <p style="text-align: center; padding-top: 10px"><i class="icon-ok"></i><em> We accept all major credit cards</em></p>
-
-      <div class="form-body" style="padding-top: 20px">
-
-	<input type="text" placeholder="Cardholder's Name" id="id_name"/>
-
 	<p class="payment-errors" style="display: none"></p>
 	{% if error %}
 	<p class="processing-errors">{{ error }}</p>
 	{% endif %}
-
-	<input type="text" size="20" autocomplete="off" class="card-number" id="card-number-id" placeholder="Card Number"/>
-	<div style="overflow: hidden">
-	  <input type="text" size="4" autocomplete="off" class="card-cvc" id="cvc-id" style="width: 135px" placeholder="CVC (security code)"/>
-	  <img src="{{ STATIC_URL }}img/cvc.png" class="cvc-image">
-	</div>
-	<div style="display: inline-block">
-
-	  <div class="input" style="display: inline-block; padding-left: 15px">
-	    <select class="card-expiry-month" style="width: 50px">
-              {% for month in months %}
-              <option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
-              {% endfor %}
-	    </select>
-	    <select class="card-expiry-year" style="width: 70px">
-              {% for year in years %}
-              <option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
-              {% endfor %}
-	    </select>
+	<div class="control-group">
+	  <label class="control-label registration-label" for="card-number-id">Card Number</label>
+	  <div class="controls">
+	    <input class="registration-input" type="text" size="20" autocomplete="off" class="card-number" id="card-number-id" placeholder="Card Number"/>
 	  </div>
-	  <label for="expiry_date" style="display: inline-block; font-size: 1.2em">Expiration Date</label>
+	</div>
+
+	<div class="control-group">
+	  <label class="control-label registration-label" for="cvc-id">CVC (security code)</label>
+	  <div class="controls">
+	    <div style="overflow: hidden">
+	      <input type="text" size="4" autocomplete="off" class="card-cvc" id="cvc-id" style="width: 168px" placeholder="CVC (security code)"/>
+	      <img src="{{ STATIC_URL }}img/cvc.png" class="cvc-image">
+	    </div>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <label class="control-label registration-label" for="card_expiry_month">Expiration Date</label>
+	  <div class="controls">
+	    <div class="input" style="display: inline-block">
+	      <select class="card-expiry-month" style="width: 70px">
+		{% for month in months %}
+		<option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
+		{% endfor %}
+	      </select>
+	      <select class="card-expiry-year" style="width: 80px">
+		{% for year in years %}
+		<option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
+		{% endfor %}
+	      </select>
+	    </div>
+	  </div>
 	</div>
       </div>
       <!-- End if paid -->
       {% endif %}
-      <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; width: 100%">
-      <label style="text-align: center">
-	<input type="checkbox" id="terms-of-service" style="display: inline; margin: 0">
-	<p style="display: inline">I agree to the <a href="/terms/" target="_blank">Terms of Service</a></p>
-      </label>
-      <button type="submit" class="submit-button btn btn-primary btn-large" style="display: block; margin: 20px auto; border-radius: 2px">
-	Get Started Now!
-      </button>
+      <div class="get-started">
+	<label style="text-align: center">
+	  <input type="checkbox" id="terms-of-service" style="display: inline; margin: 0">
+	  <p style="display: inline; color: #656565">I agree to the <a href="/terms/" target="_blank">Terms of Service</a></p>
+	</label>
+	<button type="submit" class="submit-button btn btn-success btn-large" style="display: block; margin: 20px auto; border-radius: 2px">
+	  Get Started Now!
+	</button>
+      </div>
     </form>
   </div>
 </div>
