@@ -191,13 +191,13 @@ $(function() {
 	  {% if profile.banner %}
 	  <div class="pretty_file_input">
 	    <img id="banner-img" src="{{ profile.banner.url }}" style="background: white">
-	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently" class="hide">
-	    <a class="btn btn-default" onclick="$('#id_banner').click();"><strong>Change</strong></a>
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();" placeholder="None currently" class="hide">
+	    <a class="btn btn-default" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();"><strong>Change</strong></a>
 	  </div>
 	  {% else %}
 	  <div class="pretty_file_input">
-	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" placeholder="None currently">
-	    <a class="btn btn-default" onclick="$('#id_banner').click();"><strong>Browse</strong></a>
+	    <input id="id_banner_styled" type="text" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();" placeholder="None currently">
+	    <a class="btn btn-default" onclick="$('#id_banner').click();" ontouchstart="$('#id_banner').click();"><strong>Browse</strong></a>
 	  </div>
 	  {% endif %}
 	</div>
