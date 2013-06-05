@@ -42,9 +42,10 @@
     <span style="padding-left: 3px">(<a href="https://www.{{ DOMAIN }}/accounts/password/reset/">forgot?</a>)</span>
     {{ form.password }}
     <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 220px; margin-top: 20px" />
+    <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 220px; margin-top: 15px" />
   </form>
-  </div>
+  <p style="font-size: 0.75em">Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a></p>
+</div>
 {% endblock %}
 {% block footer %}
 {% include "footer_special.html" %}
