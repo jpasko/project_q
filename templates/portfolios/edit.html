@@ -12,12 +12,17 @@
   #id_banner_styled {
     width: 125px;
   }
+  #id_banner {
+    position: absolute;
+    left: -500px;
+  }
   #favicon-img {
     height: 16px;
     max-width: 32px;
   }
   #id_favicon {
-    display: none;
+    position: absolute;
+    left: -500px;
   }
   #id_favicon_styled {
     width: 125px;
@@ -93,22 +98,13 @@ $(function() {
   $("#id_banner_styled,#change_banner").each(function() {
     $(this).bind("click", function() {
       $('#id_banner').click();
-      //$('#id_banner_styled').show();
-      //$('#banner-img').hide();
-      //$('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
     });
   });
-//  $('#id_banner_styled').bind("click", function() {
-//    $('#id_banner').click();
-//  });
-//  $('#change_banner').bind("click", function() {
-//    $('#id_banner').click();
-//  });
-//  $('#id_banner').bind("click", function() {
-//    $('#id_banner_styled').show();
-//    $('#banner-img').hide();
-//    $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
-//  });
+  $('#id_banner').bind("click", function() {
+    $('#id_banner_styled').show();
+    $('#banner-img').hide();
+    $('#id_banner_styled').val($(this).val().replace("C:\\fakepath\\", ""));
+  });
   $('#id_favicon').change(function() {
     $('#id_favicon_styled').val($(this).val().replace("C:\\fakepath\\", ""));
   });
@@ -197,7 +193,7 @@ $(function() {
 	  {% if form.banner.errors %}
 	  <p class="form-errors">Choose a valid image</p>
 	  {% endif %}
-	  <input type="file" name="banner" id="id_banner" class="hide" />
+	  <input type="file" name="banner" id="id_banner" />
 	  {% if profile.banner %}
 	  <div class="pretty_file_input">
 	    <img id="banner-img" src="{{ profile.banner.url }}" style="background: white">
@@ -235,7 +231,7 @@ $(function() {
 	  {% if form.favicon.errors %}
 	  <p class="form-errors">Favicon must be an image filetype</p>
 	  {% endif %}
-	  <input type="file" name="favicon" id="id_favicon" class="hide" />
+	  <input type="file" name="favicon" id="id_favicon" />
 	  {% if profile.favicon %}
 	  <div class="pretty_file_input">
 	    <img id="favicon-img" src="{{ profile.favicon.url }}" style="background: white">
