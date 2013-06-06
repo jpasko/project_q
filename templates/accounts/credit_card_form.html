@@ -1,5 +1,17 @@
 {% extends "portfolio_base.html" %}
 {% block title %}{{ profile.fullname }} | Billing Information{% endblock %}
+{% block head %}
+<style>
+  .controls {
+    width: 360px;
+  }
+  .control-label {
+    color: #656565;
+    font-size: 1.2em;
+    width: 210px !important;
+  }
+</style>
+{% endblock %}
 {% block script %}
 <script src="https://js.stripe.com/v1/" type="text/javascript"></script>
 <script type="text/javascript">
@@ -38,66 +50,86 @@
 {% endblock %}
 
 {% block content %}
-<div class="centered-box">
-  <h3 class="form-title">Your billing information</h3>
-  <div style="margin: 0 auto; width: 300px">
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-amex grayscale">
-    </div>
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-visa grayscale">
-    </div>
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-mastercard grayscale">
-    </div>
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-discover grayscale">
-    </div>
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-jcb grayscale">
-    </div>
-    <div style="overflow: hidden; display: inline-block">
-      <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-diners grayscale">
-    </div>
+<div class="customization-form">
+  <div class="customization-header">
+    <h3>Your billing information</h3>
   </div>
-  <p style="text-align: center; padding-top: 10px"><i class="icon-ok"></i><em>We accept all major credit cards</em></p>
-  {% if last_4 %}
-  <div class="current-card">
-    <p><em>Current card:</em> **** **** **** <b>{{ last_4 }}</b></p>
-  </div>
-  {% endif %}
-  <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; margin: 0 auto; padding-top: 10px; margin-bottom: 20px">
-  <p class="payment-errors"></p>
-  {% if error %}
-  <p class="processing-errors">{{ error }}</p>
-  {% endif %}
-  <form method="POST" action="" id="payment-form" style="padding-top: 10px; padding-left: 70px; width: 290px; margin: 0 auto; overflow: hidden">
+  <form method="POST" action="" id="payment-form" class="form-horizontal">
     {% csrf_token %}
-    <input type="text" style="width: 215px" placeholder="Cardholder's Name" id="id_name"/>
-    <input type="text" size="20" autocomplete="off" class="card-number" id="card-number-id" style="width: 215px" placeholder="Card Number"/>
-    <div style="overflow: hidden">
-      <input type="text" size="4" autocomplete="off" class="card-cvc" id="cvc-id" style="width: 127px" placeholder="CVC (security code)"/>
-      <img src="{{ STATIC_URL }}img/cvc.png" class="cvc-image">
-    </div>
-    <div style="display: inline-block">
-      <div class="input" style="display: inline-block">
-	<select class="card-expiry-month" style="width: 45px">
-          {% for month in months %}
-          <option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
-          {% endfor %}
-	</select>
-	<select class="card-expiry-year" style="width: 70px">
-          {% for year in years %}
-          <option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
-          {% endfor %}
-	</select>
+    <div class="customization-body">
+      <div style="margin: 0 auto 20px auto; width: 300px">
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-amex grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-visa grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-mastercard grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-discover grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-jcb grayscale">
+	</div>
+	<div style="overflow: hidden; display: inline-block">
+	  <img src="{{ STATIC_URL }}img/credit_cards_stacked.png" class="card-images-diners grayscale">
+	</div>
       </div>
-      <label for="expiry_date" style="display: inline-block; font-size: 1.2em">Expiration date</label>
+      {% if last_4 %}
+      <div class="current-card">
+	<p><em>Current card:</em> **** **** **** <b>{{ last_4 }}</b></p>
+      </div>
+      {% endif %}
+      <p class="payment-errors"></p>
+      {% if error %}
+      <p class="processing-errors">{{ error }}</p>
+      {% endif %}
+      <div class="control-group" style="margin-top: 20px">
+	<label class="control-label" for="id_name">Cardholder's Name</label>
+	<div class="controls">
+	  <input type="text" placeholder="Cardholder's Name" id="id_name"/>
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="card-number-id">Card Number</label>
+	<div class="controls">
+	  <input type="text" size="20" autocomplete="off" class="card-number" id="card-number-id" placeholder="Card Number"/>
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="cvc-id">CVC (security code)</label>
+	<div class="controls">
+	  <div style="overflow: hidden">
+	    <input type="text" size="4" autocomplete="off" class="card-cvc" id="cvc-id" style="width: 127px; margin-right: 12px" placeholder="CVC (security code)"/>
+	    <img src="{{ STATIC_URL }}img/cvc.png">
+	  </div>
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="card-expiry-id">Expiration Date</label>
+	<div class="controls">
+	  <div class="input" style="display: inline-block; padding-right: 67px">
+	    <select class="card-expiry-month" style="width: 70px" id="card-expiry-id">
+              {% for month in months %}
+              <option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
+              {% endfor %}
+	    </select>
+	    <select class="card-expiry-year" style="width: 80px">
+              {% for year in years %}
+              <option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
+              {% endfor %}
+	    </select>
+	  </div>
+	</div>
+      </div>
     </div>
-    <hr style="border-top: none; border-bottom: 1px solid #d6d6d6; width: 240px; margin-bottom: 20px">
-    <button type="submit" class="submit-button btn btn-info btn-large" style="display: block">
-      Update billing information
-    </button>
+    <div class="customization-footer" style="text-align: center">
+      <button type="submit" class="submit-button btn btn-default btn-large">
+	Update billing information
+      </button>
+    </div>
   </form>
 </div>
 {% endblock %}
