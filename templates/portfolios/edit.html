@@ -182,6 +182,23 @@ $(function() {
 	  <input id="id_title_size_display" type="text" value="" />
 	</div>
       </div>
+
+      <div class="control-group">
+	<label class="control-label" for="id_enable_banner">Use banner or title?</label>
+	<div class="controls">
+	  <input type="hidden" name="enable_banner" value="{{ profile.enable_banner }}" id="id_enable_banner" />
+	  <div class="btn-group" data-toggle="buttons-radio" id="enable_banner_radio">
+	    {% if profile.enable_banner %}
+	    <button type="button" class="btn btn-info active" value="True" style="width: 111px"><strong>Banner</strong></button>
+	    <button type="button" class="btn btn-default" style="width: 111px" value="False"><strong>Title</strong></button>
+	    {% else %}
+	    <button type="button" class="btn btn-default" value="True" style="width: 111px"><strong>Banner</strong></button>
+	    <button type="button" class="btn btn-info active" style="width: 111px" value="False"><strong>Title</strong></button>
+	    {% endif %}
+	  </div>
+	</div>
+      </div>
+
       <div class="control-group">
 	<label class="control-label" for="id_banner">Banner image</label>
 	<div class="controls">
@@ -201,22 +218,6 @@ $(function() {
 	    <a id="change_banner" class="btn btn-default"><strong>Browse</strong></a>
 	  </div>
 	  {% endif %}
-	</div>
-      </div>
-
-      <div class="control-group">
-	<label class="control-label" for="id_enable_banner">Use banner or title?</label>
-	<div class="controls">
-	  <input type="hidden" name="enable_banner" value="{{ profile.enable_banner }}" id="id_enable_banner" />
-	  <div class="btn-group" data-toggle="buttons-radio" id="enable_banner_radio">
-	    {% if profile.enable_banner %}
-	    <button type="button" class="btn btn-info active" value="True" style="width: 111px"><strong>Banner</strong></button>
-	    <button type="button" class="btn btn-default" style="width: 111px" value="False"><strong>Title</strong></button>
-	    {% else %}
-	    <button type="button" class="btn btn-default" value="True" style="width: 111px"><strong>Banner</strong></button>
-	    <button type="button" class="btn btn-info active" style="width: 111px" value="False"><strong>Title</strong></button>
-	    {% endif %}
-	  </div>
 	</div>
       </div>
 

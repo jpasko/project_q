@@ -325,6 +325,9 @@ $(document).ready(function(){
     {% csrf_token %}
     <input type="submit" value="New gallery" id="create-gallery">
   </form>
+  <a class="pull-right" role="button" data-toggle="modal" href="#delete-gallery-modal" style="text-decoration: none">
+    Delete gallery ({{ gallery.count }} item{% if gallery.count != 1 %}s{% endif %})
+  </a>
 </div>
 <!-- END helpful links -->
 <div class="row-fluid">
