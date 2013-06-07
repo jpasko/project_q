@@ -49,6 +49,18 @@
   .pencil:hover {
     text-decoration: none;
   }
+  #create-gallery {
+    margin-bottom: 2px;
+    background: none;
+    border: none;
+    color: #0088cc;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: normal;
+  }
+  #create-gallery:hover {
+    color: rgb(0, 85, 128);
+  }
 </style>
 {% endblock %}
 
@@ -306,6 +318,15 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- end modals -->
+<!-- Some helpful links -->
+<div class="row-fluid" style="margin: -10px 0 10px 0">
+  <a href="http://{{ username }}.{{ DOMAIN }}" style="text-decoration: none">&larr; All galleries</a>
+  <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form" style="display: inline">
+    {% csrf_token %}
+    <input type="submit" value="New gallery" id="create-gallery">
+  </form>
+</div>
+<!-- END helpful links -->
 <div class="row-fluid">
   <div class="span6">
     <!-- BEGIN uploader -->
@@ -375,7 +396,7 @@ $(document).ready(function(){
 {% if gallery.description %}
 <div class="row-fluid muted" style="margin-top: 20px">
   <div class="span2 offset1">
-    <p><strong>Description</strong></p>
+    <p>Description</p>
   </div>
   <div class="span8">
     <p>{{ gallery.description }}</p>

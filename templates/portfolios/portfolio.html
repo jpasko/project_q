@@ -74,7 +74,11 @@
 <div class="row-fluid">
   <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
     {% csrf_token %}
+    {% if profile.photo_count > 0 %}
     <input type="submit" value="New Gallery" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px">
+    {% else %}
+    <input type="submit" value="Start Here" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px; width: 200px">
+    {% endif %}
   </form>
 </div>
 {% if profile.show_get_started %}

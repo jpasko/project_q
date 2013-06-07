@@ -146,7 +146,7 @@ $(document).ready(function(){
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
     <div class="row-fluid sizeable-font" style="padding-bottom: 30px">
       <div class="pull-left">
-	<p style="display: inline; margin-right: 5px"><strong>This page is </strong></p>
+	<p style="display: inline; margin-right: 5px">This page is </p>
 	<div class="btn-group" style="display: inline">
 	  {% if profile.allow_about %}
 	  <button type="button" class="btn btn-info enable-about active" value="True"><strong style="font-size: 1.2em">Public</strong></button>
@@ -164,9 +164,9 @@ $(document).ready(function(){
     <div class="row-fluid sizeable-font" style="padding-bottom: 10px">
       <div class="span2">
 	{% if user.is_authenticated and username == user.username and profile.edit_mode %}
-	<a class="pencil muted" id="trigger-editable-about" href="#"><b>About</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+	<a class="pencil muted" id="trigger-editable-about" href="#">About<img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
 	{% elif profile.about %}
-	<p><b>About</b></p>
+	<p>About</p>
 	{% endif %}
       </div>
       <div class="span10">
@@ -196,9 +196,9 @@ $(document).ready(function(){
     <div class="row-fluid sizeable-font" style="padding-bottom: 10px">
       <div class="span2">
 	{% if user.is_authenticated and username == user.username and profile.edit_mode %}
-	<a class="pencil muted" id="trigger-editable-email" href="#"><b>Email</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+	<a class="pencil muted" id="trigger-editable-email" href="#">Email<img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
 	{% elif profile.email %}
-	<p><b>Email</b></p>
+	<p>Email</p>
 	{% endif %}
       </div>
       <div class="span10">
@@ -228,9 +228,9 @@ $(document).ready(function(){
     <div class="row-fluid sizeable-font" style="padding-bottom: 10px">
       <div class="span2">
 	{% if user.is_authenticated and username == user.username and profile.edit_mode %}
-	<a class="pencil muted" id="trigger-editable-phone" href="#"><b>Phone</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+	<a class="pencil muted" id="trigger-editable-phone" href="#">Phone<img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
 	{% elif profile.phone %}
-	<p><b>Phone</b></p>
+	<p>Phone</p>
 	{% endif %}
       </div>
       <div class="span10">
@@ -260,9 +260,9 @@ $(document).ready(function(){
     <div class="row-fluid sizeable-font" style="padding-bottom: 10px">
       <div class="span2">
 	{% if user.is_authenticated and username == user.username and profile.edit_mode %}
-	<a class="pencil muted" id="trigger-editable-location" href="#"><b>Location</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+	<a class="pencil muted" id="trigger-editable-location" href="#">Location<img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
 	{% elif profile.location %}
-	<p><b>Location</b></p>
+	<p>Location</p>
 	{% endif %}
       </div>
       <div class="span10">
@@ -288,44 +288,10 @@ $(document).ready(function(){
     </div>
     {% endif %}
 
-<!--
-    {% if user.is_authenticated and username == user.username or profile.website %}
-    <div class="row-fluid sizeable-font">
-      <div class="span2">
-	{% if user.is_authenticated and username == user.username %}
-	<a class="pencil muted" id="trigger-editable-website" href="#"><b>Website</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
-	{% elif profile.website %}
-	<p><b>Website</b></p>
-	{% endif %}
-      </div>
-      <div class="span10">
-	{% if user.is_authenticated and username == user.username %}
-	<div id="editable-website">
-	  {% if profile.website %}
-	  <a id="valid-website" href="{{ profile.website }}" target="_blank" style="text-decoration: none">{{ profile.website }}</a>
-	  {% else %}
-	  <p id="empty-website"><em>Currently empty</em></p>
-	  {% endif %}
-	  <input id="website-input" type="text" style="display: none" maxlength="500"></input>
-	</div>
-	<button type="button" class="btn btn-success" id="save-website" style="display: none; margin-bottom: 10px">
-	  <b>Save</b>
-	</button>
-	<button type="button" class="btn btn-default" id="cancel-website" style="display: none; margin-bottom: 10px">
-	  <i class="icon-remove"></i>
-	</button>
-	{% elif profile.website %}
-	<a href="{{ profile.website }}" target="_blank" style="text-decoration: none">{{ profile.website }}</a>
-	{% endif %}
-      </div>
-    </div>
-    {% endif %}
--->
-
     <div class="row-fluid sizeable-font">
       <div class="span2">
 	{% if user.is_authenticated and username == user.username and profile.edit_mode %}
-	<a class="pencil muted" id="trigger-editable-social" href="#"><b>Social</b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+	<a class="pencil muted" id="trigger-editable-social" href="#">Social<img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
 	{% endif %}
       </div>
       <div class="span10">
