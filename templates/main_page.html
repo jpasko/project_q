@@ -1,6 +1,7 @@
 {% extends "site_base.html" %}
 {% block title %}Your free online portfolio{% endblock %}
 {% block head %}
+<meta name="description" content="Folio24 makes it simple to share your best creative work online.  Get started with a free portfolio today!">
 <style>
   .top-banner {
     border: none !important;
@@ -79,7 +80,7 @@
     <div id="swipe">
       <div class="swipe-wrap">
 	<div style="position: relative" class="swipe-div">
-	  <img src="{{ STATIC_URL }}img/example1_border.jpg" alt="" class="slider-img">
+	  <img src="{{ STATIC_URL }}img/example1_border.jpg" alt="An example Folio24 portfolio by James Pasko." class="slider-img">
 	  <div class="slider-title">
 	    <a href="https://jpasko.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 	      <strong>View portfolio</strong>
@@ -87,7 +88,7 @@
 	  </div>
 	</div>
 	<div style="position: relative">
-	  <img src="{{ STATIC_URL }}img/example2_border.jpg" alt="" class="slider-img">
+	  <img src="{{ STATIC_URL }}img/example2_border.jpg" alt="Another example Folio24 portfolio." class="slider-img">
 	  <div class="slider-title">
 	    <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 	      <strong>View portfolio</strong>
@@ -95,7 +96,7 @@
 	  </div>
 	</div>
 	<div style="position: relative">
-	  <img src="{{ STATIC_URL }}img/example3_border.jpg" alt="" class="slider-img">
+	  <img src="{{ STATIC_URL }}img/example3_border.jpg" alt="Another example Folio24 portfolio." class="slider-img">
 	  <div class="slider-title">
 	    <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
 	      <strong>View portfolio</strong>
@@ -212,9 +213,9 @@
   <div class="featurette">
     <h3 class="featurette-heading colored" style="text-align: right">An intuitive interface. <span class="muted">Get running quickly.</span></h3>
     <div style="position: relative; padding-bottom: 180px; padding-top: 20px">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot4.jpg" class="interface-img" style="width: 525px">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot3.jpg" class="interface-img" style="position: absolute; top: 190px; left: 90px; width: 500px">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot2.jpg" class="interface-img" style="position: absolute; top: 60px; left: 320px; width: 550px">
+      <img src="{{ STATIC_URL }}img/screenshots/screenshot4.jpg" class="interface-img" style="width: 525px" alt="Multiple image uploader and gallery editor interface.">
+      <img src="{{ STATIC_URL }}img/screenshots/screenshot3.jpg" class="interface-img" style="position: absolute; top: 190px; left: 90px; width: 500px" alt="Each Folio24 portfolio comes with an easy-to-edit profile.">
+      <img src="{{ STATIC_URL }}img/screenshots/screenshot2.jpg" class="interface-img" style="position: absolute; top: 60px; left: 320px; width: 550px" alt="Easily manage galleries with a drag and drop interface.">
     </div>
   </div>
   <hr class="featurette-divider">
