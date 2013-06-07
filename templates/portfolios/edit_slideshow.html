@@ -1,0 +1,148 @@
+{% extends "portfolio_base.html" %}
+{% block title %}{{ profile.fullname }} | Edit Slideshow{% endblock %}
+{% block header %}{% endblock %}
+{% block head %}
+<style>
+  h3 {
+    margin: 0;
+  }
+  .select-image {
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  .hidden-form {
+    position: absolute;
+    left: -1000px;
+  }
+  .remove-image {
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  .removing-image {
+    display: inline;
+    margin-right: 138px;
+  }
+  .loading-image {
+    display: inline;
+    margin-right: 238px;
+  }
+  p.select {
+    margin: 5px 0;
+    font-size: 1.2em;
+    position: absolute;
+    left: 50px;
+  }
+  .customization-body {
+    padding-bottom: 20px;
+  }
+  .image-preview {
+    display: inline;
+    margin-right: 40px;
+    border: 5px solid rgb(130, 155, 175);
+  }
+  .edit-row {
+    margin: 0 0 20px 0;
+  }
+  .toggle-btn {
+    margin-right: 20px;
+  }
+</style>
+{% endblock %}
+{% block script %}
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/slideshow_editor.js"></script>
+{% endblock %}
+{% block content %}
+<!-- Error modal -->
+<div class="modal hide fade" role="dialog" tabindex="-1" id="error-modal" arialabelledby="error-modal-heading">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="error-modal-heading" style="color: #424242">Error!</h3>
+  </div>
+  <div class="modal-body">
+    <p style="color: #424242">That image didn't upload correctly.  Please try again.</p>
+    <button class="btn btn-default btn-large" data-dismiss="modal" aria-hidden="true">OK</button>
+  </div>
+</div>
+<!-- END modals -->
+<form class="hidden-form" method="post" id="ajax-form" enctype="multipart/form-data">
+  <input type="file" id="image-input" name="image" />
+</form>
+<div class="customization-form">
+  <div class="customization-header">
+    <h3>Slideshow!</h3>
+  </div>
+  <div class="customization-body">
+    <div class="edit-row">
+      <p class="select">Toggle slideshow</p>
+      <div class="btn-group toggle-btn">
+	{% if profile.enable_slideshow %}
+	<button type="button" class="btn btn-info active" id="slideshow-on"><strong>On</strong></button>
+	<button type="button" class="btn btn-default" id="slideshow-off"><strong>Off</strong></button>
+	{% else %}
+	<button type="button" class="btn btn-default" id="slideshow-on"><strong>On</strong></button>
+	<button type="button" class="btn btn-danger active" id="slideshow-off"><strong>Off</strong></button>
+	{% endif %}
+      </div>
+    </div>
+    <div class="edit-row">
+      <p class="select">Slideshow speed</p>
+      <div class="btn-group toggle-btn" style="display: block">
+	{% if profile.slow_slideshow %}
+	<button type="button" class="btn btn-info active" id="slideshow-slow"><strong>Slow</strong></button>
+	<button type="button" class="btn btn-default" id="slideshow-fast"><strong>Fast</strong></button>
+	{% else %}
+	<button type="button" class="btn btn-default" id="slideshow-slow"><strong>Slow</strong></button>
+	<button type="button" class="btn btn-info active" id="slideshow-fast"><strong>Fast</strong></button>
+	{% endif %}
+      </div>
+    </div>
+    <div class="edit-row">
+      <p class="select">Skip text (e.g. <em>click to skip</em>)</p>
+      <div>
+	<input type="text" style="margin-bottom: 0px" id="skip-text" value="{{ profile.skip_text }}" {% if not profile.skip_text %}placeholder="None currently"{% endif %} />
+	<button class="btn btn-default" style="margin-right: 20px" id="save-skip-text"><strong>Save</strong></button>
+      </div>
+    </div>
+  </div>
+  <div class="customization-title">
+    <h3>Images <span style="font-size: 0.5em">(recommended size: 1440 by 900 pixels)</span></h3>
+  </div>
+  <div class="customization-body">
+    <p class="select">First image</p>
+    {% if profile.slideshow_image_1 %}
+    <img class="image-preview" src="{{ profile.slideshow_thumbnail_1.url }}">
+    <button data-number="1" class="btn btn-default remove-image" id="remove-image-1" style="display: inline">Remove</button>
+    <button data-number="1" class="btn btn-default select-image" id="select-image-1" style="display: none">Select</button>
+    {% else %}
+    <button data-number="1" class="btn btn-default remove-image" id="remove-image-1" style="display: none">Remove</button>
+    <button data-number="1" class="btn btn-default select-image" id="select-image-1" style="display: inline">Select</button>
+    {% endif %}
+  </div>
+  <div class="customization-body">
+    <p class="select">Second image</p>
+    {% if profile.slideshow_image_2 %}
+    <img class="image-preview" src="{{ profile.slideshow_thumbnail_2.url }}">
+    <button data-number="2" class="btn btn-default remove-image" id="remove-image-2" style="display: inline">Remove</button>
+    <button data-number="2" class="btn btn-default select-image" id="select-image-2" style="display: none">Select</button>
+    {% else %}
+    <button data-number="2" class="btn btn-default remove-image" id="remove-image-2" style="display: none">Remove</button>
+    <button data-number="2" class="btn btn-default select-image" id="select-image-2" style="display: inline">Select</button>
+    {% endif %}
+  </div>
+  <div class="customization-body">
+    <p class="select">Third image</p>
+    {% if profile.slideshow_image_3 %}
+    <img class="image-preview" src="{{ profile.slideshow_thumbnail_3.url }}">
+    <button data-number="3" class="btn btn-default remove-image" id="remove-image-3" style="display: inline">Remove</button>
+    <button data-number="3" class="btn btn-default select-image" id="select-image-3" style="display: none">Select</button>
+    {% else %}
+    <button data-number="3" class="btn btn-default remove-image" id="remove-image-3" style="display: none">Remove</button>
+    <button data-number="3" class="btn btn-default select-image" id="select-image-3" style="display: inline">Select</button>
+    {% endif %}
+  </div>
+  <div class="customization-footer">
+  </div>
+</div>
+{% endblock %}

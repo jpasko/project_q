@@ -1063,3 +1063,109 @@ def delete_thumbnail(request, gallery_pk):
         gallery.save()
         results = {'success': True}
     return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def slideshow(request):
+    """
+    Allows a user to edit their slideshow.
+    """
+    username = request.subdomain
+    # Ensure that we cannot edit other user's profiles:
+    if not username == request.user.username:
+        raise Http404
+    profile = request.user.get_profile()
+    customer = request.user.customer
+    variables = RequestContext(request,
+                               {'username': username,
+                                'customer': customer,
+                                'profile': profile})
+    return render_to_response('portfolios/edit_slideshow.html', variables)
+
+def slideshow_settings(request):
+    """
+    Users can edit the settings on their slideshow.
+    """
+    username = request.subdomain
+    # Users must be logged in and viewing their profile to edit slideshow settings.
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    profile = request.user.get_profile()
+    results = {'success': False}
+    if request.method == 'POST':
+        if 'enable_slideshow' in request.POST:
+            enable_slideshow = request.POST.get('enable_slideshow') == 'True'
+            profile.enable_slideshow = enable_slideshow
+            profile.save()
+            results = {'success': True}
+        if 'slow_slideshow' in request.POST:
+            profile.slow_slideshow = request.POST.get('slow_slideshow') == 'True'
+            profile.save()
+            results = {'success': True}
+        if 'skip_text' in request.POST:
+            profile.skip_text = request.POST.get('skip_text')
+            profile.save()
+            results = {'success': True}
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def upload_slideshow_image(request, image_number):
+    """
+    POST here to upload slideshow images.
+    """
+    image_number = int(image_number)
+    username = request.subdomain
+    # Users must be logged in and viewing their.
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    profile = request.user.get_profile()
+    results = {'success': False,
+               'number': image_number}
+    if request.method == 'POST':
+        if request.FILES:
+            image = request.FILES['image']
+            if image_number == 1:
+                profile.slideshow_image_1 = image
+                url = profile.slideshow_image_1.url
+            elif image_number == 2:
+                profile.slideshow_image_2 = image
+                url = profile.slideshow_image_2.url
+            elif image_number == 3:
+                profile.slideshow_image_3 = image
+                url = profile.slideshow_image_3.url
+            try:
+                profile.save()
+            except Exception as e:
+                pass
+            else:
+                results['success'] = True
+                # Need to grab the URL after the field has been saved.
+                if image_number == 1:
+                    url = profile.slideshow_thumbnail_1.url
+                elif image_number == 2:
+                    url = profile.slideshow_thumbnail_2.url
+                else:
+                    url = profile.slideshow_thumbnail_3.url
+                results['url'] = url
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def delete_slideshow_image(request, image_number):
+    """
+    AJAX POST here to delete slideshow images.
+    """
+    image_number = int(image_number)
+    username = request.subdomain
+    # Users must be logged in and viewing their profile to edit slideshow settings.
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    profile = request.user.get_profile()
+    results = {'success': False}
+    if request.method == 'POST':
+        if image_number == 1:
+            profile.slideshow_image_1.delete(save=False)
+            results = {'success': True}
+        elif image_number == 2:
+            profile.slideshow_image_2.delete(save=False)
+            results = {'success': True}
+        elif image_number == 3:
+            profile.slideshow_image_3.delete(save=False)
+            results = {'success': True}
+        profile.save()
+    return HttpResponse(json.dumps(results), mimetype='application/json')

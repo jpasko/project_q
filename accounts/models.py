@@ -6,8 +6,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 
+from imagekit.models import ImageSpecField
 from imagekit.models.fields import ProcessedImageField
-from imagekit.processors import ResizeToFit
+from imagekit.processors import ResizeToFit, SmartResize
 
 from zebra.models import StripeCustomer
 
@@ -138,6 +139,43 @@ class UserProfile(models.Model):
                                   verbose_name='Favicon')
 
     edit_mode = models.BooleanField(default=True)
+
+    # Slideshow-specific fields:
+
+    enable_slideshow = models.BooleanField(default=False)
+
+    slow_slideshow = models.BooleanField(default=True)
+
+    skip_text = models.CharField(verbose_name='Skip text',
+                                 max_length=300,
+                                 blank=True)
+
+    slideshow_image_1 = ProcessedImageField([ResizeToFit(width=settings.SLIDESHOW_IMAGE_WIDTH,
+                                                         height=settings.SLIDESHOW_IMAGE_HEIGHT,
+                                                         upscale=False)],
+                                            upload_to=upload_to,
+                                            null=True,
+                                            blank=True)
+    slideshow_thumbnail_1 = ImageSpecField([SmartResize(settings.SLIDESHOW_THUMBNAIL_WIDTH, settings.SLIDESHOW_THUMBNAIL_HEIGHT)],
+                                           image_field='slideshow_image_1')
+
+    slideshow_image_2 = ProcessedImageField([ResizeToFit(width=settings.SLIDESHOW_IMAGE_WIDTH,
+                                                         height=settings.SLIDESHOW_IMAGE_HEIGHT,
+                                                         upscale=False)],
+                                            upload_to=upload_to,
+                                            null=True,
+                                            blank=True)
+    slideshow_thumbnail_2 = ImageSpecField([SmartResize(settings.SLIDESHOW_THUMBNAIL_WIDTH, settings.SLIDESHOW_THUMBNAIL_HEIGHT)],
+                                           image_field='slideshow_image_2')
+
+    slideshow_image_3 = ProcessedImageField([ResizeToFit(width=settings.SLIDESHOW_IMAGE_WIDTH,
+                                                         height=settings.SLIDESHOW_IMAGE_HEIGHT,
+                                                         upscale=False)],
+                                            upload_to=upload_to,
+                                            null=True,
+                                            blank=True)
+    slideshow_thumbnail_3 = ImageSpecField([SmartResize(settings.SLIDESHOW_THUMBNAIL_WIDTH, settings.SLIDESHOW_THUMBNAIL_HEIGHT)],
+                                           image_field='slideshow_image_3')
     
     def __unicode__(self):
         return u'Profile for %s' % self.user.username

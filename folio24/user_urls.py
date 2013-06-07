@@ -120,6 +120,18 @@ urlpatterns = patterns('',
     # A help page.
     url(r'^help/$', 'portfolios.views.help'),
 
+    # Edit the slideshow using this page.
+    url(r'^slideshow/$', 'portfolios.views.slideshow'),
+
+    # POST to this URL to configure the slideshow settings..
+    url(r'^configure_slideshow/$', 'portfolios.views.slideshow_settings'),
+
+    # POST to this URL to save a slideshow image.
+    url(r'^upload_slideshow_image/(\d+)/$', 'portfolios.views.upload_slideshow_image'),
+
+    # POST to this URL to delete a slideshow image.
+    url(r'^delete_slideshow_image/(\d+)/$', 'portfolios.views.delete_slideshow_image'),
+
     # Edit the profile picture
     url(r'^edit_profile_picture/$', 'portfolios.views.edit_profile_picture'),
 

@@ -34,7 +34,16 @@ class UserProfileForm(forms.ModelForm):
                    'twitter',
                    'wordpress',
                    'youtube',
-                   'edit_mode',)
+                   'edit_mode',
+                   'enable_slideshow',
+                   'slow_slideshow',
+                   'skip_text',
+                   'slideshow_image_1',
+                   'slideshow_thumbnail_1',
+                   'slideshow_image_2',
+                   'slideshow_thumbnail_2',
+                   'slideshow_image_3',
+                   'slideshow_thumbnail_3',)
 
 class ProfilePictureForm(forms.ModelForm):
     """
@@ -83,7 +92,16 @@ class ProfilePictureForm(forms.ModelForm):
                    'wordpress',
                    'youtube',
                    'banner',
-                   'edit_mode',)
+                   'edit_mode',
+                   'enable_slideshow',
+                   'slow_slideshow',
+                   'skip_text',
+                   'slideshow_image_1',
+                   'slideshow_thumbnail_1',
+                   'slideshow_image_2',
+                   'slideshow_thumbnail_2',
+                   'slideshow_image_3',
+                   'slideshow_thumbnail_3',)
 
 class UploadItemForm(forms.ModelForm):
     """
