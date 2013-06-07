@@ -17,7 +17,7 @@
         width: {{ profile.page_width }}px;
       }
       body {
-        background-color: #{{ profile.background_color }} !important;
+        background-color: #{{ profile.background_color }};
       }
       .muted {
         color: #{{ profile.text_color }} !important;
@@ -35,18 +35,21 @@
         padding-right: 5px !important;
       }
       {% endif %}
+      .dropdown-toggle {
+        background: none !important;
+      }
       .navbar-inverse .nav li.dropdown.open>.dropdown-toggle {
-        background-color: #{{ profile.background_color }} !important;
+        background-color: none !important;
       }
       .navbar-inner{
-        background: #{{ profile.background_color }} !important;
+        background: none !important;
         border: none !important;
       }
       .navbar-inner container{
-        background: #{{ profile.background_color }} !important;
+        background: none !important;
       }
       .navbar{
-        background: #{{ profile.background_color }} !important;
+        background: none !important;
       }
       .navbar .nav > li > a{
         text-shadow: none !important;
