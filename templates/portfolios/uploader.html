@@ -1,4 +1,4 @@
-<div class="muted" id="uploader">
+<div id="uploader">
   {% if profile.photo_count >= customer.account_limit %}
   <h4 style="color: red">You've reached your upload limit!</h4>
   <p style="color: #{{ profile.text_color}}">
@@ -23,9 +23,9 @@
 	<strong>Cancel</strong>
       </button>
     </div>
-    <p style="color: #{{ profile.text_color }}; width: 80%">Or <strong>drag and drop</strong> image files here.
+    <p style="color: #333333; width: 80%">Or <strong>drag and drop</strong> image files here.
       Files over <strong>{{ customer.max_file_size }} MB</strong> will be ignored.
-      <a href="https://{{ username }}.{{ DOMAIN }}/settings/">Upgrade</a> if
+      <a href="https://{{ username }}.{{ DOMAIN }}/settings/" style="text-decoration: none">Upgrade</a> if
       you want to upload a larger file.
     </p>
     <style>

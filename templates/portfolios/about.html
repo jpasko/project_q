@@ -85,14 +85,11 @@ $(document).ready(function(){
 });
 </script>
 {% endif %}
-
 {% endblock %}
-{% block content %}
+
+<!-- MODALS -->
+{% block modals %}
 {% if user.is_authenticated and user.username == username %}
-<div class="alert alert-error hide" id="ajax-alert">
-  <a class="close" data-dismiss="alert" href="#">&times;</a>
-  <p></p>
-</div>
 <!-- Modal for uploading a profile picture -->
 <div class="modal hide" role="dialog" tabindex="-1" id="profile-picture-modal" arialabelledby="profile-picture-heading">
   <div class="modal-header">
@@ -140,9 +137,23 @@ $(document).ready(function(){
   </div>
 </div>
 {% endif %}
-<!-- End modal -->
+{% endblock %}
+<!-- END MODALS -->
+
+{% block content %}
+{% if user.is_authenticated and user.username == username %}
+<div class="alert alert-error hide" id="ajax-alert">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <p></p>
+</div>
+{% endif %}
 <div class="row-fluid muted">
   <div class="span9">
+    <!--
+    <div class="row-fluid" style="margin: -10px 0 20px 0">
+      <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; Back</a>
+    </div>
+    -->
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}
     <div class="row-fluid sizeable-font" style="padding-bottom: 30px">
       <div class="pull-left">

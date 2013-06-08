@@ -2,6 +2,8 @@
 {% block title %}{{ profile.fullname }}{% endblock %}
 {% block script %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/get-thumbnail.js"></script>
+<script type="text/javascript" src="https://raw.github.com/malsup/cycle/master/jquery.cycle.lite.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/slideshow.js"></script>
 {% if user.is_authenticated and user.username == username %}
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
@@ -9,6 +11,36 @@
 {% endif %}
 <script>
   $(document).ready(function(){
+
+    {% if profile.enable_slideshow %}
+    {% if not user.is_authenticated or user.username != username or not profile.edit_mode %}
+    {% if profile.slideshow_image_1 or profile.slideshow_image_2 or profile.slideshow_image_3 %}
+    var speed = {% if profile.slow_slideshow %}3500{% else %}1000{% endif %};
+    var timeout = {% if profile.slow_slideshow %}6000{% else %}4000{% endif %};
+    if (window.sessionStorage.getItem("slideshow") != "disable") {
+      window.sessionStorage.setItem("slideshow", "disable");
+      $('.wrapper').data('background', $('.wrapper').css('background'));
+      $('.wrapper').css('background', 'none');
+      $('.wrapper').css('cursor', 'pointer');
+      if ($("#background-container div").length == 1) {
+        var styles = {
+          opacity : "1.0",
+          display : "block",
+          zIndex : "3",
+          position : "absolute",
+          top : "0"
+        };
+        $("#background-container").find("div").css( styles );
+      } else {
+        $('#background-container').cycle({ speed: speed, timeout: timeout });
+      }
+      $('#background-container').fadeIn(1000);
+      $('#hidden-by-slideshow').hide();
+    }
+    {% endif %}
+    {% endif %}
+    {% endif %}
+
     $(".darken").hover(function() {
       $(this).find(".edit-button").show();
       var image = $(this).find("img");
@@ -61,26 +93,23 @@
   }
 </style>
 {% endblock %}
-{% block content %}
-{% if user.is_authenticated and user.username == username %}
-{% if profile.photo_count > customer.account_limit %}
-<h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
-<p style="color: orange"><em>You've exceeded your upload limit ({{ customer.account_limit }} uploads)!  
-    Please either <a href="/settings">upgrade</a> your account or delete the extra uploads 
-    to re-enable your public portfolio.</em></p>
-{% endif %}
-{% endif %}
-{% if user.is_authenticated and user.username == username and profile.edit_mode %}
-<div class="row-fluid">
-  <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
-    {% csrf_token %}
-    {% if profile.photo_count > 0 %}
-    <input type="submit" value="New Gallery" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px">
-    {% else %}
-    <input type="submit" value="Start Here" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px; width: 200px">
-    {% endif %}
-  </form>
+
+{% block backgrounds %}
+<h4 id="skip-text-display">{{ profile.skip_text }}</h4>
+<div id="background-container">
+  {% if profile.slideshow_image_1 %}
+  <div style="background-image: url('{{ profile.slideshow_image_1.url }}');"></div>
+  {% endif %}
+  {% if profile.slideshow_image_2 %}
+  <div style="background-image: url('{{ profile.slideshow_image_2.url }}');"></div>
+  {% endif %}
+  {% if profile.slideshow_image_3 %}
+  <div style="background-image: url('{{ profile.slideshow_image_3.url }}');"></div>
+  {% endif %}
 </div>
+{% endblock %}
+
+{% block modals %}
 {% if profile.show_get_started %}
 <!-- Get-started modal -->
 <div class="modal hide fade" role="dialog" tabindex="-1" id="get-started-modal" arialabelledby="get-started-heading">
@@ -102,8 +131,30 @@
   </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.username == username %}
+{% if profile.photo_count > customer.account_limit %}
+<h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
+<p style="color: orange"><em>You've exceeded your upload limit ({{ customer.account_limit }} uploads)!  
+    Please either <a href="/settings">upgrade</a> your account or delete the extra uploads 
+    to re-enable your public portfolio.</em></p>
 {% endif %}
-<div class="row-fluid muted">
+{% endif %}
+{% if user.is_authenticated and user.username == username and profile.edit_mode %}
+<div class="row-fluid">
+  <form method="post" action="/create_gallery/" enctype="multipart/form-data" id="gallery-form">
+    {% csrf_token %}
+    {% if profile.photo_count > 0 %}
+    <input type="submit" value="New Gallery" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px">
+    {% else %}
+    <input type="submit" value="Start Here" class="btn btn-info btn-large" id="create-gallery" style="border-radius: 10px; width: 200px">
+    {% endif %}
+  </form>
+</div>
+{% endif %}
+<div class="row-fluid muted" id="hidden-by-slideshow">
   <div class="span12">
     <ul class="thumbnails sortable-galleries">
       {% for gallery in galleries %}

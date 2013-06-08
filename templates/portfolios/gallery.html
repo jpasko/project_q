@@ -205,20 +205,8 @@ $(document).ready(function(){
 
 {% block title %}{{ profile.fullname }}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
 
-{% block content %}
-
-{% if user.is_authenticated and user.username == username %}
-{% if profile.photo_count > customer.account_limit %}
-<h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
-<p style="color: orange"><em>This gallery is currently <b>hidden</b> because you've exceeded your upload limit ({{ customer.account_limit }} uploads). 
-    Please either <a href="/settings">upgrade</a> your account or delete the excess 
-    photos to re-enable your public portfolio.</em></p>
-{% endif %}
-{% endif %}
-
 {% if user.is_authenticated and username == user.username and profile.edit_mode %}
-<!-- Edit mode -->
-<!-- Upload modals -->
+{% block modals %}
 <!-- Delete gallery -->
 <div class="modal hide" role="dialog" tabindex="-1" id="delete-gallery-modal" arialabelledby="delete-gallery-heading">
   <div class="modal-header">
@@ -235,6 +223,7 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+<!-- Upload modals -->
 <!-- Upload photo -->
 <div class="modal hide" role="dialog" tabindex="-1" id="upload-photo-modal" arialabelledby="upload-photo-heading">
   <div class="modal-header">
@@ -318,6 +307,22 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- end modals -->
+{% endblock %}
+{% endif %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.username == username %}
+{% if profile.photo_count > customer.account_limit %}
+<h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
+<p style="color: orange"><em>This gallery is currently <b>hidden</b> because you've exceeded your upload limit ({{ customer.account_limit }} uploads). 
+    Please either <a href="/settings">upgrade</a> your account or delete the excess 
+    photos to re-enable your public portfolio.</em></p>
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated and username == user.username and profile.edit_mode %}
+<!-- Edit mode -->
 <!-- Some helpful links -->
 <div class="row-fluid" style="margin: -10px 0 10px 0">
   <a href="http://{{ username }}.{{ DOMAIN }}" style="text-decoration: none">&larr; All galleries</a>
@@ -381,7 +386,7 @@ $(document).ready(function(){
 <!-- Display mode -->
 <div class="gallery-header">
   <div class="back-to-portfolio pull-left">
-    <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; back</a>
+    <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted" id="back-to-galleries">&larr; Back</a>
   </div>
   <div class="title-gallery">
     <h4 class="muted gallery-title-header">{% if gallery.title %}{{ gallery.title }}{% endif %}</h4>

@@ -84,6 +84,7 @@
 {% if not paid %}
 <script>
   $(function() {
+    $('#id_username').focus();
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
     });
@@ -132,6 +133,7 @@
   }
   
   $(function() {
+    $('#id_username').focus();
     $('#id_username').change(function() {
       $('#username-popover').popover('destroy');
     });

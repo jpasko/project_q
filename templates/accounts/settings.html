@@ -7,8 +7,9 @@
   }
 </style>
 {% endblock %}
-{% block content %}
+
 <!-- Modals -->
+{% block modals %}
 <div class="modal hide" role="dialog" tabindex="-1" id="delete-account" arialabelledby="delete-account-heading">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -64,7 +65,10 @@
     <button class="btn btn-default btn-large" data-dismiss="modal">Close</button>
   </div>
 </div>
+{% endblock %}
 <!-- End modals -->
+
+{% block content %}
 <div class="customization-form">
   <div class="customization-header">
     <h3>Upgrade your account</h3>

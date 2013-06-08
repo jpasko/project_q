@@ -1,9 +1,9 @@
-<div class="muted" id="gallery-editor">
+<div id="gallery-editor">
   <div class="hide" id="gallery-pk">{{ gallery.pk }}</div>
   <!-- BEGIN Title -->
   <div class="row-fluid">
     <div class="span4">
-      <a class="pencil muted" id="trigger-editable-title" href="#">
+      <a class="pencil gallery-editor-pencil" id="trigger-editable-title" href="#">
 	<strong>Title </strong>
 	<img src="{{ STATIC_URL }}img/pencil_dull.png">
       </a>
@@ -29,7 +29,7 @@
   <!-- BEGIN Description -->
   <div class="row-fluid" style="margin-top: 5px">
     <div class="span4">
-      <a class="pencil muted" id="trigger-editable-description" href="#"><b>Description </b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
+      <a class="pencil gallery-editor-pencil" id="trigger-editable-description" href="#"><b>Description </b><img src="{{ STATIC_URL }}img/pencil_dull.png"></a>
     </div>
     <div class="span8">
       <div id="editable-description">
@@ -52,7 +52,7 @@
   <!-- BEGIN Toggle private -->
   <div class="row-fluid" style="margin-top: 10px">
     <div class="span4">
-      <p class="muted" style="display: inline"><strong>This gallery is </strong></p>
+      <p style="display: inline"><strong>This gallery is </strong></p>
     </div>
     <div class="span8">
       <div class="btn-group">
