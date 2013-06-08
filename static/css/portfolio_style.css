@@ -37,7 +37,7 @@ a.footer-logo:hover {
 }
 div.darken {
     display: inline-block;
-    background: black;
+    //background: black;
     padding: 0;
 }
 div.darken img {
@@ -419,11 +419,12 @@ img.grayscale:hover {
     background-color: rgba(0,0,0,0.25);
     border-radius: 2px;
     padding: 5px 10px;
-    position: fixed;
-    right: 50px;
+    position: absolute;
     bottom: 50px;
+    right: 50%;
     z-index: 999;
     font-weight: normal;
+    display: none;
 }
 .gallery-editor-pencil {
     color: #333333;

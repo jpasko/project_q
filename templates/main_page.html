@@ -11,6 +11,7 @@
 {% block script %}
 <script>
   $(document).ready(function(){
+    window.sessionStorage.setItem("slideshow", "enable");
     $("#swipe-wrap").css('width', $(window).width() * 3 + 'px');
     $("#landing-page-box").fadeIn(1000);
     $(window).scroll(function() {

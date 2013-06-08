@@ -22,6 +22,7 @@
       $('.wrapper').data('background', $('.wrapper').css('background'));
       $('.wrapper').css('background', 'none');
       $('.wrapper').css('cursor', 'pointer');
+      $('#skip-text-display').show();
       if ($("#background-container div").length == 1) {
         var styles = {
           opacity : "1.0",
@@ -55,12 +56,14 @@
 	right: left,
         top: (image.height() - title.outerHeight()) / 2
       });
+      $(this).css('background', 'black');
       image.fadeTo(75, 0.6);
       title.show();
     }, function() {
       $(this).find(".edit-button").hide();
       $(this).find("img").fadeTo(10, 1);
       $(this).find(".gallery-title").hide();
+      $(this).css('background', 'none');
     });
     $('#id_thumbnail').change(function() {
       $('#id_thumbnail_styled').val($(this).val().replace("C:\\fakepath\\", ""));
@@ -95,7 +98,6 @@
 {% endblock %}
 
 {% block backgrounds %}
-<h4 id="skip-text-display">{{ profile.skip_text }}</h4>
 <div id="background-container">
   {% if profile.slideshow_image_1 %}
   <div style="background-image: url('{{ profile.slideshow_image_1.url }}');"></div>
@@ -134,6 +136,9 @@
 {% endblock %}
 
 {% block content %}
+{% if profile.skip_text %}
+<h4 id="skip-text-display">{{ profile.skip_text }}</h4>
+{% endif %}
 {% if user.is_authenticated and user.username == username %}
 {% if profile.photo_count > customer.account_limit %}
 <h1 style="color: red">UPLOAD LIMIT EXCEEDED</h1>
