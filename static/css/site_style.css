@@ -259,10 +259,11 @@ ul {
     display: none;
 }
 #example-box {
+    display: none;
     z-index: 3;
     text-align: center;
     width: 100%;
-    background-color: rgba(2, 29, 51, 0.8);
+    background-color: rgba(28, 113, 134, 0.8);
     padding: 10px 0;
     position: fixed;
     bottom: 0;

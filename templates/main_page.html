@@ -13,12 +13,14 @@
   $(document).ready(function(){
     window.sessionStorage.setItem("slideshow", "enable");
     $("#swipe-wrap").css('width', $(window).width() * 3 + 'px');
-    $("#landing-page-box").fadeIn(1000);
+    $("#landing-page-box").fadeIn(600, function() {
+      $("#example-box").slideDown();
+    });
     $(window).scroll(function() {
       if($(this).scrollTop() > 40){
-        $("#example-box").fadeOut();
+        $("#example-box").slideUp();
       } else {
-       $("#example-box").fadeIn();
+       $("#example-box").slideDown();
       }
     });
     $('a[href^="#"]').on('click',function (e) {
