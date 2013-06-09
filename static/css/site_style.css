@@ -194,19 +194,19 @@ ul {
 }
 @media screen and (max-width: 900px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_900.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_900.jpg');
 	min-height: 563px;
     }
 }
 @media screen and (max-width: 1286px) and (min-width: 901px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_1280.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1280.jpg');
 	min-height: 800px;
     }
 }
 @media screen and (min-width: 1287px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_1440.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1440.jpg');
 	min-height: 900px;
     }
 }
@@ -255,7 +255,7 @@ ul {
     margin: 80px auto 0 auto;
     padding: 30px 0 20px 0;
     border-radius: 15px;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,0.85);
     display: none;
 }
 #example-box {
@@ -263,7 +263,7 @@ ul {
     z-index: 3;
     text-align: center;
     width: 100%;
-    background-color: rgba(4, 70, 107, 0.65);
+    background-color: rgba(15, 243, 124, 0.65);
     padding: 10px 0;
     position: fixed;
     bottom: 0;
@@ -336,7 +336,7 @@ ul {
     color: #29333d;
 }
 .masthead {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.25);
     position: absolute;
     width: 100%;
     height: 65px;

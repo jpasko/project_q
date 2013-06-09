@@ -128,7 +128,9 @@
 
 {% block content %}
 {% if profile.skip_text %}
-<h4 id="skip-text-display">{{ profile.skip_text }}</h4>
+<div id="skip-text-container">
+  <h4 id="skip-text-display">{{ profile.skip_text }}</h4>
+</div>
 {% endif %}
 {% if user.is_authenticated and user.username == username %}
 {% if profile.photo_count > customer.account_limit %}

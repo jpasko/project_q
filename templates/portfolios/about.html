@@ -150,8 +150,10 @@ $(document).ready(function(){
 <div class="row-fluid muted">
   <div class="span9">
     <!--
-    <div class="row-fluid" style="margin: -10px 0 20px 0">
-      <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; Back</a>
+    <div class="row-fluid" style="margin: 0px 0 0px 0">
+      <div class="span10 offset2">
+	<a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; Back</a>
+      </div>
     </div>
     -->
     {% if user.is_authenticated and username == user.username and profile.edit_mode %}

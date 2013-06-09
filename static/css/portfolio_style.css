@@ -418,13 +418,18 @@ img.grayscale:hover {
     color: rgba(255,255,255,0.75);;
     background-color: rgba(0,0,0,0.25);
     border-radius: 2px;
-    padding: 5px 10px;
-    position: absolute;
-    bottom: 50px;
-    right: 50%;
-    z-index: 999;
+    padding: 5px;
     font-weight: normal;
     display: none;
+}
+#skip-text-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    z-index: 999;
+    margin-left: -100px;
+    width: 200px;
+    text-align: center;
 }
 .gallery-editor-pencil {
     color: #333333;
