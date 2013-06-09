@@ -118,13 +118,20 @@ $(document).ready(function(){
     // Change the skip text.
     $('#save-skip-text').on('click', function() {
 	$(this).prop('disabled', true);
+	$(this).text('Saving...');
 	$.ajax({
 	    type: "POST",
 	    url: "/configure_slideshow/",
-	    data: {'skip_text': $('#skip-text').val()}
+	    data: {'skip_text': $('#skip-text').val()},
+	    success: function(data) {
+		if (data.success) {
+		    $('#save-skip-text').text('Saved');
+		}
+	    }
 	});
     });
     $('#skip-text').on('focus', function() {
+	$('#save-skip-text').text('Save');
 	$('#save-skip-text').prop('disabled', false);
     });
 });
