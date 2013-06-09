@@ -258,12 +258,12 @@
 	    <img class="house-logo" style="padding: 0" src="{{ STATIC_URL }}img/house_light.png">
 	  </a>
 	  {% elif profile.fullname %}
-	  <a class="house brand muted portfolio-home" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
+	  <a class="house brand muted portfolio-home" id="fullname-home" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
 	    {{ profile.fullname }}
 	    <img class="house-logo" src="{{ STATIC_URL }}img/house_light.png">
 	  </a>
 	  {% else %}
-	  <a class="house brand muted portfolio-home" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
+	  <a class="house brand muted portfolio-home" id="default-home" href="http://{{ username }}.{{ DOMAIN }}/" style="margin-bottom: -1px">
 	    {{ username }}
 	    <img class="house-logo" src="{{ STATIC_URL }}img/house_light.png">
 	  </a>

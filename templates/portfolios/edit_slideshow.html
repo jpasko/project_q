@@ -53,7 +53,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/slideshow_editor.js"></script>
 {% endblock %}
-{% block content %}
+{% block modals %}
 <!-- Error modal -->
 <div class="modal hide fade" role="dialog" tabindex="-1" id="error-modal" arialabelledby="error-modal-heading">
   <div class="modal-header">
@@ -66,6 +66,8 @@
   </div>
 </div>
 <!-- END modals -->
+{% endblock %}
+{% block content %}
 <form class="hidden-form" method="post" id="ajax-form" enctype="multipart/form-data">
   <input type="file" id="image-input" name="image" />
 </form>
