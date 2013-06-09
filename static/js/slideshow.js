@@ -5,12 +5,12 @@ $(document).ready(function(){
 	    !target.is('#blog-link') && !target.is('#banner') &&
 	    !target.is('#fullname-home') && !target.is('#default-home')) {
 	    $('#skip-text-display').hide();
+	    $('.wrapper').css('cursor', 'auto');
 	    $('#background-container').fadeOut(300, function () {
 		$(this).remove();
-		$('.wrapper').css('background', $('.wrapper').data('background'));
-		$('.wrapper').css('cursor', 'auto');
 		$('#hidden-by-slideshow').show();
 	    });
+	    $('.wrapper').animate( {backgroundColor: $('.wrapper').data('background')} , 300);
 	}
     });
 });

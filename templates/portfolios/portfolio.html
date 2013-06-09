@@ -5,6 +5,7 @@
 {% if profile.enable_slideshow %}
 <script type="text/javascript" src="https://raw.github.com/malsup/cycle/master/jquery.cycle.lite.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/slideshow.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 {% endif %}
 {% if user.is_authenticated and user.username == username %}
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
@@ -20,7 +21,7 @@
     var timeout = {% if profile.slow_slideshow %}6000{% else %}4000{% endif %};
     if (!window.sessionStorage.getItem("slideshow") || window.sessionStorage.getItem("slideshow") != "disable") {
       window.sessionStorage.setItem("slideshow", "disable");
-      $('.wrapper').data('background', $('.wrapper').css('background'));
+      $('.wrapper').data('background', $('.wrapper').css('background-color'));
       $('.wrapper').css('background', 'none');
       $('.wrapper').css('cursor', 'pointer');
       $('#skip-text-display').show();
@@ -36,7 +37,7 @@
       } else {
         $('#background-container').cycle({ speed: speed, timeout: timeout });
       }
-      $('#background-container').fadeIn(1000);
+      $('#background-container').fadeIn(500);
       $('#hidden-by-slideshow').hide();
     }
     {% endif %}
