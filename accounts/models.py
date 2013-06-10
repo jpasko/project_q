@@ -41,7 +41,7 @@ class UserProfile(models.Model):
         ('E', 'Embed'),
         ('M', 'Pop-up'),
     )
-    contact_type = models.CharField(default='M', choices=CONTACT_TYPES, max_length=1)
+    contact_type = models.CharField(default='E', choices=CONTACT_TYPES, max_length=1)
 
     allow_about = models.BooleanField(default=True)
 

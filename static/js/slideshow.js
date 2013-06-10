@@ -4,7 +4,7 @@ $(document).ready(function(){
 	if (!target.is('#contact-link') && !target.is('#footer-logo') &&
 	    !target.is('#blog-link') && !target.is('#banner') &&
 	    !target.is('#fullname-home') && !target.is('#default-home')) {
-	    $('#skip-text-display').hide();
+	    $('#skip-text-container').hide();
 	    $('.wrapper').css('cursor', 'auto');
 	    $('#background-container').fadeOut(300, function () {
 		$(this).remove();
