@@ -36,9 +36,8 @@
       } else {
         $('#background-container').cycle({ speed: speed, timeout: timeout });
       }
-      $('#background-container').fadeIn(500, function() {
-        $('#skip-text-container').slideDown();
-      });
+      $('#background-container').fadeIn(200);
+      $('#skip-text-container').show();
       $('#hidden-by-slideshow').hide();
       $('body').hover(
         function() {

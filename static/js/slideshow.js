@@ -6,11 +6,20 @@ $(document).ready(function(){
 	    !target.is('#fullname-home') && !target.is('#default-home')) {
 	    $('#skip-text-container').hide();
 	    $('.wrapper').css('cursor', 'auto');
-	    $('#background-container').fadeOut(300, function () {
-		$(this).remove();
-		$('#hidden-by-slideshow').show();
-	    });
-	    $('.wrapper').animate( {backgroundColor: $('.wrapper').data('background')} , 300);
+	    if (!target.is('#about-link')) {
+		$('#background-container').fadeOut(200, function () {
+		    $(this).remove();
+		    $('#hidden-by-slideshow').show();
+		});
+	    } else if ($('#background-container').is(':visible')) {
+		e.preventDefault();
+		var $self=$('#about-link');
+		$('#background-container').fadeOut(200, function () {
+		    $(this).remove();
+		    document.location = $self.attr('href');
+		});
+	    }
+	    $('.wrapper').animate( {backgroundColor: $('.wrapper').data('background')} , 200);
 	}
     });
 });
