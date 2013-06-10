@@ -416,20 +416,20 @@ img.grayscale:hover {
 }
 #skip-text-display {
     color: rgba(255,255,255,0.75);;
-    background-color: rgba(0,0,0,0.25);
-    border-radius: 2px;
-    padding: 5px;
     font-weight: normal;
-    display: none;
+    margin: 0;
+    padding: 8px 0;
 }
 #skip-text-container {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
+    background-color: rgba(0,0,0,0.25);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
     z-index: 999;
-    margin-left: -100px;
-    width: 200px;
     text-align: center;
+    display: none;
 }
 .gallery-editor-pencil {
     color: #333333;

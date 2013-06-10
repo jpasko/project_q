@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
+from django.contrib.auth.signals import user_logged_in
 
 from imagekit.models import ImageSpecField
 from imagekit.models.fields import ProcessedImageField
@@ -247,9 +248,21 @@ def delete_banner_picture(sender, instance, *args, **kwargs):
     if instance.favicon:
         instance.favicon.delete(save=False)
 
+def set_edit_mode_on_login(sender, user, *args, **kwargs):
+    """
+    Writes True to edit mode upon login.
+    """
+    if user:
+        profile = user.get_profile()
+        profile.edit_mode = True
+        profile.save()
+
 # On the User save signal, create a UserProfile and a Customer.
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(create_customer, sender=User)
 
 # When deleting a UserProfile, be sure to delete the profile picture.
 post_delete.connect(delete_banner_picture, sender=UserProfile)
+
+# When the user logs out, write True to edit_mode.
+user_logged_in.connect(set_edit_mode_on_login, sender=User)

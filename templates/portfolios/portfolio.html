@@ -3,12 +3,12 @@
 {% block script %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/get-thumbnail.js"></script>
 {% if profile.enable_slideshow %}
-<script type="text/javascript" src="https://raw.github.com/malsup/cycle/master/jquery.cycle.lite.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.cycle.lite.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/slideshow.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 {% endif %}
 {% if user.is_authenticated and user.username == username %}
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/sorting.js"></script>
 {% endif %}
@@ -24,7 +24,6 @@
       $('.wrapper').data('background', $('.wrapper').css('background-color'));
       $('.wrapper').css('background', 'none');
       $('.wrapper').css('cursor', 'pointer');
-      $('#skip-text-display').show();
       if ($("#background-container div").length == 1) {
         var styles = {
           opacity : "1.0",
@@ -37,8 +36,18 @@
       } else {
         $('#background-container').cycle({ speed: speed, timeout: timeout });
       }
-      $('#background-container').fadeIn(500);
+      $('#background-container').fadeIn(500, function() {
+        $('#skip-text-container').slideDown();
+      });
       $('#hidden-by-slideshow').hide();
+      $('body').hover(
+        function() {
+          $('#skip-text-container').slideDown();
+        },
+        function() {
+          $('#skip-text-container').slideUp();
+        }
+      );
     }
     {% endif %}
     {% endif %}

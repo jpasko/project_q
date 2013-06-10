@@ -9,16 +9,16 @@
   <form id="fileupload" method="post" action="/upload_multiple_images/{{ gallery.pk }}/" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="fileupload-buttonbar">
-      <span class="btn btn-default fileinput-button" style="border-radius: 2px">
+      <span class="btn btn-default fileinput-button">
         <i class="icon-picture"></i>
 	<strong>Images</strong>
         <input type="file" name="file" multiple>
       </span>
-      <a class="btn btn-default" role="button" data-toggle="modal" href="#upload-video-modal" style="border-radius: 2px">
+      <a class="btn btn-default" role="button" data-toggle="modal" href="#upload-video-modal">
 	<i class="icon-film"></i>
 	<strong>Video</strong>
       </a>
-      <button type="reset" class="btn btn-default cancel" style="border-radius: 2px">
+      <button type="reset" class="btn btn-default cancel">
 	<i class="icon-ban-circle"></i>
 	<strong>Cancel</strong>
       </button>
