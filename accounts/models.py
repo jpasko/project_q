@@ -252,7 +252,7 @@ def set_edit_mode_on_login(sender, user, *args, **kwargs):
     """
     Writes True to edit mode upon login.
     """
-    if user:
+    if user and not user.is_staff:
         profile = user.get_profile()
         profile.edit_mode = True
         profile.save()
