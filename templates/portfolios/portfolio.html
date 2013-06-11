@@ -17,9 +17,12 @@
     {% if profile.enable_slideshow %}
     {% if not user.is_authenticated or user.username != username or not profile.edit_mode %}
     {% if profile.slideshow_image_1 or profile.slideshow_image_2 or profile.slideshow_image_3 %}
+    if (!window.sessionStorage.getItem("slideshow")) {
+      window.sessionStorage.setItem("slideshow", "enable");
+    }
     var speed = {% if profile.slow_slideshow %}3500{% else %}1000{% endif %};
     var timeout = {% if profile.slow_slideshow %}6000{% else %}4000{% endif %};
-    if (!window.sessionStorage.getItem("slideshow") || window.sessionStorage.getItem("slideshow") != "disable") {
+    if (window.sessionStorage.getItem("slideshow") != "disable") {
       window.sessionStorage.setItem("slideshow", "disable");
       $('.wrapper').data('background', $('.wrapper').css('background-color'));
       $('.wrapper').css('background', 'none');
