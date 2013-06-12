@@ -119,6 +119,7 @@ div.darken img {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 .js-progress {
     height: 10px;
@@ -164,6 +165,13 @@ div.darken img {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+#gallery-editor button {
+    width: 105px;
+}
+.btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 .editable-item {
     padding: 10px;

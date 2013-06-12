@@ -178,6 +178,93 @@ $(document).ready(function(){
 	}
     });
 
+    $(".hide-gallery").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-danger active");
+	    $(".show-gallery").removeClass("btn-info active");
+	    $(".show-gallery").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/hide_gallery/" + $("#gallery-pk").text() +"/",
+		data: {'hide': 'True'}
+	    });
+	}
+    });
+    $(".show-gallery").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $(".hide-gallery").removeClass("btn-danger active");
+	    $(".hide-gallery").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/hide_gallery/" + $("#gallery-pk").text() +"/",
+		data: {'hide': 'False'}
+	    });
+	}
+    });
+
+    $("#hide-facebook").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#show-facebook").removeClass("btn-info active");
+	    $("#show-facebook").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_sharing/" + $("#gallery-pk").text() +"/",
+		data: {'enable_facebook': 'False'}
+	    });
+	}
+    });
+    $("#show-facebook").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#hide-facebook").removeClass("btn-info active");
+	    $("#hide-facebook").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_sharing/" + $("#gallery-pk").text() +"/",
+		data: {'enable_facebook': 'True'}
+	    });
+	}
+    });
+
+    $("#hide-twitter").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#show-twitter").removeClass("btn-info active");
+	    $("#show-twitter").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_sharing/" + $("#gallery-pk").text() +"/",
+		data: {'enable_twitter': 'False'}
+	    });
+	}
+    });
+    $("#show-twitter").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#hide-twitter").removeClass("btn-info active");
+	    $("#hide-twitter").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_sharing/" + $("#gallery-pk").text() +"/",
+		data: {'enable_twitter': 'True'}
+	    });
+	}
+    });
+
     function formattedText(element) {
 	var str = $(element).html();
 	var regex = /<br\s*[\/]?>/gi;

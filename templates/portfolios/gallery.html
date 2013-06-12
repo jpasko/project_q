@@ -132,34 +132,6 @@ $(document).ready(function(){
     $('#edit-item-form').attr("action", action);
     $('#id_caption-edit-item-form').val($(this).data('caption'));
   });
-  $(".hide-gallery").on("click", function() {
-    if (!$(this).hasClass("active")) {
-      $(this).removeClass("btn-default");
-      $(this).addClass("btn-danger active");
-      $(".show-gallery").removeClass("btn-info active");
-      $(".show-gallery").addClass("btn-default");
-
-      $.ajax({
-        type: "POST",
-        url: "/hide_gallery/{{ gallery.pk }}/",
-        data: {'hide': 'True'}
-      });
-    }
-  });
-  $(".show-gallery").on("click", function() {
-    if (!$(this).hasClass("active")) {
-      $(this).removeClass("btn-default");
-      $(this).addClass("btn-info active");
-      $(".hide-gallery").removeClass("btn-danger active");
-      $(".hide-gallery").addClass("btn-default");
-
-      $.ajax({
-        type: "POST",
-        url: "/hide_gallery/{{ gallery.pk }}/",
-        data: {'hide': 'False'}
-      });
-    }
-  });
   $('.pencil').hover(function () {
     $(this).find('img').prop('src', '{{ STATIC_URL}}img/pencil.png');
   }, function () {
@@ -199,6 +171,11 @@ $(document).ready(function(){
 });
 </script>
 {% endif %}
+<script>
+$(document).ready(function(){
+  $('#fb-like-button').data('href', window.location.pathname);
+});
+</script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/galleria/galleria-1.2.9.min.js"></script>
 <script src="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.min.js"></script>
 {% endblock %}
@@ -206,6 +183,7 @@ $(document).ready(function(){
 {% block title %}{{ profile.fullname }}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
 
 {% block facebook %}
+{% if gallery.facebook %}
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -215,6 +193,7 @@ $(document).ready(function(){
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+{% endif %}
 {% endblock %}
 
 {% if user.is_authenticated and username == user.username and profile.edit_mode %}
@@ -423,13 +402,15 @@ $(document).ready(function(){
   </div>
 </div>
 {% endif %}
-{% if username == 'jpasko' %}
-<div style="width: 200px; margin: 5px auto 0 auto">
-  <div class="fb-like" data-href="http://{{ username }}.{{ DOMAIN }}{{ path }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" style="margin-right: 5px"></div>
+<div style="text-align: center">
+  {% if gallery.facebook %}
+  <div class="fb-like" id="fb-like-button" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" style="margin-right: 5px"></div>
+  {% endif %}
+  {% if gallery.twitter %}
   <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  {% endif %}
 </div>
-{% endif %}
 <script>
   Galleria.run('#galleria', {
     debug: false,

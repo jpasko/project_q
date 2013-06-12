@@ -57,11 +57,11 @@
     <div class="span8">
       <div class="btn-group">
 	{% if gallery.hidden %}
-	<button type="button" class="btn btn-default show-gallery" value="True" style="width: 95px"><strong>Public</strong></button>
-	<button type="button" class="btn btn-danger hide-gallery active" value="False" style="width: 95px"><strong>Private</strong></button>
+	<button type="button" class="btn btn-default show-gallery" value="True"><strong>Public</strong></button>
+	<button type="button" class="btn btn-danger hide-gallery active" value="False"><strong>Private</strong></button>
 	{% else %}
-	<button type="button" class="btn btn-info show-gallery active" value="True" style="width: 95px"><strong>Public</strong></button>
-	<button type="button" class="btn btn-default hide-gallery" value="False" style="width: 95px"><strong>Private</strong></button>
+	<button type="button" class="btn btn-info show-gallery active" value="True"><strong>Public</strong></button>
+	<button type="button" class="btn btn-default hide-gallery" value="False"><strong>Private</strong></button>
 	{% endif %}
       </div>
     </div>
@@ -110,4 +110,40 @@
     </div>
   </div>
   <!-- END Thumbnail -->
+  <!-- BEGIN Toggle facebook -->
+  <div class="row-fluid" style="margin-top: 10px">
+    <div class="span4">
+      <p style="display: inline"><strong>Facebook </strong></p>
+    </div>
+    <div class="span8">
+      <div class="btn-group">
+	{% if gallery.facebook %}
+	<button type="button" id="show-facebook" class="btn btn-info active" value="True"><strong>On</strong></button>
+	<button type="button" id="hide-facebook" class="btn btn-default" value="False"><strong>Off</strong></button>
+	{% else %}
+	<button type="button" id="show-facebook" class="btn btn-default" value="True"><strong>On</strong></button>
+	<button type="button" id="hide-facebook" class="btn btn-info active" value="False"><strong>Off</strong></button>
+	{% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- END Toggle facebook -->
+  <!-- BEGIN Toggle twitter -->
+  <div class="row-fluid" style="margin-top: 10px">
+    <div class="span4">
+      <p style="display: inline"><strong>Twitter </strong></p>
+    </div>
+    <div class="span8">
+      <div class="btn-group">
+	{% if gallery.twitter %}
+	<button type="button" id="show-twitter" class="btn btn-info active" value="True"><strong>On</strong></button>
+	<button type="button" id="hide-twitter" class="btn btn-default" value="False"><strong>Off</strong></button>
+	{% else %}
+	<button type="button" id="show-twitter" class="btn btn-default" value="True"><strong>On</strong></button>
+	<button type="button" id="hide-twitter" class="btn btn-info active" value="False"><strong>Off</strong></button>
+	{% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- END Toggle twitter -->
 </div>

@@ -237,7 +237,6 @@ def gallery(request, gallery_id):
     customer = user.customer
     variables = RequestContext(request, {
             'gallery': gallery,
-            'path': request.path,
             'profile': profile,
             'customer': customer,
             'username': username})
@@ -1169,4 +1168,29 @@ def delete_slideshow_image(request, image_number):
             profile.slideshow_image_3.delete(save=False)
             results = {'success': True}
         profile.save()
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def gallery_sharing(request, gallery_pk):
+    """
+    AJAX POST to update the facebook-like and twitter-tweet settings.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    # Ensure that we cannot edit a gallery owned by another user.
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    if gallery.user.username != username:
+        raise Http404
+    results = {'success': False}
+    if request.method == 'POST':
+        if 'enable_facebook' in request.POST:
+            enable_facebook = request.POST.get('enable_facebook') == 'True'
+            gallery.facebook = enable_facebook
+            gallery.save()
+            results['success'] = True
+        if 'enable_twitter' in request.POST:
+            enable_twitter = request.POST.get('enable_twitter') == 'True'
+            gallery.twitter = enable_twitter
+            gallery.save()
+            results['success'] = True
     return HttpResponse(json.dumps(results), mimetype='application/json')

@@ -38,6 +38,8 @@ class Gallery(models.Model):
     description = models.TextField(blank=True)
     count = models.IntegerField(default=0)
     hidden = models.BooleanField(default=False)
+    facebook = models.BooleanField(default=True)
+    twitter = models.BooleanField(default=True)
     order = models.IntegerField(default=9999, blank=True)
     # Essentially a one-way pointer to the item to use as the thumbnail for this
     # gallery.
