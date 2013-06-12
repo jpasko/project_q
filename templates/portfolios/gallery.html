@@ -205,6 +205,18 @@ $(document).ready(function(){
 
 {% block title %}{{ profile.fullname }}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
 
+{% block facebook %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+{% endblock %}
+
 {% if user.is_authenticated and username == user.username and profile.edit_mode %}
 {% block modals %}
 <!-- Delete gallery -->
@@ -409,6 +421,13 @@ $(document).ready(function(){
   <div class="span8">
     <p>{{ gallery.description }}</p>
   </div>
+</div>
+{% endif %}
+{% if username == 'jpasko' %}
+<div style="width: 200px; margin: 5px auto 0 auto">
+  <div class="fb-like" data-href="http://{{ username }}.{{ DOMAIN }}{{ path }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" style="margin-right: 5px"></div>
+  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>
 {% endif %}
 <script>

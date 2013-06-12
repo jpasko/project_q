@@ -237,6 +237,7 @@ def gallery(request, gallery_id):
     customer = user.customer
     variables = RequestContext(request, {
             'gallery': gallery,
+            'path': request.path,
             'profile': profile,
             'customer': customer,
             'username': username})
