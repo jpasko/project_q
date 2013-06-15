@@ -21,6 +21,13 @@
 </style>
 {% endblock %}
 {% block script %}
+<script>
+$(document).ready(function(){
+  $("#back-to-galleries").on("click", function() {
+    window.sessionStorage.setItem("slideshow", "disable");
+  });
+});
+</script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 {% if user.is_authenticated and user.username == username %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/editor.js"></script>
@@ -150,7 +157,7 @@ $(document).ready(function(){
 <div class="row-fluid muted sizeable-font" style="margin: -10px 0 10px 0">
   <div class="span12">
     <p>
-      <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted">&larr; Back</a>
+      <a href="http://{{ username }}.{{ DOMAIN }}/" class="no-decoration muted" id="back-to-galleries">&larr; Back</a>
     </p>
   </div>
 </div>

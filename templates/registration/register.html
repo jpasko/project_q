@@ -104,13 +104,6 @@
     $(".popover-content").each(function() {
       $(this).text($(this).text().replace("*", ""));
     });
-    $("#payment-form").submit(function(e) {
-      if(!$('#terms-of-service').prop('checked')) {
-        e.preventDefault();
-        $('#modal-prevent').modal('show')
-      }
-      return true;
-    });
   });
 </script>
 {% else %}
@@ -154,19 +147,14 @@
       $(this).text($(this).text().replace("*", ""));
     });
     $('#payment-form').submit(function(event) {
-      if(!$('#terms-of-service').prop('checked')) {
-        event.preventDefault();
-        $('#modal-prevent').modal('show')
-      } else {
-        $('.submit-button').prop('disabled', true);
+      $('.submit-button').prop('disabled', true);
 
-        Stripe.createToken({
-          number: $('.card-number').val(),
-          cvc: $('.card-cvc').val(),
-          exp_month: $('.card-expiry-month').val(),
-          exp_year: $('.card-expiry-year').val()
-        }, stripeResponseHandler);
-      }
+      Stripe.createToken({
+        number: $('.card-number').val(),
+        cvc: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }, stripeResponseHandler);
       return false;
     });
   });
@@ -315,10 +303,11 @@
       <!-- End if paid -->
       {% endif %}
       <div class="get-started">
-	<label style="text-align: center">
-	  <input type="checkbox" id="terms-of-service" style="display: inline; margin: 0">
-	  <p style="display: inline; color: #656565">I agree to the <a href="/terms/" target="_blank">Terms of Service</a></p>
-	</label>
+	<p style="display: inline; color: #656565; font-size: 0.8em">
+	  By clicking <strong>Get Started Now!</strong> you are agreeing to the
+	  <a href="/terms/" target="_blank">Terms of Service</a> and
+	  <a href="/privacy/" target="_blank">Privacy Policy</a>.
+	</p>
 	<button type="submit" class="submit-button btn btn-success btn-large" style="display: block; margin: 15px auto; border-radius: 2px">
 	  Get Started Now!
 	</button>
