@@ -595,6 +595,34 @@ $(document).ready(function(){
 	});
     });
 
+    $("#empty-about").on("click", function() {
+	$("#trigger-editable-about").click();
+    });
+    $("#valid-about").on("click", function() {
+	$("#trigger-editable-about").click();
+    });
+    $("#empty-email").on("click", function() {
+	$("#trigger-editable-email").click();
+    });
+    $("#valid-email").on("click", function() {
+	$("#trigger-editable-email").click();
+    });
+    $("#empty-phone").on("click", function() {
+	$("#trigger-editable-phone").click();
+    });
+    $("#valid-phone").on("click", function() {
+	$("#trigger-editable-phone").click();
+    });
+    $("#empty-location").on("click", function() {
+	$("#trigger-editable-location").click();
+    });
+    $("#valid-location").on("click", function() {
+	$("#trigger-editable-location").click();
+    });
+    $("#empty-social").on("click", function() {
+	$("#trigger-editable-social").click();
+    });
+
     function resizeTextArea($element) {
 	$element.height($element[0].scrollHeight);
     }

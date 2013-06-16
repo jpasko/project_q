@@ -265,6 +265,19 @@ $(document).ready(function(){
 	}
     });
 
+    $("#empty-title").on("click", function() {
+	$("#trigger-editable-title").click();
+    });
+    $("#valid-title").on("click", function() {
+	$("#trigger-editable-title").click();
+    });
+    $("#empty-description").on("click", function() {
+	$("#trigger-editable-description").click();
+    });
+    $("#valid-description").on("click", function() {
+	$("#trigger-editable-description").click();
+    });
+
     function formattedText(element) {
 	var str = $(element).html();
 	var regex = /<br\s*[\/]?>/gi;
