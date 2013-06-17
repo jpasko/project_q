@@ -131,7 +131,7 @@ class CreateGalleryForm(forms.ModelForm):
     """
     class Meta:
         model = Gallery
-        exclude = ('user', 'count', 'order', 'hidden', 'description', 'facebook', 'twitter')
+        exclude = ('user', 'count', 'order', 'hidden', 'description', 'facebook', 'twitter', 'display')
 
 class EditItemForm(forms.ModelForm):
     """
@@ -148,4 +148,4 @@ class EditGalleryForm(forms.ModelForm):
     delete_current_thumbnail = forms.CharField()
     class Meta:
         model = Gallery
-        exclude = ('user', 'count', 'order', 'hidden', 'facebook', 'twitter')
+        exclude = ('user', 'count', 'order', 'hidden', 'facebook', 'twitter', 'display')
