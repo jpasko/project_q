@@ -100,9 +100,6 @@ div.darken img {
     background-image: -o-linear-gradient(top, #8ed058, #7bb64b);
     background-image: linear-gradient(top, #8ed058, #7bb64b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#8ed058, endColorstr=#7bb64b);
 }
-.hidden-gallery {
-
-}
 .grab:hover {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }
@@ -111,7 +108,7 @@ div.darken img {
 }
 #uploader {
     position: relative;
-    min-height: 300px;
+    min-height: 350px;
     background: white;
     -moz-box-shadow: 1px 1px 1px 1px #e0e0e0;
     -webkit-box-shadow: 1px 1px 1px 1px #e0e0e0;
@@ -157,7 +154,7 @@ div.darken img {
 }
 #gallery-editor {
     position: relative;
-    min-height: 300px;
+    min-height: 350px;
     background: white;
     -moz-box-shadow: 1px 1px 1px 1px #e0e0e0;
     -webkit-box-shadow: 1px 1px 1px 1px #e0e0e0;
@@ -444,4 +441,18 @@ img.grayscale:hover {
 }
 .gallery-editor-pencil:hover {
     color: #a6a6a6;
+}
+#colorbox {
+    margin: 20px auto;
+}
+.colorbox-thumbnail {
+    margin: 2px 0;
+    padding: 0;
+    width: 150px;
+}
+.colorbox-thumbnail:hover {
+    filter: alpha(opacity=75);
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    opacity: 0.75;
 }

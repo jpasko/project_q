@@ -1194,3 +1194,22 @@ def gallery_sharing(request, gallery_pk):
             gallery.save()
             results['success'] = True
     return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def gallery_display(request, gallery_pk):
+    """
+    AJAX POST to update the gallery display.
+    """
+    username = request.subdomain
+    if username != request.user.username or not request.user.is_authenticated():
+        raise Http404
+    # Ensure that we cannot edit a gallery owned by another user.
+    gallery = get_object_or_404(Gallery, pk=gallery_pk)
+    if gallery.user.username != username:
+        raise Http404
+    results = {'success': False}
+    if request.method == 'POST':
+        if 'display' in request.POST:
+            gallery.display = request.POST.get('display')
+            gallery.save()
+            results['success'] = True
+    return HttpResponse(json.dumps(results), mimetype='application/json')

@@ -1,8 +1,12 @@
 {% extends "portfolio_base.html" %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/lightbox.css">
+{% if gallery.display == "Colorbox" %}
+<link rel="stylesheet" href="{{ STATIC_URL }}js/colorbox/colorbox.css">
+{% else %}
+<link rel="stylesheet" href="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.css">
+{% endif %}
 {% endblock %}
 {% block head %}
 <style>
@@ -179,8 +183,23 @@ $(document).ready(function(){
   });
 });
 </script>
+{% if gallery.display == "Colorbox" %}
+<script src="{{ STATIC_URL }}js/colorbox/jquery.colorbox-min.js"></script>
+<script>
+  $(document).ready(function(){
+    var width = 154 * Math.floor({{ profile.page_width }} / 154);
+    $("#colorbox").css('width', width+"px");
+    var options = {rel: "colorbox",
+                   maxWidth: "95%",
+                   speed: 150,
+                   transition: "elastic"};
+    $(".colorbox").colorbox(options);
+  });
+</script>
+{% else %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/galleria/galleria-1.2.9.min.js"></script>
 <script src="{{ STATIC_URL }}js/galleria/themes/classic/galleria.classic.min.js"></script>
+{% endif %}
 {% endblock %}
 
 {% block title %}{{ profile.fullname }}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
@@ -386,6 +405,15 @@ $(document).ready(function(){
     <h4 class="muted gallery-title-header">{% if gallery.title %}{{ gallery.title }}{% endif %}</h4>
   </div>
 </div>
+{% if gallery.display == "Colorbox" %}
+<div id="colorbox">
+  {% for item in gallery.item_set.all %}
+  {% if item.is_photo %}
+  <a class="colorbox" href="{{ item.photo.image.url }}" title="{{ item.caption }}"><img class="colorbox-thumbnail" src="{{ item.photo.thumbnail.url }}"></a>
+  {% endif %}
+  {% endfor %}
+</div>
+{% else %}
 <div id="galleria">
   {% for item in gallery.item_set.all %}
   {% if item.is_photo %}
@@ -395,6 +423,7 @@ $(document).ready(function(){
   {% endif %}
   {% endfor %}
 </div>
+{% endif %}
 {% if gallery.description %}
 <div class="row-fluid muted" style="margin-top: 20px">
   <div class="span2 offset1">
@@ -414,6 +443,7 @@ $(document).ready(function(){
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   {% endif %}
 </div>
+{% if gallery.display == "Galleria" %}
 <script>
   Galleria.run('#galleria', {
     debug: false,
@@ -424,5 +454,6 @@ $(document).ready(function(){
     maxVideoSize: 900
 });
 </script>
+{% endif %}
 {% endif %}
 {% endblock %}

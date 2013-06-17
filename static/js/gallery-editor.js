@@ -265,6 +265,35 @@ $(document).ready(function(){
 	}
     });
 
+    $("#display-galleria").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#display-colorbox").removeClass("btn-info active");
+	    $("#display-colorbox").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_display/" + $("#gallery-pk").text() +"/",
+		data: {'display': 'Galleria'}
+	    });
+	}
+    });
+    $("#display-colorbox").on("click", function() {
+	if (!$(this).hasClass("active")) {
+	    $(this).removeClass("btn-default");
+	    $(this).addClass("btn-info active");
+	    $("#display-galleria").removeClass("btn-info active");
+	    $("#display-galleria").addClass("btn-default");
+
+	    $.ajax({
+		type: "POST",
+		url: "/gallery_display/" + $("#gallery-pk").text() +"/",
+		data: {'display': 'Colorbox'}
+	    });
+	}
+    });
+
     $("#empty-title").on("click", function() {
 	$("#trigger-editable-title").click();
     });

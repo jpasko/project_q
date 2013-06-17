@@ -138,6 +138,9 @@ urlpatterns = patterns('',
     # POST to this URL to edit the gallery sharing settings.
     url(r'^gallery_sharing/(\d+)/$', 'portfolios.views.gallery_sharing'),
 
+    # POST to this URL to edit the gallery display settings.
+    url(r'^gallery_display/(\d+)/$', 'portfolios.views.gallery_display'),
+
     # Robots.txt directly from template.
     url(r'^robots\.txt$', direct_to_template,
         {'template': 'robots.txt', 'mimetype': 'text/plain'}),

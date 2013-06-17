@@ -40,6 +40,11 @@ class Gallery(models.Model):
     hidden = models.BooleanField(default=False)
     facebook = models.BooleanField(default=True)
     twitter = models.BooleanField(default=True)
+    DISPLAY_OPTIONS = (
+        ('Galleria', 'Galleria'),
+        ('Colorbox', 'Colorbox'),
+    )
+    display = models.CharField(default='Galleria', choices=DISPLAY_OPTIONS, max_length=8)
     order = models.IntegerField(default=9999, blank=True)
     # Essentially a one-way pointer to the item to use as the thumbnail for this
     # gallery.
