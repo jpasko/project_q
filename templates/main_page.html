@@ -13,16 +13,10 @@
   $(document).ready(function(){
     window.sessionStorage.setItem("slideshow", "enable");
     $("#swipe-wrap").css('width', $(window).width() * 3 + 'px');
-    $("#landing-page-box").fadeIn(600, function() {
-      $("#example-box").slideDown(300);
+    $("#start-now").hover(function() {
+      $(this).stop(true,true).toggleClass("signup-btn-large-hover", 200);
     });
-    $(window).scroll(function() {
-      if($(this).scrollTop() > 40){
-        $("#example-box").slideUp();
-      } else {
-       $("#example-box").slideDown();
-      }
-    });
+    $("#landing-page-box").fadeIn();
     $('a[href^="#"]').on('click',function (e) {
       e.preventDefault();
       var target = this.hash,
@@ -66,16 +60,17 @@
 {% block content %}
 <div class="splash">
   <div id="landing-page-box">
-    <h1 class="main-text">Your online portfolio</h1>
-    <p class="lead" id="selling-points">
-      Images & video &bull; Domain name support &bull; No HTML/CSS
-    </p>
-    <a class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 20px">
-      <strong style="font-size: 1.4em; font-family: 'Raleway', sans-serif; font-weight: 400">Sign Up &bull; Free</strong>
+    <div style="background-color: rgba(0,0,0,0.25); padding: 20px 10px 10px 10px; border-radius: 3px">
+      <h1 class="main-text">Your online portfolio</h1>
+      <p class="lead" id="selling-points">
+	Images & video &bull; Domain name support &bull; No HTML/CSS
+      </p>
+    </div>
+    <a id="start-now" class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 20px">
+      <strong style="font-size: 2.0em; font-family: 'Raleway', sans-serif; font-weight: 400">Sign Up &bull; Free</strong>
     </a>
     <div class="fb-like" data-href="http://www.folio24.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 5px"></div>
   </div>
-  <a id="example-box" class="examples-link" href="#id_examples">Examples &darr;</a>
 </div>
 
 <div class="examples" id="id_examples">

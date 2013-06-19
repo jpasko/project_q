@@ -198,19 +198,19 @@ ul {
 }
 @media screen and (max-width: 900px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_900.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_900_blur.jpg');
 	min-height: 563px;
     }
 }
 @media screen and (max-width: 1286px) and (min-width: 901px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1280.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1280_blur.jpg');
 	min-height: 800px;
     }
 }
 @media screen and (min-width: 1287px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1440.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/boat_1440_blur.jpg');
 	min-height: 900px;
     }
 }
@@ -218,7 +218,7 @@ ul {
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 200;
-    font-size: 5.5em !important;
+    font-size: 6.9em !important;
     margin-bottom: 30px;
 }
 .footer {
@@ -241,6 +241,7 @@ ul {
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 400;
+    font-size: 2.0em;
     margin-bottom: 10px
 }
 #examples-link {
@@ -255,11 +256,11 @@ ul {
 }
 #landing-page-box {
     text-align: center;
-    width: 800px;
-    margin: 80px auto 0 auto;
+    width: 940px;
+    margin: 100px auto 0 auto;
     padding: 30px 0 20px 0;
     border-radius: 15px;
-    background-color: rgba(0,0,0,0.85);
+    background: none;
     display: none;
 }
 #example-box {
@@ -277,12 +278,31 @@ ul {
 }
 .signup-btn-large {
     margin: 30px 0 10px 0;
-    border-radius: 10px;
-    color: rgb(93, 113, 143);
+    border-radius: 3px;
+    border: 2px solid rgb(83, 206, 142);
+    color: white;
+    background-image: none;
+    text-shadow: none;
+    box-shadow: none;
+    background-color: rgb(83, 206, 142);
 }
 .signup-btn-large:hover {
-    box-shadow: 0px 0px 20px white;
-    color: #1eafc8;
+    margin: 30px 0 10px 0;
+    border-radius: 3px;
+    border: 2px solid rgb(83, 206, 142);
+    color: white;
+    background-image: none;
+    text-shadow: none;
+    box-shadow: none;
+    background-color: rgb(83, 206, 142);
+}
+.signup-btn-large-hover {
+    color: rgb(83, 206, 142);
+    background: none;
+}
+.signup-btn-large-hover:hover {
+    color: rgb(83, 206, 142);
+    background: none;
 }
 .examples-link {
     font-family: 'Raleway', sans-serif;
