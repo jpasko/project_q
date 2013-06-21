@@ -63,6 +63,13 @@
   #id_copy_text {
     width: 205px;
   }
+  .serif {
+    font-family: Georgia, "Times New Roman", Times, serif !important;
+    width: 64px;
+  }
+  .mono {
+    font-family: Menlo, Monaco, "Courier New", monospace !important;
+  }
 </style>
 {% endblock %}
 {% block script %}
@@ -321,17 +328,17 @@ $(function() {
 	  <input type="hidden" name="font_type" value="{{ profile.font_type }}" id="id_font_type" />
 	  <div class="btn-group" data-toggle="buttons-radio" id="font_type_radio">
 	    {% if profile.font_type == 'S' %}
-	    <button type="button" class="btn btn-info active" value="S"><strong>Sans-serif</strong></button>
-	    <button type="button" class="btn btn-default" value="E"><strong>Serif</strong></button>
-	    <button type="button" class="btn btn-default" value="M"><strong>Mono</strong></button>
+	    <button type="button" class="btn btn-info active sans-serif" value="S"><strong>Arial</strong></button>
+	    <button type="button" class="btn btn-default serif" value="E"><strong>Times</strong></button>
+	    <button type="button" class="btn btn-default mono" value="M"><strong>Monospace</strong></button>
 	    {% elif profile.font_type == 'E' %}
-	    <button type="button" class="btn btn-default" value="S"><strong>Sans-serif</strong></button>
-	    <button type="button" class="btn btn-info active" value="E"><strong>Serif</strong></button>
-	    <button type="button" class="btn btn-default" value="M"><strong>Mono</strong></button>
+	    <button type="button" class="btn btn-default sans-serif" value="S"><strong>Arial</strong></button>
+	    <button type="button" class="btn btn-info active serif" value="E"><strong>Times</strong></button>
+	    <button type="button" class="btn btn-default mono" value="M"><strong>Monospace</strong></button>
 	    {% else %}
-	    <button type="button" class="btn btn-default" value="S"><strong>Sans-serif</strong></button>
-	    <button type="button" class="btn btn-default" value="E"><strong>Serif</strong></button>
-	    <button type="button" class="btn btn-info active" value="M"><strong>Mono</strong></button>
+	    <button type="button" class="btn btn-default sans-serif" value="S"><strong>Arial</strong></button>
+	    <button type="button" class="btn btn-default serif" value="E"><strong>Times</strong></button>
+	    <button type="button" class="btn btn-info active mono" value="M"><strong>Monospace</strong></button>
 	    {% endif %}
 	  </div>
 	</div>
