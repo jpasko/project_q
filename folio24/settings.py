@@ -223,6 +223,10 @@ AWS_SES_AUTO_THROTTLE = None
 # Allow user sessions to exist across subdomains
 SESSION_COOKIE_DOMAIN = '.folio24.com'
 
+# Log the user out at browser close.  This forces them to login when they
+# visit again, thus resetting edit_mode to True.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 # The domain name to use in templates.
 DOMAIN = 'folio24.com'
 
