@@ -6,12 +6,6 @@
   .wrapper {
     background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture13_500.jpg');
   }
-  .bullet-special, .dull-link-special, .llc-special {
-    color: rgb(70,70,70) !important;
-  }
-  .footer-special {
-    border-top: 1px solid rgb(160, 160, 160);
-  }
 </style>
 {% endblock %}
 {% block content %}
@@ -19,27 +13,27 @@
   <div class="row" style="text-align: center">
     <div class="span3 offset1">
       <a href="https://www.{{ DOMAIN }}/register/basic/" class="btn btn-large price-box" style="width: 181px">
-	<h4><span style="font-size: 1.8em">{{ FREE_IMAGE_LIMIT }}</span> uploads</h4>
-	<h4><span style="font-size: 1.4em">{{ FREE_MAX_FILE_SIZE }}</span> MB per image</h4>
-	<h4>Free!</h4>
+	<h4 class="dark"><span style="font-size: 1.8em">{{ FREE_IMAGE_LIMIT }}</span> uploads</h4>
+	<h4 class="dark"><span style="font-size: 1.4em">{{ FREE_MAX_FILE_SIZE }}</span> MB per image</h4>
+	<h4 class="dark">Free!</h4>
       </a>
     </div>
     <div class="span4">
       <a href="https://www.{{ DOMAIN }}/register/premium/" class="btn btn-large price-box" style="padding-bottom: 20px;">
-	<h4><span style="font-size: 1.8em">{{ PREMIUM_IMAGE_LIMIT }}</span> uploads</h4>
-	<h4><span style="font-size: 1.4em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB per image</h4>
-	<h4>$6 <span style="font-size: 0.9em">per month</span></h4>
-	<p style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
+	<h4 class="dark"><span style="font-size: 1.8em">{{ PREMIUM_IMAGE_LIMIT }}</span> uploads</h4>
+	<h4 class="dark"><span style="font-size: 1.4em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB per image</h4>
+	<h4 class="dark">$6 <span style="font-size: 0.9em">per month</span></h4>
+	<p  class="dark" style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
       </a>
     </div>
     <div class="span3">
       <a href="https://www.{{ DOMAIN }}/register/professional/" class="btn btn-large price-box">
-	<h4><span style="font-size: 1.8em">{{ PROFESSIONAL_IMAGE_LIMIT }}</span> uploads</h4>
-	<h4><span style="font-size: 1.4em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB per image</h4>
-	<h4>$9 <span style="font-size: 0.9em">per month</span></h4>
-	<p style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
-	<p><i class="icon-ok"></i> No Folio24 logo</p>
-	<p style="padding-top: 20px"><i class="icon-star"></i> Best value <i class="icon-star"></i></p>
+	<h4 class="dark"><span style="font-size: 1.8em">{{ PROFESSIONAL_IMAGE_LIMIT }}</span> uploads</h4>
+	<h4 class="dark"><span style="font-size: 1.4em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB per image</h4>
+	<h4 class="dark">$9 <span style="font-size: 0.9em">per month</span></h4>
+	<p  class="dark" style="padding-top: 30px"><i class="icon-ok"></i> Domain name support</p>
+	<p class="dark"><i class="icon-ok"></i> No Folio24 logo</p>
+	<p  class="dark" style="padding-top: 20px"><i class="icon-star"></i> Best value <i class="icon-star"></i></p>
       </a>
     </div>
   </div>

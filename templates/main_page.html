@@ -12,23 +12,36 @@
 <script>
   $(document).ready(function(){
     window.sessionStorage.setItem("slideshow", "enable");
-    $("#swipe-wrap").css('width', $(window).width() * 3 + 'px');
     $("#start-now").hover(function() {
-      $(this).stop(true,true).toggleClass("signup-btn-large-hover", 200);
+      $(this).stop(true,true).toggleClass("signup-btn-large-hover", 300);
     });
-    $("#landing-page-box").fadeIn();
-    $('a[href^="#"]').on('click',function (e) {
-      e.preventDefault();
-      var target = this.hash,
-      $target = $(target);
-      $('html, body').stop().animate({
-        'scrollTop': $target.offset().top
-      }, 500, 'swing', function () {
-        window.location.hash = target;
-      });
+    $("#landing-page-box").fadeIn(700);
+    $("#send-message").on("click", function() {
+      $("#send-message").css('color', 'gray');
+      $("#send-message").attr('disabled', 'disabled');
+      $.ajax({
+        type: "POST",
+        url: "/contact_ajax_main/",
+        data: {'message': $("#contact_message").val(),
+               'name': $("#contact_name").val(),
+               'email': $("#contact_sender").val()},
+        success: function(data) {
+          $("#send-message").css('color', 'rgb(83, 206, 142)');
+          $("#send-message").removeAttr('disabled');
+          $("#contact_message").val('');
+          $("#contact_name").val('');
+          $("#contact_sender").val('');
+          if (data.success) {
+            $("#alert-contact-success").show();
+          } else {
+            $("#alert-contact-failed").show();
+          }
+        }
     });
   });
+  });
 </script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/csrf.js"></script>
 {% endblock %}
 {% block facebookSDK %}
 <!-- Facebook JavaScript SDK -->
@@ -60,71 +73,134 @@
 {% block content %}
 <div class="splash">
   <div id="landing-page-box">
-    <div style="background-color: rgba(0,0,0,0.25); padding: 20px 10px 10px 10px; border-radius: 3px">
+    <!--<div style="background-color: rgba(0,0,0,0.25); padding: 20px 10px 10px 10px; border-radius: 3px">-->
       <h1 class="main-text">Your online portfolio</h1>
       <p class="lead" id="selling-points">
 	Images & video &bull; Domain name support &bull; No HTML/CSS
       </p>
-    </div>
-    <a id="start-now" class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 20px">
+    <!--</div>-->
+    <a id="start-now" class="btn btn-large signup-btn-large" href="https://www.{{ DOMAIN }}/register/basic/" style="padding: 25px">
       <strong style="font-size: 2.0em; font-family: 'Raleway', sans-serif; font-weight: 400">Sign Up &bull; Free</strong>
     </a>
-    <div class="fb-like" data-href="http://www.folio24.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 5px"></div>
+
+    <div class="fb-like" data-href="http://www.folio24.com/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" style="display: block; margin-top: 5px"></div>
+  </div>
+  <div id="splash-marketing-container">
+    <div class="splash-marketing">
+      <h2 class="splash-text">
+	<img style="margin-bottom: 8px" src="{{ STATIC_URL }}img/free_white.png" alt="Free karate">
+	Start right now!
+      </h2>
+      <p style="font-size: 1.5em">
+	Your work needs to be online to make a great impression.
+	Get it there in minutes.
+      </p>
+    </div>
+    <div class="splash-marketing pull-right">
+      <h2 class="splash-text">
+	<img style="margin-bottom: 8px" src="{{ STATIC_URL }}img/simple_white.png" alt="Simple sailboat">
+	It's amazingly simple.
+      </h2>
+      <p style="font-size: 1.5em">
+	You don't have to hire a web designer to create a beautiful portfolio. Do it yourself.
+      </p>
+    </div>
   </div>
 </div>
-
 <div class="examples" id="id_examples">
+  <div class="container">
+    <h1 class="colored" style="margin-bottom: 45px; font-size: 3.5em;">Example Portfolios</h1>
+    <ul class="thumbnails">
+      <li class="span4">
+	<a href="https://example4.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/example4.jpg" alt="An example Folio24 portfolio.">
+	</a>
+      </li>
+      <li class="span4">
+	<a href="https://jpasko.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/vesper.jpg" alt="James Pasko's Folio24 portfolio.">
+	</a>
+      </li>
+      <li class="span4">
+	<a href="https://example2.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/example2.jpg" alt="An example Folio24 portfolio.">
+	</a>
+      </li>
+      <li class="span4">
+	<a href="https://example3.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/example3.jpg" alt="An example Folio24 portfolio.">
+	</a>
+      </li>
+      <li class="span4">
+	<a href="https://example1.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/example1.jpg" alt="An example Folio24 portfolio.">
+	</a>
+      </li>
+      <li class="span4">
+	<a href="https://example5.folio24.com/" class="thumbnail" target="_blank">
+	  <img class="grayscale" src="https://s3.amazonaws.com/folio24/static/img/example5.jpg" alt="An example Folio24 portfolio.">
+	</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="interfaces">
   <div id="slider">
     <div id="swipe">
       <div class="swipe-wrap">
 	<div style="position: relative" class="swipe-div">
-	  <img src="{{ STATIC_URL }}img/example1_border.jpg" alt="An example Folio24 portfolio by James Pasko." class="slider-img">
-	  <div class="slider-title">
-	    <a href="https://jpasko.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-	      <strong>View portfolio</strong>
-	    </a>
-	  </div>
+	  <img src="{{ STATIC_URL }}img/screenshots/upload_interface.jpg" alt="Upload and edit your work." class="slider-img">
 	</div>
 	<div style="position: relative">
-	  <img src="{{ STATIC_URL }}img/example2_border.jpg" alt="Another example Folio24 portfolio." class="slider-img">
-	  <div class="slider-title">
-	    <a href="https://example1.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-	      <strong>View portfolio</strong>
-	    </a>
-	  </div>
+	  <img src="{{ STATIC_URL }}img/screenshots/homepage_interface.jpg" alt="Drag and drop to rearrange." class="slider-img">
 	</div>
 	<div style="position: relative">
-	  <img src="{{ STATIC_URL }}img/example3_border.jpg" alt="Another example Folio24 portfolio." class="slider-img">
-	  <div class="slider-title">
-	    <a href="https://example2.{{ DOMAIN }}/" class="btn btn-large btn-default signup-btn top-btn" target="_blank">
-	      <strong>View portfolio</strong>
-	    </a>
-	  </div>
+	  <img src="{{ STATIC_URL }}img/screenshots/about_interface.jpg" alt="Create an about page." class="slider-img">
+	</div>
+	<div style="position: relative">
+	  <img src="{{ STATIC_URL }}img/screenshots/slideshow_interface.jpg" alt="Manage your slideshow." class="slider-img">
+	</div>
+ 	<div style="position: relative">
+	  <img src="{{ STATIC_URL }}img/screenshots/customize_interface.jpg" alt="Customize your portfolio." class="slider-img">
+	</div>
+ 	<div style="position: relative">
+	  <img src="{{ STATIC_URL }}img/screenshots/showoff.jpg" alt="Show off your work!" class="slider-img">
 	</div>
       </div>
     </div>
   </div>
+  <div id="swipe_caption">
+    <h3 id="swipe_caption_1" class="colored" style="margin: 0; padding: 0">Upload and edit your work</h3>
+    <h3 id="swipe_caption_2" class="hide" style="margin: 0; padding: 0">Drag and drop to rearrange</h3>
+    <h3 id="swipe_caption_3" class="hide" style="margin: 0; padding: 0">Create an about page</h3>
+    <h3 id="swipe_caption_4" class="hide" style="margin: 0; padding: 0">Manage your slideshow</h3>
+    <h3 id="swipe_caption_5" class="hide" style="margin: 0; padding: 0">Customize your portfolio</h3>
+    <h3 id="swipe_caption_6" class="hide" style="margin: 0; padding: 0">Show off your work!</h3>
+  </div>
+  <hr id="swipe_hr">
   <div id="swipe_nav">
     <h1 class="colored" id="swipe_nav_1">&bull;</h1>
     <h1 class="dull" id="swipe_nav_2">&bull;</h1>
     <h1 class="dull" id="swipe_nav_3">&bull;</h1>
-    <a class="btn btn-large signup-btn example-btn" href="https://www.{{ DOMAIN }}/examples/"><strong>More examples</strong></a>
+    <h1 class="dull" id="swipe_nav_4">&bull;</h1>
+    <h1 class="dull" id="swipe_nav_5">&bull;</h1>
+    <h1 class="dull" id="swipe_nav_6">&bull;</h1>
   </div>
 </div>
 <div class="container-narrow features">
   <div class="featurette">
-    <hr>
     <h3 class="featurette-heading colored">All the features you expect. <span class="muted">And more.</span></h3>
     <table class="table table-striped" style="margin-bottom: 10px">
       <thead>
         <tr>
           <th></th>
-          <th><a class="btn btn-large" href="https://www.{{ DOMAIN }}/register/basic/">Basic</a></th>
-          <th><a class="btn btn-large" href="https://www.{{ DOMAIN }}/register/premium/">Premium</a></th>
-          <th><a class="btn btn-large" href="https://www.{{ DOMAIN }}/register/professional/">Professional</a></th>
+          <th class="colored">Basic</th>
+          <th class="colored">Premium</th>
+          <th class="colored">Professional</th>
         </tr>
       </thead>
       <tbody>
+<!--
         <tr>
           <td>Price</td>
           <td class="std-table-cell" style="font-size: 1.3em">Free!</td>
@@ -143,12 +219,7 @@
           <td class="std-table-cell"><span style="font-size: 1.3em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB/image</td>
           <td class="std-table-cell"><span style="font-size: 1.3em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB/image</td>
         </tr>
-        <tr>
-          <td>About/profile page</td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-        </tr>
+-->
         <tr>
           <td>Customizable dimensions, font, and color</td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
@@ -156,13 +227,13 @@
           <td class="std-table-cell"><i class="icon-ok"></i></td>
         </tr>
         <tr>
-          <td>Responsive, mobile-ready layout</td>
+          <td>Galleria and Colorbox viewers</td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
         </tr>
         <tr>
-          <td>Spam-fighting contact form</td>
+          <td>Homepage slideshow</td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
@@ -174,13 +245,7 @@
           <td class="std-table-cell"><i class="icon-ok"></i></td>
         </tr>
         <tr>
-          <td>Galleria and Lightbox viewers</td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-          <td class="std-table-cell"><i class="icon-ok"></i></td>
-        </tr>
-        <tr>
-          <td>Banner image</td>
+          <td>Share with Facebook and Twitter</td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
           <td class="std-table-cell"><i class="icon-ok"></i></td>
@@ -205,23 +270,67 @@
         </tr>
       </tbody>
     </table>
-    <p style="font-size: 0.8em; padding-bottom: 10px">*Embed video from YouTube, Vimeo, and Dailymotion</p>
-  </div>
-  <div class="featurette">
-    <hr style="margin-top: 65px">
-    <h3 class="featurette-heading colored" style="text-align: right;">An intuitive interface. <span class="muted">Get running quickly.</span></h3>
-    <div style="position: relative; padding-bottom: 180px; padding-top: 20px">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot4.jpg" class="interface-img" style="width: 525px" alt="Multiple image uploader and gallery editor interface.">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot3.jpg" class="interface-img" style="position: absolute; top: 190px; left: 90px; width: 500px" alt="Each Folio24 portfolio comes with an easy-to-edit profile.">
-      <img src="{{ STATIC_URL }}img/screenshots/screenshot2.jpg" class="interface-img" style="position: absolute; top: 60px; left: 320px; width: 550px" alt="Easily manage galleries with a drag and drop interface.">
-    </div>
   </div>
 </div>
 
-<div class="bottom-links">
-  <div class="jumbotron" style="padding-top: 40px; padding-bottom: 30px">
-    <a class="btn btn-large signup-btn" href="https://www.{{ DOMAIN }}/register/" style="width: 40%"><strong>Sign Up</strong></a>
+<div id="signup-boxes">
+  <div class="container-narrow">
+    <div class="row-fluid">
+      <a href="https://www.{{ DOMAIN }}/register/basic/">
+	<div class="span4" id="signup-box-free">
+	  <h1 class="colored" style="text-align: center; margin-bottom: 20px;">Basic</h1>
+	  <p class="colored"><span style="font-size: 2.0em">$0</span> per month</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ FREE_IMAGE_LIMIT }}</span> image & video* uploads</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ FREE_MAX_FILE_SIZE }}</span> MB limit per image</p>
+	</div>
+      </a>
+      <a href="https://www.{{ DOMAIN }}/register/premium/">
+	<div class="span4" id="signup-box-premium">
+	  <h1 class="colored" style="text-align: center; margin-bottom: 20px">Premium</h1>
+	  <p class="colored"><span style="font-size: 2.0em">$6</span> per month</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ PREMIUM_IMAGE_LIMIT }}</span> uploads</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ PREMIUM_MAX_FILE_SIZE }}</span> MB limit per image</p>
+	  <p class="colored">Use your own domain name</p>
+	</div>
+      </a>
+      <a href="https://www.{{ DOMAIN }}/register/professional/">
+	<div class="span4" id="signup-box-professional">
+	  <h1 class="colored" style="text-align: center; margin-bottom: 20px">Professional</h1>
+	  <p class="colored"><span style="font-size: 2.0em">$9</span> per month</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ PROFESSIONAL_IMAGE_LIMIT }}</span> uploads</p>
+	  <p class="colored"><span style="font-size: 2.0em">{{ PROFESSIONAL_MAX_FILE_SIZE }}</span> MB limit per image</p>
+	  <p class="colored">Use your own domain name</p>
+	  <p class="colored">No Folio24 logo on your portfolio</p>
+	</div>
+      </a>
+    </div>
+    <p style="font-size: 0.8em; color: white; text-align: center; margin-top: 20px">*Embed video from YouTube, Vimeo, and Dailymotion</p>
   </div>
+</div>
+<div id="contact">
+  <h1 style="padding: 0; margin: 0; font-size: 3.5em; text-align: center">Get in touch</h1>
+  <div id="contact-input">
+    <div class="alert alert-success hide" id="alert-contact-success">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <p class="colored">Your message has been delivered</p>
+    </div>
+    <div class="alert alert-error hide" id="alert-contact-failed">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <p>Something went wrong &#8212; please try again</p>
+    </div>
+    <input type="text" id="contact_name" placeholder="Your name"/>
+    <input type="text" id="contact_sender" placeholder="Your email"/>
+    <textarea id="contact_message" rows="6" placeholder="Your message"></textarea>
+    <button id="send-message">Send</button>
+  </div>
+  <div id="social">
+    <a href="mailto:contact@folio24.com" title="contact@folio24.com"><img class="grayscale social-icon" src="{{ STATIC_URL }}img/social/email.png"></a>
+    <a href="https://twitter.com/folio_24" title="@folio_24" target="_blank"><img class="grayscale social-icon" src="{{ STATIC_URL }}img/social/twitter.png"></a>
+    <a href="https://facebook.com/folio24" title="facebook" target="_blank"><img class="grayscale social-icon" src="{{ STATIC_URL }}img/social/facebook.png"></a>
+  </div>
+</div>
+<div id="google-map">
+  <iframe width="100%" height="250px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=47.626806,-122.319898&amp;spn=0.016833,0.039482&amp;t=v&amp;z=14&amp;output=embed"></iframe>
 </div>
 <script src="{{ STATIC_URL }}js/swipe.js"></script>
 <script src="{{ STATIC_URL }}js/run-swipe.js"></script>

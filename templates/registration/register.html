@@ -72,12 +72,6 @@
   .wrapper {
     background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture13_500.jpg');
   }
-  .bullet-special, .dull-link-special, .llc-special {
-    color: rgb(70,70,70) !important;
-  }
-  .footer-special {
-    border-top: 1px solid rgb(160, 160, 160);
-  }
 </style>
 {% endblock %}
 {% block script %}
@@ -190,7 +184,7 @@
       {% csrf_token %}
       <div class="registration-header">
 	{% if paid %}
-	<h3>Your account details</h3>
+	<h3 style="color: #656565">Your account details</h3>
 	{% endif %}
       </div>
       <div class="input-box">
@@ -199,7 +193,7 @@
 	  <div class="controls" style="position: relative">
 	    <input class="registration-input" id="id_username" type="text" placeholder="Username" name="username" maxlength="30" />
 	    <div id="folio24">
-	      <p>.{{ DOMAIN }}</p>
+	      <p class="dark" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">.{{ DOMAIN }}</p>
 	    </div>
 	    {% if user_form.username.errors %}
 	    <span class="inline-popover" id="username-popover" data-toggle="popover" data-content="{{ user_form.username.errors.as_text }}"></span>
@@ -233,7 +227,7 @@
       </div>
       {% if paid %}
       <div class="registration-header">
-	<h3>Your payment information</h3>
+	<h3 style="color: #656565">Your payment information</h3>
       </div>
       <div class="input-box">
 	<div style="margin: 0 auto; width: 300px; padding-bottom: 20px">

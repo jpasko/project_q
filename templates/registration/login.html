@@ -16,12 +16,6 @@
   .wrapper {
     background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture13_500.jpg');
   }
-  .bullet-special, .dull-link-special, .llc-special {
-    color: rgb(70,70,70) !important;
-  }
-  .footer-special {
-    border-top: 1px solid rgb(160, 160, 160);
-  }
 </style>
 {% endblock %}
 {% block script %}
@@ -55,8 +49,8 @@
       </div>
     </div>
     <input type="hidden" name="next" value="{{ next }}" />
-    <div style="width: 215px; margin: 25px auto 0 auto">
-      <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 215px"/>
+    <div style="width: 230px; margin: 25px auto 0 auto">
+      <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 230px"/>
       <p style="font-size: 0.75em">Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a></p>
     </div>
   </form>

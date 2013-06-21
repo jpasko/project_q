@@ -61,6 +61,9 @@ urlpatterns = patterns('',
     # Contact page.
     url(r'^contact/$', 'accounts.views.contact'),
 
+   # Contact (AJAX version).
+    url(r'^contact_ajax_main/$', 'accounts.views.contact_ajax'),
+
     # Somewhat generic "thanks" page.
     url(r'^thanks/$', direct_to_template, {'template': 'thanks_page.html'}),
 

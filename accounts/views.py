@@ -372,3 +372,23 @@ def contact(request):
                               {'form': form}
                               )
     return render_to_response('contact_page.html', variables)
+
+def contact_ajax(request):
+    """
+    Sends an email to me when a user submits the main-page contact form.
+    """
+    results = {'success': False}
+    if request.method == 'POST':
+        name = ''
+        email = ''
+        message = ''
+        if 'message' in request.POST:
+            message = request.POST.get('message')
+        if 'name' in request.POST:
+            name = request.POST.get('name')
+        if 'email' in request.POST:
+            email = request.POST.get('email')
+        body = 'Name: ' + name + '\n\nEmail: ' + email + '\n\nMessage:\n' + message
+        send_mail('Someone submitted the contact form', body, 'submissions@folio24.com', ['jbpasko@gmail.com'])
+        results = {'success': True}
+    return HttpResponse(json.dumps(results), mimetype='application/json')
