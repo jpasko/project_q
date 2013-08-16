@@ -202,7 +202,7 @@ $(document).ready(function(){
 {% endif %}
 {% endblock %}
 
-{% block title %}{{ profile.fullname }}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
+{% block title %}{% if gallery.title %} | {{ gallery.title }}{% endif %}{% endblock %}
 
 {% block facebook %}
 {% if gallery.facebook %}
