@@ -85,6 +85,10 @@ urlpatterns = patterns('',
     url(r'^robots\.txt$', direct_to_template,
         {'template': 'robots.txt', 'mimetype': 'text/plain'}),
 
+    # Sitemap directly from template.
+    url(r'^sitemap\.xml$', direct_to_template,
+        {'template': 'sitemap.xml', 'mimetype': 'text/xml'}),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
