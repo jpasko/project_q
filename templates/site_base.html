@@ -76,6 +76,12 @@
     {% block footer %}
     <div class="footer muted">
       <div class="container-narrow">
+	<p style="color: rgb(180,180,180); text-align: center; margin: 0">featured on</p>
+	<div style="width: 200px; margin: 0 auto 20px auto">
+	  <a href="http://mashable.com/2013/09/17/online-portfolio/" target="_blank">
+	    <img src="{{STATIC_URL}}img/Mashable-Logo.png" class="featured-on">
+	  </a>
+	</div>
         <p class="dark" style="text-align: center">&copy; {% now "Y" %}, Pasko Enterprises LLC.  
 	  All rights reserved.  
 	  <a href="https://www.{{ DOMAIN }}/terms/" style="text-decoration: none">Terms</a> | <a href="https://www.{{ DOMAIN }}/privacy/" style="text-decoration: none">Privacy</a> | <a href="https://www.{{ DOMAIN }}/about/" style="text-decoration: none">About</a>

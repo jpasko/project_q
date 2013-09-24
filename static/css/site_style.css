@@ -24,7 +24,8 @@ html, body {
 .footer {
     background: none;
     min-width: 940px;
-    padding-top: 55px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     background-color: rgb(248,248,248);
 }
 .container-narrow {
@@ -588,6 +589,14 @@ a.thumbnail:hover, a.thumbnail:focus {
 .grayscale:hover {
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
     -webkit-filter: grayscale(0%);
+}
+.featured-on {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
 }
 #signup-box-free, #signup-box-premium, #signup-box-professional {
     padding: 25px;
