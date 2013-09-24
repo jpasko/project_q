@@ -14,7 +14,7 @@
     margin: 0 auto 10px auto;
   }
   .wrapper {
-    background-image: url('{{ STATIC_URL }}img/textures/seamlesstexture13_500.jpg');
+    background-color: rgb(238,238,238);
   }
 </style>
 {% endblock %}
@@ -32,8 +32,6 @@
   {% endif %}
   <form method="post" action="" class="form-horizontal">
     {% csrf_token %}
-
-
     <div class="control-group">
       <label class="control-label" for="id_username">Username or Email</label>
       <div class="controls">
@@ -49,13 +47,12 @@
       </div>
     </div>
     <input type="hidden" name="next" value="{{ next }}" />
-    <div style="width: 230px; margin: 25px auto 0 auto">
-      <input type="submit" value="Sign in" class="btn btn-large signup-btn" style="width: 230px"/>
-      <p style="font-size: 0.75em">Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a></p>
-    </div>
+    <input type="submit" value="Sign in" class="btn btn-large btn-primary" style="margin: 0 0 20px 40px"/>
+    <p style="font-size: 0.75em; color: rgb(65,65,65); margin-left: 40px">
+      Don't have an account yet? <a href="https://www.{{ DOMAIN }}/register/basic/">Sign up for free.</a>
+    </p>
   </form>
 </div>
 {% endblock %}
 {% block footer %}
-{% include "footer_special.html" %}
 {% endblock %}
