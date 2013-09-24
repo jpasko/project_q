@@ -62,7 +62,7 @@
   <div class="masthead">
     <ul class="nav nav-pills top-links">
       {% if not user.is_authenticated %}
-      <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">login</a></li>
+      <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">sign in</a></li>
       {% else %}
       <li><a href="https://{{ user.username }}.{{ DOMAIN }}/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">profile</a></li>
       <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link" style="border: 1px solid rgb(209, 209, 209)">logout</a></li>
