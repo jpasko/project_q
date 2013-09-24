@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /examples/
 Disallow: /privacy/
 Disallow: /terms/
+Disallow: /register/professional/
+Disallow: /register/premium/
