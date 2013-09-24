@@ -2,5 +2,7 @@ User-agent: *
 Disallow: /examples/
 Disallow: /privacy/
 Disallow: /terms/
+Disallow: /accounts/
+Disallow: /contact/
 Disallow: /register/professional/
 Disallow: /register/premium/
