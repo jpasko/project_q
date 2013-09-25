@@ -218,28 +218,29 @@ ul {
 }
 @media screen and (max-width: 900px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/sony_center_900_blur.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_900_blur.jpg');
 	min-height: 563px;
     }
 }
 @media screen and (max-width: 1286px) and (min-width: 901px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/sony_center_1280_blur.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_1280_blur.jpg');
 	min-height: 800px;
     }
 }
 @media screen and (min-width: 1287px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/sony_center_1440_blur.jpg');
+	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_1440_blur.jpg');
 	min-height: 900px;
     }
 }
 .main-text {
+    padding: 30px 0 40px 0;
+    background: rgba(0,0,0,0.1);
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 200;
     font-size: 6.9em !important;
-    margin-bottom: 50px;
 }
 #splash-marketing-container {
     width: 940px;
@@ -265,6 +266,8 @@ p, h1, h2, h3, h4 {
     font-weight: 400;
 }
 #selling-points {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 3px;
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 400;
