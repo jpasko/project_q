@@ -29,8 +29,8 @@ urlpatterns = patterns('',
         {'template': 'accounts/logout_success.html'}),
 
     # Page showing registration options.
-    url(r'^register/$', direct_to_template,
-        {'template': 'registration/registration_options.html'}),
+    # url(r'^register/$', direct_to_template,
+    #     {'template': 'registration/registration_options.html'}),
 
     # User registration page.  The view will handle free vs. paid users.
     url(r'^register/(\w+)/$', 'accounts.views.register_user'),
@@ -43,8 +43,8 @@ urlpatterns = patterns('',
 
     # Successful registration page, directs users to login and explains
     # what to do.
-    url(r'^welcome/$', direct_to_template,
-        {'template': 'accounts/welcome.html'}),
+    # url(r'^welcome/$', direct_to_template,
+    #     {'template': 'accounts/welcome.html'}),
 
     # Privacy policy.
     url(r'^privacy/$', direct_to_template, {'template': 'privacy.html'}),
