@@ -54,7 +54,7 @@
           <ul class="nav nav-pills top-links">
 	    {% if not user.is_authenticated %}
 	    <!--<li><a href="https://www.{{ DOMAIN }}/register/" class="nav-link">sign up</a></li>-->
-	    <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link">sign in</a></li>
+	    <li><a href="https://www.{{ DOMAIN }}/login/" class="nav-link" id="sign-in-btn">sign in</a></li>
             {% else %}
 	    <li><a href="https://{{ user.username }}.{{ DOMAIN }}/" class="nav-link">profile</a></li>
 	    <li><a href="https://www.{{ DOMAIN }}/logout/" class="nav-link">logout</a></li>
