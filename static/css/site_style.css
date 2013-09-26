@@ -218,19 +218,16 @@ ul {
 }
 @media screen and (max-width: 900px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_900_blur.jpg');
 	min-height: 563px;
     }
 }
 @media screen and (max-width: 1286px) and (min-width: 901px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_1280_blur.jpg');
 	min-height: 800px;
     }
 }
 @media screen and (min-width: 1287px) {
     .splash {
-	background-image: url('https://s3.amazonaws.com/folio24/static/img/street_1440_blur.jpg');
 	min-height: 900px;
     }
 }
@@ -246,7 +243,6 @@ ul {
 #splash-marketing-container {
     width: 940px;
     margin: 0 auto;
-    border-radius: 3px;
 }
 @media screen and (max-width: 900px) {
     #splash-marketing-container, .splash-marketing {
@@ -255,6 +251,8 @@ ul {
     }
 }
 .splash-marketing {
+    background-color: rgba(0,0,0,0.25);
+    padding: 5px;
     width: 400px;
     margin: 0;
     text-align: center;

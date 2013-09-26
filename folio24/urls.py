@@ -8,9 +8,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # The main home page.  Rendered directly from a template.
-    url(r'^$', direct_to_template,
-        {'template': 'main_page.html'}),
+    # The main home page.
+    url(r'^$', 'accounts.views.main_page'),
 
     # The login URL, should redirect to user/username/
     url(r'^login/$', 'django.contrib.auth.views.login'),

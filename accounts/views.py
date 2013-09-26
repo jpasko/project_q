@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from accounts.forms import RegistrationForm, ChangeAccountForm, ContactForm, CardForm
 from accounts.models import Customer, Domains
 
+from random import randrange
+
 import json
 
 import stripe
@@ -392,3 +394,17 @@ def contact_ajax(request):
         send_mail('Someone submitted the contact form', body, 'submissions@folio24.com', ['jbpasko@gmail.com'])
         results = {'success': True}
     return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def main_page(request):
+    """
+    Renders the main page with a random variable for choosing a background image.
+    """
+    index = randrange(6)
+    backgrounds_900 = ['folio24_background_900.jpg', 'cars_900_blur.jpg', 'sony_center_900_blur.jpg', 'street_900_blur.jpg', 'boat_900_blur.jpg', 'dreamcatcher_900_blur.jpg']
+    backgrounds_1280 = ['folio24_background_1280.jpg', 'cars_1280_blur.jpg', 'sony_center_1280_blur.jpg', 'street_1280_blur.jpg', 'boat_1280_blur.jpg', 'dreamcatcher_1280_blur.jpg']
+    backgrounds_1440 = ['folio24_background_1440.jpg', 'cars_1440_blur.jpg', 'sony_center_1440_blur.jpg', 'street_1440_blur.jpg', 'boat_1440_blur.jpg', 'dreamcatcher_1440_blur.jpg']
+    variables = RequestContext(request, {
+            'background_900': backgrounds_900[index],
+            'background_1280': backgrounds_1280[index],
+            'background_1440': backgrounds_1440[index]})
+    return render_to_response('main_page.html', variables)

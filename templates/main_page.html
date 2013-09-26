@@ -7,6 +7,21 @@
   .top-banner {
     border: none !important;
   }
+  @media screen and (max-width: 900px) {
+    .splash {
+      background-image: url('https://s3.amazonaws.com/folio24/static/img/{{ background_900 }}');
+    }
+  }
+  @media screen and (max-width: 1286px) and (min-width: 901px) {
+    .splash {
+      background-image: url('https://s3.amazonaws.com/folio24/static/img/{{ background_1280 }}');
+    }
+  }
+  @media screen and (min-width: 1287px) {
+    .splash {
+      background-image: url('https://s3.amazonaws.com/folio24/static/img/{{ background_1440 }}');
+    }
+  }
 </style>
 {% endblock %}
 {% block script %}
