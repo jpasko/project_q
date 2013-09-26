@@ -236,7 +236,7 @@ ul {
 }
 .main-text {
     padding: 30px 0 40px 0;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.25);
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 200;
@@ -246,7 +246,6 @@ ul {
 #splash-marketing-container {
     width: 940px;
     margin: 0 auto;
-    //background-color: rgba(0,0,0,0.15);
     border-radius: 3px;
 }
 @media screen and (max-width: 900px) {
@@ -267,7 +266,7 @@ p, h1, h2, h3, h4 {
     font-weight: 400;
 }
 #selling-points {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.25);
     padding: 3px;
     font-family: 'Raleway', sans-serif;
     color: white;
@@ -409,7 +408,7 @@ a.thumbnail:hover, a.thumbnail:focus {
     color: rgb(100,100,100);
 }
 .masthead {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.15);
     position: absolute;
     width: 100%;
     height: 65px;
