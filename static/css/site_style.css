@@ -323,30 +323,30 @@ a.thumbnail:hover, a.thumbnail:focus {
 .signup-btn-large {
     margin: 90px 0 10px 0;
     border-radius: 3px;
-    border: none;
     color: white;
     background-image: none;
     text-shadow: none;
     box-shadow: none;
-    background-color: rgb(238, 115, 69);//rgb(83, 206, 142);
+    background-color: rgb(238, 115, 69);
+    border: 2px solid rgb(238, 115, 69);
 }
 .signup-btn-large:hover {
     margin: 90px 0 10px 0;
     border-radius: 3px;
-    border: none;
     color: white;
     background-image: none;
     text-shadow: none;
     box-shadow: none;
-    background-color: rgb(238, 115, 69);//rgb(83, 206, 142);
+    background-color: rgb(238, 115, 69);
+    border: 2px solid rgb(238, 115, 69);
 }
 .signup-btn-large-hover {
-    color: rgb(238, 115, 69);//rgb(83, 206, 142);
-    background-color: white;
+    color: rgb(238, 115, 69);
+    background-color: rgba(0,0,0,0.25);
 }
 .signup-btn-large-hover:hover {
-    color: rgb(238, 115, 69);//rgb(83, 206, 142);
-    background-color: white;
+    color: rgb(238, 115, 69);
+    background-color: rgba(0,0,0,0.25);
 }
 .examples-link {
     font-family: 'Raleway', sans-serif;
