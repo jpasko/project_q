@@ -399,12 +399,9 @@ def main_page(request):
     """
     Renders the main page with a random variable for choosing a background image.
     """
-    index = randrange(6)
-    backgrounds_900 = ['folio24_background_900.jpg', 'cars_900_blur.jpg', 'sony_center_900_blur.jpg', 'street_900_blur.jpg', 'boat_900_blur.jpg', 'dreamcatcher_900_blur.jpg']
-    backgrounds_1280 = ['folio24_background_1280.jpg', 'cars_1280_blur.jpg', 'sony_center_1280_blur.jpg', 'street_1280_blur.jpg', 'boat_1280_blur.jpg', 'dreamcatcher_1280_blur.jpg']
-    backgrounds_1440 = ['folio24_background_1440.jpg', 'cars_1440_blur.jpg', 'sony_center_1440_blur.jpg', 'street_1440_blur.jpg', 'boat_1440_blur.jpg', 'dreamcatcher_1440_blur.jpg']
+    index = randrange(len(settings.BACKGROUNDS_900))
     variables = RequestContext(request, {
-            'background_900': backgrounds_900[index],
-            'background_1280': backgrounds_1280[index],
-            'background_1440': backgrounds_1440[index]})
+            'background_900': settings.BACKGROUNDS_900[index],
+            'background_1280': settings.BACKGROUNDS_1280[index],
+            'background_1440': settings.BACKGROUNDS_1440[index]})
     return render_to_response('main_page.html', variables)

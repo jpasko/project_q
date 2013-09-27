@@ -255,6 +255,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 STRIPE_SECRET = os.environ.get('STRIPE_SECRET_LIVE')
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE_LIVE')
 
+# Background images.
+BACKGROUNDS_900 = ['cars_900_blur.jpg', 'sony_center_900_blur.jpg', 'street_900_blur.jpg', 'boat_900_blur.jpg', 'dreamcatcher_900_blur.jpg', 'drops_900_blur.jpg', 'jars_900_blur.jpg']
+BACKGROUNDS_1280 = ['cars_1280_blur.jpg', 'sony_center_1280_blur.jpg', 'street_1280_blur.jpg', 'boat_1280_blur.jpg', 'dreamcatcher_1280_blur.jpg', 'drops_1280_blur.jpg', 'jars_1280_blur.jpg']
+BACKGROUNDS_1440 = ['cars_1440_blur.jpg', 'sony_center_1440_blur.jpg', 'street_1440_blur.jpg', 'boat_1440_blur.jpg', 'dreamcatcher_1440_blur.jpg', 'drops_1440_blur.jpg', 'jars_1440_blur.jpg']
+
 # Untracked local variables (secret keys and the like)
 try:
     from locals import *
