@@ -601,6 +601,9 @@ a.thumbnail:hover, a.thumbnail:focus {
     -khtml-opacity: 0.4;
     opacity: 0.4;
 }
+.featured-link:hover {
+    text-decoration: none;
+}
 #signup-box-free, #signup-box-premium, #signup-box-professional {
     padding: 25px;
     border: 5px solid rgb(220, 220, 220);//rgb(240,240,240);
