@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /spindrift/
 Disallow: /examples/
 Disallow: /privacy/
 Disallow: /terms/
