@@ -234,7 +234,7 @@ ul {
 }
 .main-text {
     padding: 30px 0 40px 0;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.5);
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 200;
@@ -268,7 +268,7 @@ p, h1, h2, h3, h4 {
 #selling-points {
     width: 745px;
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.5);
     padding: 3px;
     font-family: 'Raleway', sans-serif;
     color: white;
@@ -286,11 +286,11 @@ p, h1, h2, h3, h4 {
     color: #123456;
 }
 #link-to-examples {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.5);
     font-size: 1.5em;
     margin: 20px auto 0 auto;
     padding: 10px;
-    width: 215px;
+    width: 225px;
     border-radius: 3px;
 }
 #link-to-examples a {
@@ -345,24 +345,12 @@ a.thumbnail:hover, a.thumbnail:focus {
     box-shadow: none;
     background-color: rgb(93, 170, 105);
     border: 2px solid rgb(93, 170, 105);
+    transition: 0.5s;
 }
 .signup-btn-large:hover {
-    margin: 120px 0 10px 0;
-    border-radius: 3px;
-    color: white;
-    background-image: none;
-    text-shadow: none;
-    box-shadow: none;
-    background-color: rgb(93, 170, 105);
-    border: 2px solid rgb(93, 170, 105);
-}
-.signup-btn-large-hover {
     color: rgb(93, 170, 105);
     background: none;
-}
-.signup-btn-large-hover:hover {
-    color: rgb(93, 170, 105);
-    background: none;
+    transition: 0.5s;
 }
 .examples-link {
     font-family: 'Raleway', sans-serif;
