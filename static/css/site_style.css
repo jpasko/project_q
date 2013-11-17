@@ -294,7 +294,7 @@ p, h1, h2, h3, h4 {
     border-radius: 3px;
 }
 #link-to-examples a {
-    color: rgb(78, 144, 156);
+    color: rgb(93, 170, 105);
 }
 #link-to-examples a:hover {
     text-decoration: none;
@@ -329,7 +329,7 @@ p, h1, h2, h3, h4 {
 }
 a.thumbnail {
     padding: 0;
-    border: 2px solid rgb(78, 144, 156);
+    border: 2px solid rgb(93, 170, 105);
     border-radius: 2px;
 }
 a.thumbnail:hover, a.thumbnail:focus {
@@ -343,8 +343,8 @@ a.thumbnail:hover, a.thumbnail:focus {
     background-image: none;
     text-shadow: none;
     box-shadow: none;
-    background-color: rgb(78, 144, 156);
-    border: 2px solid rgb(78, 144, 156);
+    background-color: rgb(93, 170, 105);
+    border: 2px solid rgb(93, 170, 105);
 }
 .signup-btn-large:hover {
     margin: 120px 0 10px 0;
@@ -353,15 +353,15 @@ a.thumbnail:hover, a.thumbnail:focus {
     background-image: none;
     text-shadow: none;
     box-shadow: none;
-    background-color: rgb(78, 144, 156);
-    border: 2px solid rgb(78, 144, 156);
+    background-color: rgb(93, 170, 105);
+    border: 2px solid rgb(93, 170, 105);
 }
 .signup-btn-large-hover {
-    color: rgb(78, 144, 156);
+    color: rgb(93, 170, 105);
     background: none;
 }
 .signup-btn-large-hover:hover {
-    color: rgb(78, 144, 156);
+    color: rgb(93, 170, 105);
     background: none;
 }
 .examples-link {
@@ -408,7 +408,7 @@ a.thumbnail:hover, a.thumbnail:focus {
 #signup-boxes {
     padding: 80px 0 40px 0;
     margin: 70px 0 0 0;
-    background: rgb(78, 144, 156);
+    background: rgb(93, 170, 105);
     background-image: url('https://s3.amazonaws.com/folio24/static/img/splash_900_blur.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -417,7 +417,7 @@ a.thumbnail:hover, a.thumbnail:focus {
     box-shadow: 0px -3px 3px rgb(162,162,162);
 }
 .colored {
-    color: rgb(78, 144, 156);
+    color: rgb(93, 170, 105);
 }
 .dark {
     color: rgb(100,100,100);
@@ -500,7 +500,7 @@ a.thumbnail:hover, a.thumbnail:focus {
 #interfaces {
     height: 429px;
     padding: 20px 0 0 0;
-    background: rgb(78, 144, 156);
+    background: rgb(93, 170, 105);
     border-bottom: 2px solid #b1b5ba;
 }
 #swipe {
@@ -641,7 +641,7 @@ a.thumbnail:hover, a.thumbnail:focus {
 #contact {
     min-height: 400px;
     border-bottom: 2px solid #b1b5ba;
-    background: rgb(78, 144, 156);
+    background: rgb(93, 170, 105);
     padding: 30px 0;
 }
 #google-map {
@@ -665,7 +665,7 @@ a.thumbnail:hover, a.thumbnail:focus {
     border: none;
     text-shadow: none;
     box-shadow: none;
-    color: rgb(78, 144, 156);
+    color: rgb(93, 170, 105);
     background-color: white;
     font-size: 2.0em;
     font-family: 'Raleway', sans-serif;
