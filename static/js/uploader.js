@@ -14,12 +14,17 @@ $(document).ready(function(){
 	add: function (e, data) {
 	    if (data.files[0].size < maxFileSize * 1024 * 1024) {
 		numFiles++;
+		if (numFiles == maxNumberOfFiles + 1) {
+		    alert('Only ' + maxNumberOfFiles + ' files can be uploaded at one time.');
+		}
 		var file = data.files[0];
 		var fileDetails = '<tr><td class="filename-cell">' + file.name + '</td>' +
 		    '<td class="progress-cell"><div class="js-progress" style="width: 0%"></div></td>' +
 		    '<td class="status-cell">in progress</td></tr>';
 		data.context = $(fileDetails).appendTo('#file-status-list');
 		jqXHR = data.submit();
+	    } else {
+		alert('File too large. Maximum size allowed: ' + maxFileSize + 'MB');
 	    }
 	},
 	done: function (e, data) {
